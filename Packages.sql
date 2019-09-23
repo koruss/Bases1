@@ -13,7 +13,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PERSON IS
              
            END;
        
-END PKG_ADMIN_PERSON;
+END PKG_ADMIN_PERSON;     
 
 -----------------------------------------------------------------------------------------------
 
