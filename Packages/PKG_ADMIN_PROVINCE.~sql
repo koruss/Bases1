@@ -1,0 +1,49 @@
+--PROVINCE_ADMINISTRATOR PACKAGE IMPLEMENTATION
+CREATE OR REPLACE PACKAGE PKG_ADMIN_PROVINCE  IS
+       FUNCTION GET_ID_PROVINCE(PNID_PROVINCE IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_ID_COUNTRY(PNID_PROVINCE IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_NAME_PROVINCE(PNID_PROVINCE IN NUMBER)  RETURN VARCHAR2;
+END PKG_ADMIN_PROVINCE;
+
+CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PROVINCE IS
+        --FUNCTION GET_ID_PERSON IMPLEMENTATION
+        FUNCTION GET_ID_PROVINCE(PNID_PROVINCE IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_PROVINCE                      NUMBER(10);
+         BEGIN
+                  SELECT ID_PROVINCE   
+                  INTO VNID_PROVINCE
+                  FROM PROVINCE
+                  WHERE ID_PROVINCE=PNID_PROVINCE;
+                  RETURN (VNID_PROVINCE);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_PERSON IMPLEMENTATION
+        FUNCTION GET_ID_COUNTRY(PNID_PROVINCE IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_COUNTRY                    NUMBER(10);
+         BEGIN
+                  SELECT ID_COUNTRY   
+                  INTO VNID_COUNTRY
+                  FROM PROVINCE
+                  WHERE ID_PROVINCE=PNID_PROVINCE;
+                  RETURN (VNID_COUNTRY);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_CATEGORY IMPLEMENTATION
+        FUNCTION GET_NAME_PROVINCE(PNID_PROVINCE IN NUMBER) RETURN VARCHAR2
+        IS
+                 VNNAME_PROVINCE VARCHAR2(20);
+
+        BEGIN
+                  SELECT NAME_PROVINCE
+                  INTO VNNAME_PROVINCE
+                  FROM PROVINCE
+                  WHERE ID_PROVINCE=PNID_PROVINCE;
+                  RETURN (VNNAME_PROVINCE);
+        END;
+
+       
+END PKG_ADMIN_PROVINCE;

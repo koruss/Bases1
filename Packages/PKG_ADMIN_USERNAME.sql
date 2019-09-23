@@ -1,0 +1,49 @@
+--USERNAME_ADMINISTRATOR PACKAGE IMPLEMENTATION
+CREATE OR REPLACE PACKAGE PKG_ADMIN_USERNAME IS
+       FUNCTION GET_ID_USERNAME(PNID_USERNAME IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_ID_PERSON(PNID_USERNAME IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_PASSWORD_USER(PNID_USERNAME IN NUMBER)  RETURN VARCHAR2;
+END PKG_ADMIN_USERNAME;
+
+CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_USERNAME IS
+        --FUNCTION GET_ID_CANTON IMPLEMENTATION
+        FUNCTION GET_ID_USERNAME(PNID_USERNAME IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_USERNAME                        NUMBER(10);
+         BEGIN
+                  SELECT ID_USERNAME
+                  INTO VNID_USERNAME
+                  FROM USERNAME
+                  WHERE ID_USERNAME=PNID_USERNAME;
+                  RETURN (VNID_USERNAME);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_PROVINCE IMPLEMENTATION
+        FUNCTION GET_ID_PERSON(PNID_USERNAME IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_PERSON                        NUMBER(10);
+         BEGIN
+                  SELECT ID_PERSON
+                  INTO VNID_PERSON
+                  FROM USERNAME
+                  WHERE ID_USERNAME=PNID_USERNAME;
+                  RETURN (VNID_PERSON);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_NAME_CANTON IMPLEMENTATION
+        FUNCTION GET_PASSWORD_USER(PNID_USERNAME IN NUMBER) RETURN VARCHAR2
+        IS
+                 VNPASSWORD_USER VARCHAR2;
+
+        BEGIN
+                  SELECT PASSWORD_USER
+                  INTO VNPASSWORD_USER
+                  FROM USERNAME
+                  WHERE ID_USERNAME=PNID_USERNAME;
+                  RETURN (VNPASSWORD_USER);
+        END;
+
+       
+END PKG_ADMIN_USERNAME;

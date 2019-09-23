@@ -1,0 +1,50 @@
+--COMMENT_PROP_ADMINISTRATOR PACKAGE IMPLEMENTATION
+CREATE OR REPLACE PACKAGE PKG_ADMIN_COMMENT_PROP  IS
+       FUNCTION GET_ID_COMMENT(PNID_COMMENT IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_DESCRIPTION_COMMENT(PNID_COMMENT IN NUMBER)  RETURN VARCHAR2;
+       FUNCTION GET_DATE_COMMENT(PNID_COMMENT IN NUMBER)  RETURN DATE;
+END PKG_ADMIN_COMMENT_PROP;
+
+CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COMMENT_PROP IS
+        --FUNCTION GET_ID_PERSON IMPLEMENTATION
+        FUNCTION GET_ID_COMMENT(PNID_COMMENT IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_COMMENT                        NUMBER(10);
+         BEGIN
+                  SELECT ID_COMMENT   
+                  INTO VNID_COMMENT
+                  FROM COMMENT_PROP
+                  WHERE ID_COMMENT=PNID_COMMENT;
+                  RETURN (VNID_COMMENT);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_CATEGORY IMPLEMENTATION
+        FUNCTION GET_ID_CATEGORY(PNID_COMMENT IN NUMBER) RETURN VARCHAR2
+        IS
+                 VNDESCRIPTION_COMMENT                VARCHAR2(50);
+
+        BEGIN
+                  SELECT DESCRIPTION_COMMENT
+                  INTO VNDESCRIPTION_COMMENT
+                  FROM COMMENT_PROP
+                  WHERE ID_COMMENT=PNID_COMMENT;
+                  RETURN (VNDESCRIPTION_COMMENT);
+        END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_CATEGORY IMPLEMENTATION
+        FUNCTION GET_ID_CATEGORY(PNID_COMMENT IN NUMBER) RETURN DATE
+        IS
+                 VNDATE_COMMENT DATE;
+
+        BEGIN
+                  SELECT DATE_COMMENT
+                  INTO VNDATE_COMMENT
+                  FROM COMMENT_PROP
+                  WHERE ID_COMMENT=PNID_COMMENT;
+                  RETURN (VNID_CATEGORY);
+        END;
+
+       
+END PKG_ADMIN_COMMENT_PROP;

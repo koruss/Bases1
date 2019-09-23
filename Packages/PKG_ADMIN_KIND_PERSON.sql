@@ -1,0 +1,49 @@
+--KIND_PERSON_ADMINISTRATOR PACKAGE IMPLEMENTATION
+CREATE OR REPLACE PACKAGE PKG_ADMIN_KIND_PERSON  IS
+       FUNCTION GET_ID_KIND_PERSON(PNID_KIND_PERSON IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_ID_PERSON(PNID_KIND_PERSON IN NUMBER)  RETURN NUMBER;
+       FUNCTION GET_TITLE_PERSON(PNID_KIND_PERSON IN NUMBER)  RETURN VARCHAR2;
+END PKG_ADMIN_KIND_PERSON;
+
+CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_KIND_PERSON IS
+        --FUNCTION GET_ID_PERSON IMPLEMENTATION
+        FUNCTION GET_ID_KIND_PERSON(PNID_KIND_PERSON IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_KIND_PERSON                      NUMBER(10);
+         BEGIN
+                  SELECT ID_KIND_PERSON   
+                  INTO VNID_KIND_PERSON
+                  FROM KIND_PERSON
+                  WHERE ID_KIND_PERSON=PNID_KIND_PERSON;
+                  RETURN (VNID_KIND_PERSON);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_PERSON IMPLEMENTATION
+        FUNCTION GET_ID_PERSON(PNID_KIND_PERSON IN NUMBER)  RETURN NUMBER
+         IS
+                  VNID_PERSON                    NUMBER(10);
+         BEGIN
+                  SELECT MAIL   
+                  INTO VNID_PERSON
+                  FROM KIND_PERSON
+                  WHERE ID_KIND_PERSON=PNID_KIND_PERSON;
+                  RETURN (VNID_PERSON);
+         END;
+         
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_ID_CATEGORY IMPLEMENTATION
+        FUNCTION GET_TITLE_PERSON(PNID_KIND_PERSON IN NUMBER) RETURN VARCHAR2
+        IS
+                 VNTITLE_PERSON VARCHAR(20);
+
+        BEGIN
+                  SELECT TITLE_PERSON
+                  INTO VNTITLE_PERSON
+                  FROM KIND_PERSON
+                  WHERE ID_KIND_PERSON=PNID_KIND_PERSON;
+                  RETURN (VNTITLE_PERSON);
+        END;
+
+       
+END PKG_ADMIN_KIND_PERSON;
