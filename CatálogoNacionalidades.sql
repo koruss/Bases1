@@ -1,0 +1,30 @@
+
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Argentina');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Bolivia');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Brasil');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Chile');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Colombia');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Costa Rica');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Cuba');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Ecuador');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'El Salvador');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Guatemala');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Honduras');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'México');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Nicaragua');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Panamá');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Paraguay');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Puerto Rico');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Perú');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'República Dominicana');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Uruguay');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Venezuela');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Haití');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Belice');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Estados Unidos');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Francia');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Canadá');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'España');
+insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Rusia');
+
+select * from nationality;
