@@ -3,6 +3,7 @@ CREATE TABLE binnacle (
  id_Binnacle NUMBER(5) CONSTRAINT id_binnacle_nn NOT NULL, 
  id_Person VARCHAR2(20) CONSTRAINT id_person_nn NOT NULL,
  previous_password varchar2(30) CONSTRAINT previous_password_nn NOT NULL,
+ current_password varchar2(30) constraint current_password_nn not null,
  pass_change_date DATE CONSTRAINT pass_change_date_nn NOT NULL
 );
 ---------- CREACION DE LA LLAVE PRIMARIA -------------------------
@@ -35,34 +36,13 @@ CREATE SEQUENCE s_binnacle
   MAXVALUE 10000000
   NOCACHE
   NOCYCLE;
----------------------CREACION DEL TRIGGER-------------------------
-ALTER TABLE binnacle ADD created_by VARCHAR(20);
-ALTER TABLE binnacle ADD creation_date DATE;  
-COMMENT ON COLUMN binnacle.created_by
-  IS 'Name of the user that entered the data';
-COMMENT ON COLUMN binnacle.creation_date
-  IS 'Date in wich the data was entered';
-CREATE OR REPLACE TRIGGER admin.beforeInsertBinnacle
-       BEFORE INSERT
-       ON admin.binnacle
-       FOR EACH ROW
-       BEGIN 
-           :new.created_by:=USER;
-           :new.creation_date:=SYSDATE;
-       END beforeInsertBinnacle;
-       
-       
-ALTER TABLE binnacle ADD last_modification_by VARCHAR(20);
-ALTER TABLE binnacle ADD last_modification_date DATE;  
-COMMENT ON COLUMN binnacle.last_modification_by
-  IS 'Name of the last user who modifier the data';
-COMMENT ON COLUMN binnacle.last_modification_date
-  IS 'Date of last modification';
-CREATE OR REPLACE TRIGGER admin.BeforeUpdatebinnacle
-       before update
-       ON admin.binnacle
-       FOR EACH ROW
-       BEGIN 
-           :new.last_modification_by:=USER;
-           :new.last_modification_date:=SYSDATE;
-       END BeforeUpdatebinnacle;
+---------------------CREACION DEL TRIGGER-------------------------    
+create or replace trigger admin.beforeUpdate_password_Bitacora 
+       after update of password
+       on ad.username 
+       for each row 
+       begin 
+         insert into admin.binnacle(nom_esquema,nom_tabla,nom_campo,
+         valor_anterior,valor_actual,usuario_creacion,fecha_ultima_modificacion)
+         values('AD','Employee','Salary',:old.salary,:new.salary,user,sysdate);
+       end beforeUpdate_Salary_Bitacora;
