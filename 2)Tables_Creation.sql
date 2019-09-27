@@ -127,7 +127,7 @@ Create table Telephone(
 create table Proposal (
        id_Proposal number(5)CONSTRAINT id_Proposal_nn NOT null,
        Proposal_name varchar2(100)CONSTRAINT Proposal_name_nn NOT null,
-       proposal_description varchar2(100)CONSTRAINT proposal_description_nn NOT null,
+       proposal_description varchar2(2000)CONSTRAINT proposal_description_nn NOT null,
        budget number(20) constraint proposal_budget_nn NOT NULL,
        vote number(10),
        proposal_Date DATE constraint proposal_date_nn NOT NULL,

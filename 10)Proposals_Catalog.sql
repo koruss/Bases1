@@ -122,7 +122,38 @@ insert into email(email,identification) values ('francisco.araya.solis@yahoo.com
 insert into telephone (telephone,identification) values ('85741234','248579815');
 insert into nationality_x_person(id_nationality,id_person) values (5,'248579815');
 
+insert into person(identification,name,first_last_name,second_last_name,birthdate,id_community) 
+values ('144785623','Stephanie','Solano','Cedeño',To_Date('21/10/1996','DD,MM,YYYY'),90);
+insert into email(email,identification) values ('stephsol96@gmail.com','144785623');
+insert into telephone (telephone,identification) values ('89974554','144785623');
+insert into nationality_x_person(id_nationality,id_person) values (5,'144785623');
 
 -----------CREACIÓN DE PROPUESTAS----------------------
---insert into proposal(id_proposal,proposal_name,proposal_description,budget,proposal_date)
---values (s_proposal.nextval,'')
+insert into proposal(id_proposal,proposal_name,proposal_description,budget,proposal_date)
+values (s_proposal.nextval,'Eco-Ladrillos','Botellas de plástico rellenas de envoltorios, pajillas y demás desechos que no son reciclables, con el fin de reducir la cantidad de basura generada, además de no requerir presupuesto',0,sysdate);
+insert into proposal_x_category(id_proposal,id_category) values (0,0);
+insert into person_x_proposal(id_proposal,id_person) values (0,'117060279');
+
+insert into proposal(id_proposal,proposal_name,proposal_description,budget,proposal_date)
+values (s_proposal.nextval,'Botellas en árboles con bolsas para excrementos de perro','Para reducir la cantidad de cacas de perro en las zonas verdes de la comunidad, se podrían poner en lugares estratégicos, algunas bolsas para que las personas la tomen y así reducir este problema',10000,sysdate);
+insert into proposal_x_category(id_proposal,id_category) values (1,3);
+insert into person_x_proposal(id_proposal,id_person) values (1,'102563985');
+
+insert into proposal(id_proposal,proposal_name,proposal_description,budget,proposal_date)
+values (s_proposal.nextval,'Cámaras de seguridad en los parques','Con el aumento de asaltos que se han dado en la comunidad últimamente, se debe valorar la opción de poner cámaras de vigilancia directamente conectadas con la fuerza pública para tratar de contrarrestar la inseguridad, especialmente en las zonas con parques',3000000,sysdate);
+insert into proposal_x_category(id_proposal,id_category) values (2,1);
+insert into person_x_proposal(id_proposal,id_person) values (2,'108566974');
+
+insert into proposal(id_proposal,proposal_name,proposal_description,budget,proposal_date)
+values (s_proposal.nextval,'Festival deportivo 2019','Realizar un gran féstival deportivo, con el objetivo de integrar a las personas a través de algo tan importante como lo es el deporte y recaudar fondos para la seguridad de nuestra comunidad',400000,sysdate);
+insert into proposal_x_category(id_proposal,id_category) values (3,2);
+insert into person_x_proposal(id_proposal,id_person) values (3,'119672845');
+
+insert into proposal(id_proposal,proposal_name,proposal_description,budget,proposal_date)
+values (s_proposal.nextval,'Feria de artesanías en el salón comunal','Utilizar el salón comunal como un área de exposición para la comunidad, donde se presentes productos, servicios, alimentos, entre otros por parte de nuestros vecinos, para impulsar la economía local',100000,sysdate);
+insert into proposal_x_category(id_proposal,id_category) values (4,6);
+insert into person_x_proposal(id_proposal,id_person) values (4,'136690451');
+
+select proposal.id_proposal,proposal_name,proposal_description,budget,proposal_x_category.id_category from proposal inner join proposal_x_category on proposal.id_proposal=proposal_x_category.id_proposal inner join person_x_proposal 
+on proposal.id_proposal=person_x_proposal.id_proposal ;
+commit;
