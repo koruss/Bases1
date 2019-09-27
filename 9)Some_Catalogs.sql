@@ -1,4 +1,4 @@
-
+-----------CREACION CATALOGO DE NACIONALIDADES-----------------------
 insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Argentina');
 insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Bolivia');
 insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Brasil');
@@ -27,4 +27,19 @@ insert into nationality(id_nationality,nationality_name) values (s_nationality.n
 insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'España');
 insert into nationality(id_nationality,nationality_name) values (s_nationality.nextval,'Rusia');
 
-select * from nationality;
+
+-----------CREACION CATALOGO DE CATEGORIAS-----------------------
+insert into category(id_category,category_name) values (s_category.nextval,'Ambiental');
+insert into category(id_category,category_name) values (s_category.nextval,'Seguridad');
+insert into category(id_category,category_name) values (s_category.nextval,'Cultura y Deporte');
+insert into category(id_category,category_name) values (s_category.nextval,'Mascotas');
+insert into category(id_category,category_name) values (s_category.nextval,'Desarrollo Comunitario');
+insert into category(id_category,category_name) values (s_category.nextval,'Limpieza');
+insert into category(id_category,category_name) values (s_category.nextval,'Negocios o ferias');
+insert into category(id_category,category_name) values (s_category.nextval,'Alimentación');
+insert into category(id_category,category_name) values (s_category.nextval,'Talleres');
+insert into category(id_category,category_name) values (s_category.nextval,'Construcción');
+
+-----------CREACION CATALOGO DE TIPO DE USUARIO--------------------------
+insert into userType(id_userType, Usertype_Name) values (s_usertype.nextval,'Administrador');
+insert into usertype(id_userType,Usertype_name) values (s_usertype.nextval,'Usuario Normal');
