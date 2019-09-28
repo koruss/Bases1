@@ -251,7 +251,29 @@ COMMENT ON COLUMN parameter.last_modification_by
   IS 'Name of the last user who modifier the data';
 COMMENT ON COLUMN parameter.last_modification_date
   IS 'Date of last modification';
-  
+
+----------- COMENTARIOS DE LA TABLA ------------------------------
+COMMENT ON TABLE binnacle
+  IS 'Saves all the information of the binacles'; 
+COMMENT ON COLUMN binnacle.id_Binnacle
+  IS 'Identifier of the binnacle';  
+COMMENT ON COLUMN binnacle.id_Person
+  IS 'Identifier of the person that changes their password';
+COMMENT ON COLUMN binnacle.previous_password
+  IS 'The previous password of the user';
+COMMENT ON COLUMN binnacle.current_password
+  IS 'The current password of the user';
+COMMENT ON COLUMN binnacle.pass_change_date
+  IS 'Date of the change of password';
+COMMENT ON COLUMN binnacle.created_by
+  IS 'Name of the user that entered the data';
+COMMENT ON COLUMN binnacle.creation_date
+  IS 'Date in wich the data was entered';
+COMMENT ON COLUMN binnacle.last_modification_by
+  IS 'Name of the last user who modifier the data';
+COMMENT ON COLUMN binnacle.last_modification_date
+  IS 'Date of last modification';
+   
 ----------- COMENTARIOS DE LA TABLA NACIONALIDAD X PERSONA ------------------------------
 COMMENT ON TABLE nationality_x_person
   IS 'Saves the relation of the nationalities with the persons'; 

@@ -409,5 +409,28 @@ CREATE OR REPLACE TRIGGER admin.BeforeUpdatevote
            :new.last_modification_by:=USER;
            :new.last_modification_date:=SYSDATE;
        END BeforeUpdatevote;
-;
+
+
+---------------------CREACION TRIGGERS TABLA BITÁCORA-------------------------
+CREATE OR REPLACE TRIGGER admin.BeforeInsertBinnacle
+       before insert
+       ON admin.binnacle
+       FOR EACH ROW
+       BEGIN 
+           :new.created_by:=USER;
+           :new.creation_date:=SYSDATE;
+       END BeforeInsertBinnacle;
+
+
+CREATE OR REPLACE TRIGGER admin.BeforeUpdateBinnacle
+       before update
+       ON admin.binnacle
+       FOR EACH ROW
+       BEGIN 
+           :new.last_modification_by:=USER;
+           :new.last_modification_date:=SYSDATE;
+       END BeforeUpdateBinnacle;
+
+
+
 

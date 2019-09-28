@@ -43,7 +43,11 @@ ALTER TABLE Telephone
   ADD CONSTRAINT fk_Telephone_person FOREIGN KEY
   (identification) REFERENCES
   Person(identification);
-  
+
+---------- CREACION DE LA LLAVE FORANEA -------------------------
+ALTER TABLE binnacle
+  ADD CONSTRAINT fk_binnacle_person FOREIGN KEY (id_Person)
+  REFERENCES person(identification); 
 ---------- CREACION DE LAS LLAVES FORANEAS EN TABLA NACIONALIDAD X PERSONA -------------------------
 ALTER TABLE nationality_x_person
   ADD CONSTRAINT fk_nationxperson_nationality FOREIGN KEY

@@ -101,7 +101,13 @@ ALTER TABLE parameter
   TABLESPACE admin_ind PCTFREE 20
   STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0);
   
-  
+---------- CREACION DE LA LLAVE PRIMARIA -------------------------  
+ALTER TABLE binnacle
+  ADD CONSTRAINT pk_Binnacle PRIMARY KEY (id_Binnacle)
+  USING INDEX
+  TABLESPACE admin_ind PCTFREE 20
+  STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0
+);
 ---------- CREACION DE LA LLAVE PRIMARIA EN TABLA NACIONALIDAD X PERSONA-------------------------
 ALTER TABLE nationality_x_person
   ADD CONSTRAINT pk_nationality_x_person PRIMARY KEY (id_nationality,id_person)

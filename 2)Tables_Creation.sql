@@ -22,12 +22,11 @@ CREATE TABLE country(
  last_modification_by VARCHAR(20),
  last_modification_date DATE
 );
-
 --------------CREACION TABLA PROVINCIA----------------------------
 CREATE TABLE province(
  id_Province NUMBER(5), 
  id_Country NUMBER(5),
- province_name VARCHAR2 (20) CONSTRAINT province_name_nn NOT NULL,
+ province_name VARCHAR2 (30) CONSTRAINT province_name_nn NOT NULL,
  created_by VARCHAR(20),
  creation_date date,
  last_modification_by VARCHAR(20),
@@ -54,7 +53,6 @@ create table canton (
        last_modification_by VARCHAR(20),
        last_modification_date DATE
 );
-
 --------------CREACION TABLA COMUNIDAD----------------------------
 create table community (
        id_community number(5)CONSTRAINT id_community_nn NOT null,
@@ -122,11 +120,10 @@ Create table Telephone(
        last_modification_by VARCHAR(20),
        last_modification_date DATE 
 );
-
 --------------CREACION TABLA PROPUESTA----------------------------
 create table Proposal (
        id_Proposal number(5)CONSTRAINT id_Proposal_nn NOT null,
-       Proposal_name varchar2(100)CONSTRAINT Proposal_name_nn NOT null,
+       title varchar2(100)CONSTRAINT Proposal_name_nn NOT null,
        proposal_description varchar2(2000)CONSTRAINT proposal_description_nn NOT null,
        budget number(20) constraint proposal_budget_nn NOT NULL,
        vote number(10),
@@ -136,11 +133,10 @@ create table Proposal (
        last_modification_by VARCHAR(20),
        last_modification_date DATE
 );
-
 --------------CREACION TABLA COMENTARIO (PARA LA PROPUESTA)----------------------------
 create table Proposal_comment (
        id_comment number(5)CONSTRAINT id_comment_nn NOT null,
-       comment_description varchar2(500)CONSTRAINT comment_description_nn NOT null,
+       comment_description varchar2(2000)CONSTRAINT comment_description_nn NOT null,
        comment_date DATE CONSTRAINT comment_date_nn NOT null,
        created_by VARCHAR(20),
        creation_date date,
@@ -159,6 +155,18 @@ create table parameter (
        last_modification_date DATE
 );
 
+--------------CREACION TABLA BITÁCORA----------------------------
+CREATE TABLE binnacle (
+ id_Binnacle NUMBER(5) CONSTRAINT id_binnacle_nn NOT NULL, 
+ id_Person VARCHAR2(20) CONSTRAINT id_person_nn NOT NULL,
+ previous_password varchar2(30) CONSTRAINT previous_password_nn NOT NULL,
+ current_password varchar2(30) constraint current_password_nn not null,
+ pass_change_date DATE CONSTRAINT pass_change_date_nn NOT NULL,
+ created_by VARCHAR(20),
+ creation_date date,
+ last_modification_by VARCHAR(20),
+ last_modification_date DATE
+);
 
 -------------------CREACIÓN TABLAS DE RELACIONES 
 --------------------------EN EL SISTEMA
@@ -225,7 +233,7 @@ create table proposal_x_comment (
        last_modification_by VARCHAR(20),
        last_modification_date DATE
 );
-
+SELECT * FROM PROPOSAL;
 --------------CREACION TABLA VOTO----------------------------
 create table vote (
        id_proposal number(5)CONSTRAINT id_vote_proposal_nn NOT null,
