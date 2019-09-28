@@ -27,6 +27,10 @@ public class mainWindow extends javax.swing.JFrame {
         btnNewProposal.setBorderPainted(false); 
         this.mainPanel.setBackground(new Color(0,0,0,80));
         
+        for(int i=70;i<1000;i+=170){
+            crearPaneles(i);
+        }
+        
     }
 
     /**
@@ -46,12 +50,10 @@ public class mainWindow extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
-        panelproposal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
@@ -91,23 +93,18 @@ public class mainWindow extends javax.swing.JFrame {
         });
         kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 40));
 
+        jScrollPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setAutoscrolls(true);
+        jScrollPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jScrollPane1.setDoubleBuffered(true);
+
+        mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mainPanel.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Titulo:");
-        panelproposal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTitulo.setText("jLabel3");
-        panelproposal.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
-
-        mainPanel.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 870, 170));
-
         jScrollPane1.setViewportView(mainPanel);
 
-        kGradientPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 920, 600));
+        kGradientPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 920, 600));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Propuestas");
@@ -130,12 +127,40 @@ public class mainWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void crearPaneles(){
+    private void crearPaneles(int posY){
+        javax.swing.JLabel txtMainTitle;
+        javax.swing.JLabel txtTitulo;
+        javax.swing.JPanel panelproposal;
+        javax.swing.JTextField boxInfo;
+        //creo el panel
         panelproposal = new javax.swing.JPanel();
+        
         panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelproposal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        panelproposal.setBackground(new Color(0,0,0,100));
+        //creo el titulo y lo inserto en el panel
+        txtMainTitle = new javax.swing.JLabel();
+        txtMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtMainTitle.setText("Titulo:");
+        panelproposal.add(txtMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, -1, 50));
+        //creo el subtitulo y lo inserto en el panel
+        txtTitulo = new javax.swing.JLabel();
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTitulo.setText("aqui va el titulo de la propuesta");
+        panelproposal.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 210, 40));
+        boxInfo = new javax.swing.JTextField();
+        //creo e inserto la caja de texto
+        boxInfo.setText("jTextField1");
+        boxInfo.setBackground(new Color(0,0,0,100));
+        boxInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
+        panelproposal.add(boxInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 700, 90));
+        
+        mainPanel.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posY, 860, 160));
+        
         
     }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -176,14 +201,11 @@ public class mainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNewProposal;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JPanel panelproposal;
-    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
