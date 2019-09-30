@@ -28,7 +28,11 @@ public class mainWindow extends javax.swing.JFrame {
         this.mainPanel.setBackground(new Color(0,0,0,80));
         
         for(int i=70;i<1000;i+=170){
+            System.out.println("izi");
             crearPaneles(i);
+            javax.swing.JLabel txtTituloo = new javax.swing.JLabel();
+            txtTituloo.setText("Titulo:");
+            mainPanel.add(txtTituloo,new org.netbeans.lib.awtextra.AbsoluteConstraints(50, i, 860, 160) );
         }
         
     }
@@ -48,9 +52,9 @@ public class mainWindow extends javax.swing.JFrame {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        mainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -93,22 +97,14 @@ public class mainWindow extends javax.swing.JFrame {
         });
         kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 40));
 
-        jScrollPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setAutoscrolls(true);
-        jScrollPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jScrollPane1.setDoubleBuffered(true);
-
-        mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainPanel.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jScrollPane1.setViewportView(mainPanel);
-
-        kGradientPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 920, 600));
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Propuestas");
         kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, 50));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainPanel.setViewportView(jPanel1);
+
+        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 950, 600));
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
 
@@ -136,7 +132,7 @@ public class mainWindow extends javax.swing.JFrame {
         panelproposal = new javax.swing.JPanel();
         
         panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelproposal.setBackground(new Color(0,0,0,100));
+        panelproposal.setBackground(new Color(0,0,0,80));
         //creo el titulo y lo inserto en el panel
         txtMainTitle = new javax.swing.JLabel();
         txtMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -154,9 +150,9 @@ public class mainWindow extends javax.swing.JFrame {
         boxInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
         panelproposal.add(boxInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 700, 90));
         
-        mainPanel.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posY, 860, 160));
+        this.jPanel1.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posY, 860, 160));
         
-        
+        pack();
     }
     
     
@@ -202,10 +198,10 @@ public class mainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnNewProposal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
-    private javax.swing.JPanel mainPanel;
+    private javax.swing.JScrollPane mainPanel;
     // End of variables declaration//GEN-END:variables
 }
