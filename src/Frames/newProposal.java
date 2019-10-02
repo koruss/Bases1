@@ -21,7 +21,7 @@ public class newProposal extends javax.swing.JFrame {
         jPanel1.setBackground(new Color(0,0,0,80));
         this.txtPresupuesto.setBackground(new Color(102,0,102,80));
         this.txtDescripcion.setBackground(new Color(102,0,102,80));
-        this.jList1.setBackground(new Color(102,0,102,80));
+        //this.jList1.setBackground(new Color(102,0,102,80));
         this.jScrollPane1.setBackground(new Color(102,0,102,80));
         this.jScrollPane2.setBackground(new Color(102,0,102,80));
         
@@ -80,7 +80,7 @@ public class newProposal extends javax.swing.JFrame {
         kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 60, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 650, -1, -1));
+        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
 
@@ -129,9 +129,10 @@ public class newProposal extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 220, 100));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 220, 100));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
