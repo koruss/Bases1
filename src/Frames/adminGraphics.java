@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frames;
 
-/**
- *
- * @author Kenneth
- */
+import java.awt.Color;
+import org.jfree.chart.ChartFactory;
+import org.jfree.data.general.PieDataset;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
 public class adminGraphics extends javax.swing.JFrame {
 
     /**
@@ -28,28 +28,53 @@ public class adminGraphics extends javax.swing.JFrame {
     private void initComponents() {
 
         kButton1 = new keeptoo.KButton();
-        kGradientPanel1 = new keeptoo.KGradientPanel();
+        panel = new keeptoo.KGradientPanel();
+        kButton2 = new keeptoo.KButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         kButton1.setText("kButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
-        kGradientPanel1.setLayout(kGradientPanel1Layout);
-        kGradientPanel1Layout.setHorizontalGroup(
-            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 960, Short.MAX_VALUE)
-        );
-        kGradientPanel1Layout.setVerticalGroup(
-            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
+        panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 960, 800));
+        kButton2.setText("Draw Graphics");
+        kButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton2ActionPerformed(evt);
+            }
+        });
+        panel.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 100, 60));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel3.setText("Sign Up");
+        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 160, 60));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, -1));
+
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 960, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
+        // TODO add your handling code here:
+        crearPieChart();
+    }//GEN-LAST:event_kButton2ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -85,9 +110,31 @@ public class adminGraphics extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void crearPieChart(){
+
+        DefaultPieDataset result =new DefaultPieDataset();
+        result.setValue("hola", 65);
+        result.setValue("jaja",35);
+        
+        JFreeChart chart =ChartFactory.createPieChart3D("", result, true,true,false);
+        PiePlot3D plot = (PiePlot3D) chart.getPlot();
+        plot.setStartAngle(0);
+        plot.setDirection(Rotation.CLOCKWISE);
+        plot.setForegroundAlpha(0.5f);
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(700,500));
+        chartPanel.setBackground(new Color(0,0,0,80));
+
+        panel.add(chartPanel,new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 700, 500));
+        pack();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
     private keeptoo.KButton kButton1;
-    private keeptoo.KGradientPanel kGradientPanel1;
+    private keeptoo.KButton kButton2;
+    private keeptoo.KGradientPanel panel;
     // End of variables declaration//GEN-END:variables
 }

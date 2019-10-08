@@ -46,9 +46,9 @@ public class mainWindow extends javax.swing.JFrame {
         cbxCombo = new javax.swing.JComboBox<>();
         panelFiltros = new javax.swing.JPanel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnNewProposal = new javax.swing.JLabel();
+        btnConfig = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -100,15 +100,30 @@ public class mainWindow extends javax.swing.JFrame {
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
-        kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 60, -1));
+        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
+        btnNewProposal.setText("jLabel8");
+        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNewProposalMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 60, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
+        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfigMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
 
@@ -138,6 +153,26 @@ public class mainWindow extends javax.swing.JFrame {
                break;
        } 
     }//GEN-LAST:event_cbxComboActionPerformed
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        // TODO add your handling code here:
+        mainWindow ventana =new mainWindow();
+        ventana.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
+        newProposal ventana =new newProposal();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnNewProposalMouseClicked
+
+    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
+        userConsultas ventana= new userConsultas();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConfigMouseClicked
     private void spinnerTopActionPerformed(java.awt.event.ActionEvent evt){
         
     }
@@ -290,12 +325,12 @@ public class mainWindow extends javax.swing.JFrame {
     
     //fin de mi declaracion de variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnConfig;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnNewProposal;
     private javax.swing.JComboBox<String> cbxCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JScrollPane mainPanel;

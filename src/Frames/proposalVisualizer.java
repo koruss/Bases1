@@ -81,10 +81,6 @@ public class proposalVisualizer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        kGradientPanel1 = new keeptoo.KGradientPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         kGradientPanel3 = new keeptoo.KGradientPanel();
         jLabel6 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
@@ -103,27 +99,15 @@ public class proposalVisualizer extends javax.swing.JFrame {
         txtPresupuesto = new javax.swing.JLabel();
         txtExpositor = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        kGradientPanel1 = new keeptoo.KGradientPanel();
+        btnHome = new javax.swing.JLabel();
+        btnNewProposal = new javax.swing.JLabel();
+        btnConfig = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
-        kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
-        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
-        kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 60, -1));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
-
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
 
         kGradientPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -176,7 +160,7 @@ public class proposalVisualizer extends javax.swing.JFrame {
 
         txtCategorias.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCategorias.setText("Ambiental, educativa");
-        mainPanel.add(txtCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+        mainPanel.add(txtCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 204));
@@ -212,12 +196,63 @@ public class proposalVisualizer extends javax.swing.JFrame {
 
         getContentPane().add(kGradientPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
 
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
+        kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
+        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
+        btnNewProposal.setText("jLabel8");
+        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNewProposalMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 60, -1));
+
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
+        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfigMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
+
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        // TODO add your handling code here:
+        mainWindow ventana =new mainWindow();
+        ventana.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
+        newProposal ventana =new newProposal();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnNewProposalMouseClicked
+
+    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
+        userConsultas ventana= new userConsultas();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConfigMouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,6 +290,9 @@ public class proposalVisualizer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnConfig;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnNewProposal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -264,9 +302,6 @@ public class proposalVisualizer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
