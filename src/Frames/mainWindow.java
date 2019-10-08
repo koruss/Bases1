@@ -96,6 +96,11 @@ public class mainWindow extends javax.swing.JFrame {
         kGradientPanel2.add(cbxCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 190, -1));
 
         panelFiltros.setBackground(new Color(0,0,0,80));
+        panelFiltros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelFiltrosMouseClicked(evt);
+            }
+        });
         panelFiltros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         kGradientPanel2.add(panelFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 940, 100));
 
@@ -180,12 +185,20 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfigMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void panelFiltrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelFiltrosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panelFiltrosMouseClicked
 
     
  
-    
+   private void panelMouseClicked(java.awt.event.MouseEvent evt,String letra){
+       this.dispose();
+       proposalVisualizer ventana = new proposalVisualizer();
+       ventana.setVisible(true);
+   } 
        
     public void filtros(int opc){
         switch (opc){
@@ -248,7 +261,6 @@ public class mainWindow extends javax.swing.JFrame {
     } 
     
     private void crearPaneles(int posY){
-
         javax.swing.JLabel txtMainTitle;
         javax.swing.JLabel txtTitulo;
         javax.swing.JPanel panelproposal;

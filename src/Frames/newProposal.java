@@ -105,7 +105,7 @@ public class newProposal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
         jLabel3.setText("Titulo");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 250, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 70, 30));
 
         jList1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jList1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -117,7 +117,7 @@ public class newProposal extends javax.swing.JFrame {
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 220, 100));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 220, 100));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
@@ -125,7 +125,7 @@ public class newProposal extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 250, 30));
 
         kButton1.setText("kButton1");
-        jPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 610, -1, -1));
+        jPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 204));

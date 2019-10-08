@@ -19,12 +19,14 @@ public class proposalVisualizer extends javax.swing.JFrame {
     public proposalVisualizer() {
         initComponents();
         this.jTextArea1.setEditable(false);
-        
-        
             //este loop llama al metodo para crear los comentarios
             for(int i=30;i<1000;i+=170){
             crearComentarios(i);
         }
+    }
+    
+    public proposalVisualizer(String titulo){
+        initComponents();
     }
     
     

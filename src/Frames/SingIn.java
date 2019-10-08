@@ -5,6 +5,9 @@
  */
 package Frames;
 
+import Business.Funciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kenneth
@@ -31,10 +34,10 @@ public class SingIn extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        kButton1 = new keeptoo.KButton();
+        txtPassw = new javax.swing.JPasswordField();
+        btnSignIn = new keeptoo.KButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -66,24 +69,34 @@ public class SingIn extends javax.swing.JFrame {
         jLabel3.setText("Sign In");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 70, 30));
 
-        jTextField1.setBackground(new java.awt.Color(204, 255, 204));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 40));
+        txtUser.setBackground(new java.awt.Color(204, 255, 204));
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
         jLabel4.setText("Usuario");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 70, 40));
 
-        jPasswordField1.setBackground(new java.awt.Color(204, 255, 204));
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 250, 40));
+        txtPassw.setBackground(new java.awt.Color(204, 255, 204));
+        txtPassw.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtPassw.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
+        jPanel1.add(txtPassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 250, 40));
 
-        kButton1.setText("ENTRAR");
-        kButton1.setBorderPainted(false);
-        jPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
+        btnSignIn.setText("ENTRAR");
+        btnSignIn.setBorderPainted(false);
+        btnSignIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSignInMouseClicked(evt);
+            }
+        });
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignInActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(204, 0, 204));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -133,6 +146,25 @@ public class SingIn extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        
+    }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
+        Funciones utilidades = new Funciones();
+        String user = this.txtUser.getText();
+        char[] passw = this.txtPassw.getPassword();
+        String passwF = new String(passw);
+        if(utilidades.correctLogIn(user, passwF)){
+            mainWindow ventana =new mainWindow();
+            ventana.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
+        }
+    }//GEN-LAST:event_btnSignInMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -169,6 +201,7 @@ public class SingIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private keeptoo.KButton btnSignIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -178,9 +211,8 @@ public class SingIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JPasswordField txtPassw;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

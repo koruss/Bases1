@@ -5,7 +5,9 @@
  */
 package Frames;
 
+import Business.Funciones;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -57,7 +59,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        kButton1 = new keeptoo.KButton();
+        btnSignUp = new keeptoo.KButton();
         jLabel5 = new javax.swing.JLabel();
         txtPasswConfirm = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
@@ -100,17 +102,27 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel3.setText("Sign Up");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 160, 60));
+        jLabel3.setText("Registrarse");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 200, 60));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
         jLabel4.setText("Confirmar Contraseña");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, 250, 20));
 
-        kButton1.setText("ENTRAR");
-        kButton1.setBorderPainted(false);
-        jPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, -1, -1));
+        btnSignUp.setText("ENTRAR");
+        btnSignUp.setBorderPainted(false);
+        btnSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSignUpMouseClicked(evt);
+            }
+        });
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 204));
@@ -229,6 +241,11 @@ public class SignUp extends javax.swing.JFrame {
         txtName.setDisabledTextColor(new java.awt.Color(204, 255, 204));
         txtName.setMargin(new java.awt.Insets(0, 1, 0, 0));
         txtName.setName(""); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 250, 40));
 
         txtUser.setBackground(new java.awt.Color(204, 255, 204));
@@ -270,6 +287,36 @@ public class SignUp extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel14MouseClicked
 
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void btnSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUpMouseClicked
+        String name=txtName.getText();
+        String lastName1=this.txtFirstLastName.getText();
+        String lastName2=this.txtSecondLastName.getText();
+        String telefono=this.txtTelefono.getText();
+        String email =this.txtEmail.getText();
+        String cedula =this.txtCedula.getText();
+        String nacionalidad =(String)this.comboNacionalidad.getSelectedItem();
+        String user =this.txtUser.getText();
+        char[] passw1=this.txtPassw.getPassword();
+        char[] passw2= this.txtPasswConfirm.getPassword();
+        
+        if(passw1.equals(passw2)){//revisa que las contrasenas sean iguales
+           String password =new String(passw1);    
+           Funciones business = new Funciones();
+           business.SignUp(name, lastName1,lastName2, telefono, email, cedula, nacionalidad, user, password);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Error,Las Contraseñas no son iguales");    
+        }
+    }//GEN-LAST:event_btnSignUpMouseClicked
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -307,6 +354,7 @@ public class SignUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private keeptoo.KButton btnFoto;
+    private keeptoo.KButton btnSignUp;
     private javax.swing.JComboBox<String> comboNacionalidad;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
     private javax.swing.JLabel jLabel10;
@@ -323,7 +371,6 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtEmail;
