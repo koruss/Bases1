@@ -18,6 +18,8 @@ public class proposalVisualizer extends javax.swing.JFrame {
      */
     public proposalVisualizer() {
         initComponents();
+        this.jTextArea1.setEditable(false);
+        
         
             //este loop llama al metodo para crear los comentarios
             for(int i=30;i<1000;i+=170){
@@ -35,12 +37,15 @@ public class proposalVisualizer extends javax.swing.JFrame {
         javax.swing.JPanel panelproposal;
         javax.swing.JTextArea areaTexto;
         javax.swing.JScrollPane panelScroll;
+        javax.swing.JLabel txtHora;
+        
 
         //se inicializan los objetos
         panelproposal = new javax.swing.JPanel();
         areaTexto = new javax.swing.JTextArea();
         panelScroll = new javax.swing.JScrollPane();
         txtMainTitle = new javax.swing.JLabel();
+        txtHora = new javax.swing.JLabel();
 
         //se le modifican atributos al panel principal de los comentarios
         panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,7 +55,12 @@ public class proposalVisualizer extends javax.swing.JFrame {
         txtMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtMainTitle.setText("Nombre del que escribio el comentario");
         panelproposal.add(txtMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 50));
-
+        
+        //creo un txt que contiene la hora en la que fue creado el comentario
+        txtHora.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        txtHora.setText("Hora en la que fue escrito el comentario");
+        panelproposal.add(txtHora,new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, -1, 50));
+        
         //creo e inserto la caja de texto
         areaTexto.setColumns(20);
         areaTexto.setRows(5);
@@ -86,10 +96,16 @@ public class proposalVisualizer extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         panelComment = new javax.swing.JPanel();
+        txtCategorias = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtPresupuesto = new javax.swing.JLabel();
+        txtExpositor = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -121,24 +137,24 @@ public class proposalVisualizer extends javax.swing.JFrame {
 
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Titulo");
-        mainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 390, 40));
+        jLabel3.setText("Presupuesto");
+        mainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 110, 40));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
         jLabel4.setText("Descripción");
-        mainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 110, 30));
+        mainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 110, 30));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel10.setText("Categoría");
-        mainPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 130, 30));
+        jLabel10.setText("Categoria");
+        mainPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 80, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/thumbUp.png"))); // NOI18N
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, -1));
+        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -146,20 +162,53 @@ public class proposalVisualizer extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
+        jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
-        mainPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 840, 140));
+        mainPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 850, 140));
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         panelComment.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jScrollPane2.setViewportView(panelComment);
 
-        mainPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 850, 320));
+        mainPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 850, 300));
+
+        txtCategorias.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCategorias.setText("Ambiental, educativa");
+        mainPanel.add(txtCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel11.setText("Correo Contacto");
+        mainPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 130, 30));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel12.setText("Expositor");
+        mainPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 80, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Titulo");
+        mainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 510, 40));
+
+        txtPresupuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPresupuesto.setText("15 000 000");
+        mainPanel.add(txtPresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 250, -1));
+
+        txtExpositor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtExpositor.setText("Anner Calvo");
+        mainPanel.add(txtExpositor, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 330, 30));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setText("gatafiera@gmail.com");
+        mainPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 290, 30));
 
         mainPanel.setBackground(new Color(0,0,0,80));
 
-        kGradientPanel3.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 920, 710));
+        kGradientPanel3.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 920, 720));
 
         getContentPane().add(kGradientPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
 
@@ -208,8 +257,12 @@ public class proposalVisualizer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -221,5 +274,8 @@ public class proposalVisualizer extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel3;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel panelComment;
+    private javax.swing.JLabel txtCategorias;
+    private javax.swing.JLabel txtExpositor;
+    private javax.swing.JLabel txtPresupuesto;
     // End of variables declaration//GEN-END:variables
 }

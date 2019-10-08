@@ -7,6 +7,7 @@ package Frames;
 
 import java.awt.Color;
 import java.awt.Image;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -42,6 +43,8 @@ public class mainWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JScrollPane();
         panelScroll = new javax.swing.JPanel();
+        cbxCombo = new javax.swing.JComboBox<>();
+        panelFiltros = new javax.swing.JPanel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -66,13 +69,30 @@ public class mainWindow extends javax.swing.JFrame {
         jLabel1.setText("Propuestas");
         kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, 50));
 
-        mainPanel.setBackground(new java.awt.Color(153, 0, 153));
+        mainPanel.setBackground(new Color(0,0,0,80));
         mainPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        panelScroll.setBackground(new Color(0,0,0,80));
         panelScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainPanel.setViewportView(panelScroll);
 
-        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 930, 650));
+        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 940, 540));
+
+        cbxCombo.setBackground(new java.awt.Color(204, 0, 204));
+        cbxCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxCombo.setMaximumRowCount(5);
+        cbxCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Selecciona una Opcion-", "Fecha", "Clasificacion", "Mis Propuestas", "Top Propuestas" }));
+        cbxCombo.setToolTipText("");
+        cbxCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxComboActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(cbxCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 190, -1));
+
+        panelFiltros.setBackground(new Color(0,0,0,80));
+        panelFiltros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        kGradientPanel2.add(panelFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 940, 100));
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
 
@@ -85,7 +105,7 @@ public class mainWindow extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
         jLabel8.setText("jLabel8");
-        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 60, -1));
+        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 60, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
         kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
@@ -98,8 +118,95 @@ public class mainWindow extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
-
+   //metodo que modifica el combobox con los filtros 
+    private void cbxComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxComboActionPerformed
+       panelFiltros.removeAll();//
+       panelFiltros.repaint();
+        String opcion=cbxCombo.getSelectedItem().toString();
+       switch(opcion){
+           case "Fecha":   
+               filtros(1);
+               break;
+           case "Top Propuestas":
+               filtros(2);
+               break;
+           case "Mis Propuestas":
+               filtros(4);
+               break;
+           case "Clasificacion":
+               filtros(3);
+               break;
+       } 
+    }//GEN-LAST:event_cbxComboActionPerformed
+    private void spinnerTopActionPerformed(java.awt.event.ActionEvent evt){
+        
+    }
+    
+    
+    
+       
+    public void filtros(int opc){
+        switch (opc){
+            case  1://opcion de fecha
+             javax.swing.JLabel txtFecha1 =new javax.swing.JLabel();
+             javax.swing.JLabel txtfecha2 =new javax.swing.JLabel();
+             javax.swing.JLabel txtGuion=new javax.swing.JLabel();
+            fechaField1= new javax.swing.JFormattedTextField();
+            fechaField2= new javax.swing.JFormattedTextField();
+            fechaField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+            panelFiltros.add(fechaField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 100, -1));
+            txtFecha1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+            txtFecha1.setForeground(new java.awt.Color(255, 0, 204));
+            txtFecha1.setText("Desde");
+            panelFiltros.add(txtFecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 35, -1, -1));
+            txtGuion.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+            txtGuion.setForeground(new java.awt.Color(255, 0, 204));
+            txtGuion.setText("-");
+            panelFiltros.add(txtGuion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 35, -1, -1));
+            fechaField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+            panelFiltros.add(fechaField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40,100, -1));
+            txtfecha2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+            txtfecha2.setForeground(new java.awt.Color(255, 0, 204));
+            txtfecha2.setText("Hasta");
+            panelFiltros.add(txtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 35, -1,-1));
+            pack();
+            break;
+            
+            case 2://opcion top N
+                spinnerTop= new javax.swing.JSpinner();
+                javax.swing.JLabel txtTop= new javax.swing.JLabel();
+                txtTop.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+                txtTop.setForeground(new java.awt.Color(255, 0, 204));
+                txtTop.setText("TOP");
+                panelFiltros.add(txtTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+                spinnerTop.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                spinnerTop.setModel(new SpinnerNumberModel(0, 0, 20, 1));
+                panelFiltros.add(spinnerTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 50, -1));
+                pack();
+                break;
+            case 3:// clasificacion
+                comboCategoria = new javax.swing.JComboBox<String> ();
+                javax.swing.JLabel txtCategoria= new javax.swing.JLabel();
+                comboCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Psycho", "Gothic", "Amateur", "Bass" }));
+                panelFiltros.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 100, -1));
+                txtCategoria.setText("Categoria");
+                txtCategoria.setForeground(new java.awt.Color(255, 0, 204));
+                txtCategoria.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+                panelFiltros.add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+                pack();
+                break;
+            case 4://mis propuestas
+                break;
+                
+                
+                    
+        }
+        
+    } 
+    
     private void crearPaneles(int posY){
+
         javax.swing.JLabel txtMainTitle;
         javax.swing.JLabel txtTitulo;
         javax.swing.JPanel panelproposal;
@@ -131,6 +238,11 @@ public class mainWindow extends javax.swing.JFrame {
         
         pack();
     }
+    
+    
+    
+  
+ 
     
     
     
@@ -168,9 +280,17 @@ public class mainWindow extends javax.swing.JFrame {
             }
         });
     }
+   
+    //mi declaracion de variables 
+    public javax.swing.JFormattedTextField fechaField2;
+    public javax.swing.JFormattedTextField fechaField1;
+    public javax.swing.JSpinner spinnerTop;
+    public javax.swing.JComboBox<String> comboCategoria;
+    public javax.swing.JButton btnAceptar;
     
-
+    //fin de mi declaracion de variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -179,6 +299,7 @@ public class mainWindow extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JScrollPane mainPanel;
+    private javax.swing.JPanel panelFiltros;
     private javax.swing.JPanel panelScroll;
     // End of variables declaration//GEN-END:variables
 }

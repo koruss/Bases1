@@ -29,8 +29,8 @@ public class SignUp extends javax.swing.JFrame {
         this.txtSecondLastName.setBackground(new Color(102,0,102,80));
         this.txtTelefono.setBackground(new Color(102,0,102,80));
         this.txtUser.setBackground(new Color(102,0,102,80));
-        this.comboNacionalidad.setBackground(new Color(102,0,102,80));
-        this.fechaNacimiento.setBackground(new Color(102,0,102,80));
+        //this.comboNacionalidad.setBackground(new Color(102,0,102,80));
+        //this.fechaNacimiento.setBackground(new Color(102,0,102,80));
         
         this.txtCedula.setForeground(new Color(222,222,222));
         this.txtPassw.setForeground(new Color(222,222,222));
@@ -38,6 +38,7 @@ public class SignUp extends javax.swing.JFrame {
         this.txtEmail.setForeground(new Color(222,222,222));
         this.txtUser.setForeground(new Color(222,222,222));
         this.txtSecondLastName.setForeground(new Color(222,222,222));
+        pack();
         
         
     }
@@ -138,11 +139,10 @@ public class SignUp extends javax.swing.JFrame {
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 250, 40));
 
-        fechaNacimiento.setBackground(new java.awt.Color(204, 255, 204));
+        fechaNacimiento.setBackground(new Color(0,0,0,80));
         fechaNacimiento.setForeground(new java.awt.Color(204, 255, 204));
-        fechaNacimiento.setDateFormatString("dd/MM/yyyy");
         fechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, 20));
+        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 370, 130, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 204));
