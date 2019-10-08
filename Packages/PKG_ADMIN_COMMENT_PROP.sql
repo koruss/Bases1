@@ -77,10 +77,19 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COMMENT_PROP IS
         END;
         
         PROCEDURE PROC_INSERT_COMMENT_PROP(ID_COMMENT NUMBER,comment_description VARCHAR2,comment_date DATE) IS
+         VMENERROR                                    EXCEPTION;
          
            BEGIN
              INSERT INTO Proposal_comment(ID_COMMENT,comment_description,comment_date)
-             VALUES (ID_COMMENT,comment_description,comment_date);
+             VALUES (ID_COMMENT,comment_description,comment_date);  
+             IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');   
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');  
              
            END PROC_INSERT_COMMENT_PROP;
            
@@ -101,6 +110,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COMMENT_PROP IS
             EXCEPTION 
                WHEN VMENERROR THEN
                  DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
          END SET_DESCRIPTION_COMMENT;
          
          
@@ -113,6 +124,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COMMENT_PROP IS
             END IF;
             EXCEPTION 
                WHEN VMENERROR THEN
-                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');           
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');   
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');        
          END SET_DATE_COMMENT;
 END PKG_ADMIN_COMMENT_PROP;
