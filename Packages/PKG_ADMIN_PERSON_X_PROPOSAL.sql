@@ -8,10 +8,12 @@ CREATE OR REPLACE PACKAGE PKG_ADMIN_PERSON_X_PROPOSAL IS
 
 END PKG_ADMIN_PERSON_X_PROPOSAL;
 
+
 CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PERSON_X_PROPOSAL IS
         --FUNCTION GET_ID_PERSON IMPLEMENTATION
         FUNCTION GET_ID_PERSON(PNID_PROPOSAL IN NUMBER)  RETURN VARCHAR2
          IS
+                  VMENERROR      EXCEPTION;
                   VNID_PERSON   VARCHAR2(30);
          BEGIN
                   SELECT ID_PERSON
@@ -19,6 +21,13 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PERSON_X_PROPOSAL IS
                   FROM PERSON_X_PROPOSAL
                   WHERE ID_PROPOSAL=PNID_PROPOSAL;
                   RETURN (VNID_PERSON);
+                  EXCEPTION 
+                         WHEN TOO_MANY_ROWS THEN
+                           DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
+                         WHEN NO_DATA_FOUND THEN
+                           DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                         WHEN OTHERS THEN
+                           DBMS_OUTPUT.PUT_LINE('ERROR');
          END;
 
         -------------------------------------------------------------------------------
@@ -36,24 +45,33 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PERSON_X_PROPOSAL IS
         --END;
 
         PROCEDURE INSERT_PERSON_X_PROPOSAL(PNID_PROPOSAL NUMBER, PNID_PERSON VARCHAR2) IS
-         
+      VMENERROR                                     EXCEPTION;
+
            BEGIN
              INSERT INTO PERSON_X_PROPOSAL(ID_PROPOSAL, ID_PERSON)
              VALUES (PNID_PROPOSAL, PNID_PERSON);
-             
+             IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+
            END INSERT_PERSON_X_PROPOSAL;
-           
-           
+
+
            ---------------------------------------------------------------------------------
     --PROCEDURE SET_ID_PERSON(NEW_VALUE NUMBER, OLD_VALUE NUMBER) IS
     --     BEGIN
-    --         UPDATE PERSON_X_PROPOSAL SET ID_PERSON= NEW_VALUE WHERE ID_PERSON=OLD_VALUE;              
+    --         UPDATE PERSON_X_PROPOSAL SET ID_PERSON= NEW_VALUE WHERE ID_PERSON=OLD_VALUE;
     --     END SET_ID_PERSON;
-         
-         
+
+
          ---------------------------------------------------------------------------------
     --PROCEDURE SET_ID_PROPOSAL(NEW_VALUE NUMBER, OLD_VALUE NUMBER) IS
     --     BEGIN
-    --        UPDATE PERSON_X_PROPOSAL SET ID_PROPOSAL= NEW_VALUE WHERE ID_PROPOSAL=OLD_VALUE;              
+    --        UPDATE PERSON_X_PROPOSAL SET ID_PROPOSAL= NEW_VALUE WHERE ID_PROPOSAL=OLD_VALUE;
      --    END SET_ID_PROPOSAL;
 END PKG_ADMIN_PERSON_X_PROPOSAL;
