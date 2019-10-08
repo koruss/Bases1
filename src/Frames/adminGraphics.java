@@ -121,7 +121,7 @@ public class adminGraphics extends javax.swing.JFrame {
         PiePlot3D plot = (PiePlot3D) chart.getPlot();
         plot.setStartAngle(0);
         plot.setDirection(Rotation.CLOCKWISE);
-        plot.setForegroundAlpha(0.5f);
+        plot.setForegroundAlpha(1f);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(700,500));
         chartPanel.setBackground(new Color(0,0,0,80));

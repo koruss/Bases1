@@ -9,44 +9,42 @@ import java.awt.Color;
 
 /**
  *
- * @author kenneth
+ * @author Kenneth
  */
-public class proposalVisualizer extends javax.swing.JFrame {
+public class admiModifyProposal extends javax.swing.JFrame {
 
     /**
-     * Creates new form proposalVisualizer
+     * Creates new form admiModifyProposal
      */
-    public proposalVisualizer() {
+    public admiModifyProposal() {
         initComponents();
-        this.jTextArea1.setEditable(false);
-        
-        
-            //este loop llama al metodo para crear los comentarios
-            for(int i=30;i<1000;i+=170){
+        for(int i=30;i<1000;i+=170){
             crearComentarios(i);
         }
     }
+      private void deleteCommentClicked(java.awt.event.MouseEvent evt){
+      
+  } 
     
     
     
-    
-    
-    
-    private void crearComentarios(int posY) {
+        private void crearComentarios(int posY) {
         javax.swing.JLabel txtMainTitle;
         javax.swing.JPanel panelproposal;
         javax.swing.JTextArea areaTexto;
         javax.swing.JScrollPane panelScroll;
         javax.swing.JLabel txtHora;
-        
-
+        javax.swing.JLabel btnDelete;
         //se inicializan los objetos
         panelproposal = new javax.swing.JPanel();
         areaTexto = new javax.swing.JTextArea();
         panelScroll = new javax.swing.JScrollPane();
         txtMainTitle = new javax.swing.JLabel();
         txtHora = new javax.swing.JLabel();
+        btnDelete= new javax.swing.JLabel();
+        
 
+        
         //se le modifican atributos al panel principal de los comentarios
         panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         panelproposal.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(51, 51, 255)));
@@ -66,10 +64,20 @@ public class proposalVisualizer extends javax.swing.JFrame {
         areaTexto.setRows(5);
         panelScroll.setViewportView(areaTexto);
         panelScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        panelproposal.add(panelScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 48, 740, 105));
+        panelproposal.add(panelScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 48, 660, 100));
         areaTexto.setLineWrap(true);
         areaTexto.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
         panelComment.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, posY, 800, 160));
+        
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/deleteMessage.png")));
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteCommentClicked(evt);
+            }
+        });
+                
+        panelproposal.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
+        pack();
     }
 
     /**
@@ -87,7 +95,6 @@ public class proposalVisualizer extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -99,14 +106,10 @@ public class proposalVisualizer extends javax.swing.JFrame {
         txtPresupuesto = new javax.swing.JLabel();
         txtExpositor = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        kGradientPanel1 = new keeptoo.KGradientPanel();
-        btnHome = new javax.swing.JLabel();
-        btnNewProposal = new javax.swing.JLabel();
-        btnConfig = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1200, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kGradientPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,9 +139,6 @@ public class proposalVisualizer extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 0, 204));
         jLabel10.setText("Categoria");
         mainPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 80, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/thumbUp.png"))); // NOI18N
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -196,63 +196,12 @@ public class proposalVisualizer extends javax.swing.JFrame {
 
         getContentPane().add(kGradientPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
-        kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
-        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
-        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHomeMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-
-        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
-        btnNewProposal.setText("jLabel8");
-        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNewProposalMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 60, -1));
-
-        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConfigMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
-
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow();
-        ventana.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_btnHomeMouseClicked
-
-    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
-        newProposal ventana =new newProposal();
-        ventana.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnNewProposalMouseClicked
-
-    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas();
-        ventana.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnConfigMouseClicked
 
     /**
      * @param args the command line arguments
@@ -271,29 +220,25 @@ public class proposalVisualizer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(proposalVisualizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admiModifyProposal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(proposalVisualizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admiModifyProposal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(proposalVisualizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admiModifyProposal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(proposalVisualizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admiModifyProposal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new proposalVisualizer().setVisible(true);
+                new admiModifyProposal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnConfig;
-    private javax.swing.JLabel btnHome;
-    private javax.swing.JLabel btnNewProposal;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -305,7 +250,6 @@ public class proposalVisualizer extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel3;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel panelComment;
