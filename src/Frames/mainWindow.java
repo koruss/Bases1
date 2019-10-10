@@ -81,7 +81,7 @@ public class mainWindow extends javax.swing.JFrame {
         panelScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainPanel.setViewportView(panelScroll);
 
-        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 940, 540));
+        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 940, 540));
 
         cbxCombo.setBackground(new java.awt.Color(204, 0, 204));
         cbxCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

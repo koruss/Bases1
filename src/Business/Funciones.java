@@ -5,14 +5,18 @@
  */
 package Business;
 
+import java.sql.SQLException;
+
 
 /**
  *
  * @author Kenneth
  */
 public class Funciones {//recibe los datos, la contrasena ya esta encriptada
-    public void SignUp(String name, String lastName1,String lastName2,String telephone,String email,String cedula, String nacionalidad,String user,String passw){
+    public void SignUp(String name, String lastName1,String lastName2,String telephone,String email,String cedula, String nacionalidad,String user,String passw)throws SQLException{
         //aqui se llama a la base de datos 
+        System.out.println("jaja");
+        connect.connectDB.insertPerson(cedula,name,lastName1,lastName2,1,83,email,telephone);
            
     }
  //esta es la funcion para encriptar la contrasena   

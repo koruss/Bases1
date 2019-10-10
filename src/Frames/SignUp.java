@@ -7,6 +7,9 @@ package Frames;
 
 import Business.Funciones;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -303,14 +306,18 @@ public class SignUp extends javax.swing.JFrame {
         char[] passw1=this.txtPassw.getPassword();
         char[] passw2= this.txtPasswConfirm.getPassword();
         
-        if(passw1.equals(passw2)){//revisa que las contrasenas sean iguales
+        //if(passw1.equals(passw2)){//revisa que las contrasenas sean iguales
            String password =new String(passw1);    
            Funciones business = new Funciones();
-           business.SignUp(name, lastName1,lastName2, telefono, email, cedula, nacionalidad, user, password);
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Error,Las Contraseñas no son iguales");    
-        }
+            try {
+                business.SignUp(name, lastName1,lastName2, telefono, email, cedula, nacionalidad, user, password);
+            } catch (SQLException ex) {
+                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        //}
+   //     else{
+    //        JOptionPane.showMessageDialog(null,"Error,Las Contraseñas no son iguales");    
+ //       }
     }//GEN-LAST:event_btnSignUpMouseClicked
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
