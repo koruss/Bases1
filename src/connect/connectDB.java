@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import oracle.jdbc.OracleTypes;
 
@@ -534,6 +535,17 @@ public class connectDB{
            if(!flag) System.out.println("No data to show, incorrect identificator");
        }
     
+         public static boolean userValidation (String pUsername,String pPassword) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.VALIDATE_USER(?,?)}");
+           stmt.registerOutParameter(1,Types.INTEGER);
+           stmt.setString(1,pUsername);
+           stmt.setString(2,pPassword);
+           stmt.executeQuery();
+           int response =stmt.getInt(1);
+           if (response==1)  return true;
+           else return false;
+       }
     
     
     

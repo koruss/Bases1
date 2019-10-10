@@ -45,9 +45,13 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
     
     
     //este metodo llama a revisar si los credenciales son correctos 
-    public boolean correctLogIn(String user,String passw){
+    public boolean correctLogIn(String user,String passw)throws SQLException {
         //codigo que conecta a la base
-        return false;
+        if(connect.connectDB.userValidation(user, passw, 0))return true;
+        else{
+            return false;
+        }
+        
         
     }
     

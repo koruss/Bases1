@@ -6,6 +6,9 @@
 package Frames;
 
 import Business.Funciones;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -155,13 +158,18 @@ public class SingIn extends javax.swing.JFrame {
         String user = this.txtUser.getText();
         char[] passw = this.txtPassw.getPassword();
         String passwF = new String(passw);
-        if(utilidades.correctLogIn(user, passwF)){
-            mainWindow ventana =new mainWindow();
-            ventana.setVisible(true);
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
+        try {
+            if(utilidades.correctLogIn(user, passwF)){
+                mainWindow ventana;
+                ventana = new mainWindow();
+                ventana.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
+            }
+        } catch (SQLException ex) {
+            System.out.println("error");
         }
     }//GEN-LAST:event_btnSignInMouseClicked
 
