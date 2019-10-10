@@ -67,8 +67,8 @@ public class SignUp extends javax.swing.JFrame {
         txtPasswConfirm = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
         fechaNacimiento = new com.toedter.calendar.JDateChooser();
+        txtEmail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtSecondLastName = new javax.swing.JTextField();
@@ -148,16 +148,16 @@ public class SignUp extends javax.swing.JFrame {
         jLabel7.setText("Nacionalidad");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 250, 20));
 
+        fechaNacimiento.setBackground(new Color(0,0,0,80));
+        fechaNacimiento.setForeground(new java.awt.Color(204, 255, 204));
+        fechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 370, 130, 20));
+
         txtEmail.setBackground(new java.awt.Color(204, 255, 204));
         txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 250, 40));
-
-        fechaNacimiento.setBackground(new Color(0,0,0,80));
-        fechaNacimiento.setForeground(new java.awt.Color(204, 255, 204));
-        fechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 370, 130, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 204));
@@ -215,7 +215,7 @@ public class SignUp extends javax.swing.JFrame {
                 btnFotoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 470, 110, 30));
+        jPanel1.add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 110, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 0, 204));
@@ -305,15 +305,15 @@ public class SignUp extends javax.swing.JFrame {
         String user =this.txtUser.getText();
         char[] passw1=this.txtPassw.getPassword();
         char[] passw2= this.txtPasswConfirm.getPassword();
+        java.util.Date fecha = this.fechaNacimiento.getDate();
         
         //if(passw1.equals(passw2)){//revisa que las contrasenas sean iguales
            String password =new String(passw1);    
            Funciones business = new Funciones();
-            try {
-                business.SignUp(name, lastName1,lastName2, telefono, email, cedula, nacionalidad, user, password);
-            } catch (SQLException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+ //               business.SignUp(name, lastName1,lastName2, telefono, email, cedula, nacionalidad, user, password);
+
+            
         //}
    //     else{
     //        JOptionPane.showMessageDialog(null,"Error,Las Contraseñas no son iguales");    

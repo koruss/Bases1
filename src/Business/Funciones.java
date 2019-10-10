@@ -13,11 +13,13 @@ import java.sql.SQLException;
  * @author Kenneth
  */
 public class Funciones {//recibe los datos, la contrasena ya esta encriptada
-    public void SignUp(String name, String lastName1,String lastName2,String telephone,String email,String cedula, String nacionalidad,String user,String passw)throws SQLException{
+    
+ //metodos de la clase   
+    
+    public void SignUp(String pIdentification,String pName, String pFirstLastName, String pSecondLastName,int pIdNationality, int pIdCommunity, String pEmail, String pTelephone, java.util.Date  pDate, String pUsername,String pPassword)throws SQLException{
         //aqui se llama a la base de datos 
-        System.out.println("jaja");
-        connect.connectDB.insertPerson(cedula,name,lastName1,lastName2,1,83,email,telephone);
-           
+        System.out.println("ingresando en la base");
+       connect.connectDB.insertPerson(pIdentification,pName,  pFirstLastName,pSecondLastName,pIdNationality, pIdCommunity, pEmail, pTelephone, pDate, pUsername, pPassword);        
     }
  //esta es la funcion para encriptar la contrasena   
     public String  EncryptPassw(String passw){
