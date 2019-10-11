@@ -144,16 +144,16 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel3.setText("Registrarse");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 200, 60));
+        jLabel3.setText("Registro de nuevos usuarios");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 400, 60));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
         jLabel4.setText("Confirmar Contraseña");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, 250, 20));
 
-        btnSignUp.setText("ENTRAR");
         btnSignUp.setBorderPainted(false);
+        btnSignUp.setLabel("REGISTRARSE");
         btnSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSignUpMouseClicked(evt);
@@ -306,7 +306,7 @@ public class SignUp extends javax.swing.JFrame {
         txtUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
         jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 250, 40));
 
-        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1100, 710));
+        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1040, 650));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -314,17 +314,21 @@ public class SignUp extends javax.swing.JFrame {
                 jLabel14MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 10, -1, 40));
+        kGradientPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1097, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 71, Short.MAX_VALUE))
         );
 
         pack();
@@ -358,9 +362,13 @@ public class SignUp extends javax.swing.JFrame {
             //if(passw1.equals(passw2)){//revisa que las contrasenas sean iguales
             //String password =new String(passw1);
             Funciones business = new Funciones();
-            business.SignUp(cedula,name, lastName1,lastName2, 1,1,email,telefono, fecha, user, passw1,1);
+            int idNationality=business.getNationalityId(nacionalidad);
+            business.SignUp(cedula,name, lastName1,lastName2, idNationality,1,email,telefono, fecha, user, passw1,1);
             JOptionPane.showMessageDialog(null,"El usuario se ha registrado con éxito en el sistema");
             
+            SignUpLocation ventana =new SignUpLocation(cedula);
+            ventana.setVisible(true);
+            this.dispose();
             //}
             //     else{
             //        JOptionPane.showMessageDialog(null,"Error,Las Contraseñas no son iguales");

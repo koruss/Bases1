@@ -5,6 +5,12 @@
  */
 package Frames;
 
+import Business.Funciones;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author Kenneth
@@ -34,16 +40,15 @@ public class adminDataModify extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jComboBox6 = new javax.swing.JComboBox<>();
         jComboBox7 = new javax.swing.JComboBox<>();
+        comboEdicion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,32 +56,33 @@ public class adminDataModify extends javax.swing.JFrame {
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kButton1.setText("Añadir");
-        kGradientPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, -1, -1));
+        kButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton1ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, -1, -1));
 
         kButton2.setText("kButton2");
         kGradientPanel1.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
         kGradientPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 980, 20));
         kGradientPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 980, 20));
 
-        jLabel2.setText("Insertar en");
-        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        jLabel2.setText("Seleccione la tabla donde desea \nagregar nuevos datos");
+        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 70));
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 190, 40));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione una Opcion-", "Pais", "Provincia", "Cantón", "Comunidad", "Tipo Persona", "Categoria", "Nacionalidad" }));
-        kGradientPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 180, 40));
+        kGradientPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 190, 40));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         kGradientPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 180, 40));
 
         jLabel3.setText("Ingrese el nuevo Dato");
-        kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 130, 40));
+        kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 130, 40));
 
         jLabel5.setText("Ingrese el nuevo Dato");
         kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 130, 40));
@@ -92,17 +98,27 @@ public class adminDataModify extends javax.swing.JFrame {
         jLabel6.setText("Modificar ");
         kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, 60, 40));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        kGradientPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 190, 40));
-
         jLabel7.setText("Modificar");
         kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
 
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione una Opción-", "Categoria", "Pais", "Provincia", "Cantón", "Comunidad", "Propuestas", "Tipos de Persona" }));
+        jComboBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         kGradientPanel1.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 180, 40));
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         kGradientPanel1.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 90, 40));
+
+        comboEdicion.setBackground(new java.awt.Color(204, 255, 204));
+        comboEdicion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nacionalidad", "Categoría de propuesta", "País", " ", " " }));
+        comboEdicion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        comboEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEdicionActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(comboEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 250, 30));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 970, 800));
 
@@ -116,6 +132,25 @@ public class adminDataModify extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void comboEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEdicionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEdicionActionPerformed
+
+    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
+    if(jTextField1.getText()!=null){
+        try {
+            Funciones business=new Funciones();
+            if(comboEdicion.getSelectedIndex()==0) business.insertNationality(jTextField1.getText());
+            else if (comboEdicion.getSelectedIndex()==1)  business.insertCategory(jTextField1.getText());
+            else if (comboEdicion.getSelectedIndex()==2)  business.insertCountry(jTextField1.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(adminDataModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else  JOptionPane.showMessageDialog(null,"Por favor ingrese un nuevo dato para agregar al catálogo"+(String)comboEdicion.getSelectedItem());
+
+
+    }//GEN-LAST:event_kButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,9 +188,8 @@ public class adminDataModify extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboEdicion;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel2;

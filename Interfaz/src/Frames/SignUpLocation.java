@@ -9,6 +9,9 @@ import Business.Funciones;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,9 +22,13 @@ public class SignUpLocation extends javax.swing.JFrame {
     /**
      * Creates new form SignUpLocation
      */
-    public SignUpLocation() {
+    public SignUpLocation(String pCedula) throws SQLException {
         initComponents();
+        llenarComboPaises();
+        cedula=pCedula;
     }
+    
+    public static String cedula;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +77,11 @@ public class SignUpLocation extends javax.swing.JFrame {
         comboPais.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         comboPais.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         comboPais.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboPais.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboPaisItemStateChanged(evt);
+            }
+        });
         comboPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPaisActionPerformed(evt);
@@ -86,6 +98,11 @@ public class SignUpLocation extends javax.swing.JFrame {
         comboProvincia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         comboProvincia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         comboProvincia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboProvincia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboProvinciaItemStateChanged(evt);
+            }
+        });
         comboProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProvinciaActionPerformed(evt);
@@ -102,6 +119,11 @@ public class SignUpLocation extends javax.swing.JFrame {
         comboCanton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         comboCanton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         comboCanton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboCanton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCantonItemStateChanged(evt);
+            }
+        });
         comboCanton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCantonActionPerformed(evt);
@@ -171,39 +193,89 @@ public class SignUpLocation extends javax.swing.JFrame {
     }//GEN-LAST:event_comboComunidadActionPerformed
 
     private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
-        try {
-            Funciones utilidades = new Funciones();
-            String user = this.txtUser.getText();
-            //char[] passw = this.txtPassw.getPassword();
-            //String passwF = new String(passw);
-            String passwF=this.txtPassw.getText();
-
-            int validation=utilidades.correctLogIn(user, passwF);
-            if(validation!=-1){
-                mainWindow ventana;
-                JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);
-
-                ventana = new mainWindow();
-                ventana.setVisible(true);
-                this.dispose();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SingIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     }//GEN-LAST:event_btnSignInMouseClicked
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        
+            if(comboComunidad.getSelectedItem()==null) JOptionPane.showMessageDialog(null,"Por favor ingrese una comunidad, de lo contrario se le asignara la comunidad con el identificador 1 (El Carmen de San José)");
+            else {
+                try {
+                    Funciones business=new Funciones();
+                    int idCanton=business.getCantonId((String) comboCanton.getSelectedItem());
+                    
+                    int idCommunity=business.getCommunityId((String) comboComunidad.getSelectedItem(),idCanton);
+                    business.registerCommunity(cedula,idCommunity);
+                    JOptionPane.showMessageDialog(null,"Usted ha sido registrado correctamente en la comunidad: "+(String)comboComunidad.getSelectedItem()+" de "+(String)comboCanton.getSelectedItem()+" ,"+(String)comboProvincia.getSelectedItem());
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
+                }};
+
 
     }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void comboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPaisItemStateChanged
+        try {
+            comboProvincia.removeAllItems();
+            comboCanton.removeAllItems();
+            comboComunidad.removeAllItems();
+            llenarComboProvincias((String)this.comboPais.getSelectedItem());
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboPaisItemStateChanged
+
+    private void comboProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboProvinciaItemStateChanged
+        try {
+            comboCanton.removeAllItems();
+            comboComunidad.removeAllItems();
+            llenarComboCantones((String)this.comboProvincia.getSelectedItem());
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboProvinciaItemStateChanged
+
+    private void comboCantonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCantonItemStateChanged
+        try {
+            comboComunidad.removeAllItems();
+            llenarComboComunidades((String)this.comboCanton.getSelectedItem());
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboCantonItemStateChanged
     private void llenarComboPaises() throws SQLException{
         Funciones business = new Funciones();
         ResultSet countries=business.getCountries(-1);
         //nationalities.beforeFirst();
         while(countries.next()){
             comboPais.addItem(countries.getString("COUNTRY_NAME"));
+        }
+    }
+    
+    private void llenarComboCantones(String pIdProvince) throws SQLException{
+        Funciones business = new Funciones();
+        ResultSet cantons=business.getCantons(pIdProvince);
+        //nationalities.beforeFirst();
+        while(cantons.next()){
+            comboCanton.addItem(cantons.getString("CANTON_NAME"));
+        }
+    }
+    
+    private void llenarComboProvincias(String pIdCountry) throws SQLException{
+        Funciones business = new Funciones();
+        ResultSet provinces=business.getProvinces(pIdCountry);
+        //nationalities.beforeFirst();
+        while(provinces.next()){
+            comboProvincia.addItem(provinces.getString("PROVINCE_NAME"));
+        }
+    }
+    
+    private void llenarComboComunidades(String pIdCanton) throws SQLException{
+        Funciones business = new Funciones();
+        ResultSet communitites=business.getCommunities(pIdCanton);
+        //nationalities.beforeFirst();
+        while(communitites.next()){
+            comboComunidad.addItem(communitites.getString("COMMUNITY_NAME"));
         }
     }
     /**
@@ -236,7 +308,11 @@ public class SignUpLocation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpLocation().setVisible(true);
+                try {
+                    new SignUpLocation(cedula).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
