@@ -40,6 +40,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_NATIONALITY IS
                            DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
                          WHEN NO_DATA_FOUND THEN
                            DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                           return -1;
                          WHEN OTHERS THEN
                            DBMS_OUTPUT.PUT_LINE('ERROR');
          END;

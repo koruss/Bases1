@@ -27,6 +27,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COUNTRY IS
                          WHEN TOO_MANY_ROWS THEN
                            DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
                          WHEN NO_DATA_FOUND THEN
+                           return -1;
                            DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
                          WHEN OTHERS THEN
                            DBMS_OUTPUT.PUT_LINE('ERROR');
@@ -94,7 +95,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COUNTRY IS
                 VMENERROR        EXCEPTION;
        BEGIN
               OPEN pRecordSet FOR
-              SELECT *
+              SELECT COUNTRY_NAME
               FROM COUNTRY
               WHERE ID_COUNTRY = NVL(PNID_COUNTRY, ID_COUNTRY);
               
@@ -117,7 +118,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_COUNTRY IS
             END IF;
             EXCEPTION
               WHEN VMERROR THEN
-                DBMS_OUTPUT.PUT_LINE('The element doesnÂ´t exists in the database');
+                DBMS_OUTPUT.PUT_LINE('The element doesn´t exists in the database');
                 DBMS_OUTPUT.PUT_LINE(SQLERRM);
         END DELETE_ALL_COUNTRY;
 

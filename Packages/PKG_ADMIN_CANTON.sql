@@ -25,6 +25,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_CANTON IS
                          WHEN TOO_MANY_ROWS THEN
                            DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
                          WHEN NO_DATA_FOUND THEN
+                           return -1;
                            DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
                          WHEN OTHERS THEN
                            DBMS_OUTPUT.PUT_LINE('ERROR');
@@ -113,7 +114,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_CANTON IS
               OPEN pRecordSet FOR
               SELECT ID_CANTON,CANTON_NAME,ID_PROVINCE
               FROM CANTON
-              WHERE ID_CANTON = NVL(PNID_CANTON, ID_CANTON);
+              WHERE ID_PROVINCE = NVL(PNID_CANTON, ID_PROVINCE);
               
             IF SQL%NOTFOUND THEN
                     RAISE VMENERROR;
@@ -134,7 +135,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_CANTON IS
             END IF;
             EXCEPTION
               WHEN VMERROR THEN
-                DBMS_OUTPUT.PUT_LINE('The element doesnÂ´t exists in the database');
+                DBMS_OUTPUT.PUT_LINE('The element doesn´t exists in the database');
                 DBMS_OUTPUT.PUT_LINE(SQLERRM);
         END DELETE_ALL_CANTON;
 

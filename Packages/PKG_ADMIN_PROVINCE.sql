@@ -27,6 +27,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PROVINCE IS
                          WHEN TOO_MANY_ROWS THEN
                            DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
                          WHEN NO_DATA_FOUND THEN
+                           RETURN -1;
                            DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
                          WHEN OTHERS THEN
                            DBMS_OUTPUT.PUT_LINE('ERROR');
@@ -134,7 +135,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PROVINCE IS
               OPEN pRecordSet FOR
               SELECT *
               FROM PROVINCE
-              WHERE ID_PROVINCE = NVL(PNID_PROVINCE, ID_PROVINCE);
+              WHERE ID_COUNTRY = NVL(PNID_PROVINCE, ID_COUNTRY);
               
             IF SQL%NOTFOUND THEN
                     RAISE VMENERROR;
@@ -155,7 +156,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PROVINCE IS
             END IF;
             EXCEPTION
               WHEN VMERROR THEN
-                DBMS_OUTPUT.PUT_LINE('The element doesnÂ´t exists in the database');
+                DBMS_OUTPUT.PUT_LINE('The element doesn´t exists in the database');
                 DBMS_OUTPUT.PUT_LINE(SQLERRM);
         END DELETE_ALL_PROVINCE;
           
