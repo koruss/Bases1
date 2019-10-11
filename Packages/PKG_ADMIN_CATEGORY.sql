@@ -1,0 +1,121 @@
+CREATE OR REPLACE PACKAGE PKG_ADMIN_CATEGORY  IS
+       FUNCTION GET_ID_CATEGORY(PNCATEGORY_NAME IN VARCHAR2)  RETURN NUMBER;
+       FUNCTION GET_CATEGORY_NAME(PNID_CATEGORY IN NUMBER)  RETURN VARCHAR2;
+       PROCEDURE INSERT_CATEGORY(PNCATEGORY_NAME VARCHAR2);
+       PROCEDURE SET_CATEGORY_NAME(PNID_CATEGORY NUMBER, PNNEW_VALUE VARCHAR2);
+       PROCEDURE GET_ALL_CATEGORY(PRECORDSET OUT SYS_REFCURSOR, PNID_CATEGORY IN
+          number default null);
+        PROCEDURE DELETE_ALL_CATEGORY (pnId_CATEGORY IN NUMBER DEFAULT NULL);
+END PKG_ADMIN_CATEGORY;
+
+CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_CATEGORY IS
+        --FUNCTION GET_ID_CATEGORY IMPLEMENTATION
+        FUNCTION GET_ID_CATEGORY(PNCATEGORY_NAME IN VARCHAR2)  RETURN NUMBER
+         IS
+                 VMENERROR      EXCEPTION;
+                  VNID_CATEGORY  NUMBER(10);
+         BEGIN
+                  SELECT ID_CATEGORY
+                  INTO VNID_CATEGORY
+                  FROM CATEGORY
+                  WHERE CATEGORY_NAME=PNCATEGORY_NAME;
+                  RETURN (VNID_CATEGORY);
+                 EXCEPTION 
+                         WHEN TOO_MANY_ROWS THEN
+                           DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
+                         WHEN NO_DATA_FOUND THEN
+                           DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                         WHEN OTHERS THEN
+                           DBMS_OUTPUT.PUT_LINE('ERROR');
+                  
+         END;
+
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_CATEGORY_NAME IMPLEMENTATION
+        FUNCTION GET_CATEGORY_NAME(PNID_CATEGORY IN NUMBER) RETURN VARCHAR2
+        IS
+                 VMENERROR      EXCEPTION;
+                 VNCATEGORY_NAME VARCHAR2(50);
+
+        BEGIN
+                  SELECT CATEGORY_NAME
+                  INTO VNCATEGORY_NAME
+                  FROM CATEGORY
+                  WHERE ID_CATEGORY=PNID_CATEGORY;
+                  RETURN (VNCATEGORY_NAME);
+                 EXCEPTION 
+                         WHEN TOO_MANY_ROWS THEN
+                           DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
+                         WHEN NO_DATA_FOUND THEN
+                           DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                         WHEN OTHERS THEN
+                           DBMS_OUTPUT.PUT_LINE('ERROR');
+        END;
+        
+        PROCEDURE INSERT_CATEGORY(PNCATEGORY_NAME VARCHAR2) IS
+                VMENERROR        EXCEPTION;
+
+           BEGIN
+             INSERT INTO CATEGORY(ID_CATEGORY, CATEGORY_NAME)
+             VALUES (S_CATEGORY.NEXTVAL, PNCATEGORY_NAME);
+              
+            IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+
+           END INSERT_CATEGORY;
+           
+         
+       PROCEDURE SET_CATEGORY_NAME(PNID_CATEGORY NUMBER, PNNEW_VALUE VARCHAR2) IS
+         VMENERROR                               EXCEPTION;
+           BEGIN
+               UPDATE CATEGORY SET CATEGORY_NAME= PNNEW_VALUE WHERE ID_CATEGORY=PNID_CATEGORY;
+               IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+           END SET_CATEGORY_NAME;
+           
+           
+      PROCEDURE GET_ALL_CATEGORY(PRECORDSET OUT SYS_REFCURSOR, PNID_CATEGORY IN number default null) AS
+                VMENERROR        EXCEPTION;
+       BEGIN
+              OPEN pRecordSet FOR
+              SELECT ID_CATEGORY,CATEGORY_NAME
+              FROM CATEGORY
+              WHERE ID_CATEGORY = NVL(PNID_CATEGORY, ID_CATEGORY);
+              
+            IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+          END GET_ALL_CATEGORY;       
+
+       PROCEDURE DELETE_ALL_CATEGORY (pnId_CATEGORY IN NUMBER DEFAULT NULL) AS
+         vmError exception;
+         begin
+            DELETE FROM CATEGORY WHERE ID_CATEGORY = NVL(PNID_CATEGORY,ID_CATEGORY);
+            IF SQL%NOTFOUND THEN
+              RAISE VMERROR;
+            END IF;
+            EXCEPTION
+              WHEN VMERROR THEN
+                DBMS_OUTPUT.PUT_LINE('The element doesn´t exists in the database');
+                DBMS_OUTPUT.PUT_LINE(SQLERRM);
+        END DELETE_ALL_CATEGORY;
+
+END PKG_ADMIN_CATEGORY;
+

@@ -1,0 +1,163 @@
+CREATE OR REPLACE PACKAGE PKG_ADMIN_PARAMETER  IS
+       FUNCTION GET_ID_PARAMETER(PNPARAMETER_NAME IN VARCHAR2)  RETURN NUMBER;
+       FUNCTION GET_PARAMETER_NAME(PNID_PARAMETER IN NUMBER)  RETURN VARCHAR2;
+       FUNCTION GET_PARAMETER_VALUE(PNID_PARAMETER IN NUMBER)  RETURN NUMBER;
+       PROCEDURE INSERT_PARAMETER(PNPARAMETER_NAME VARCHAR2,PNPARAMETER_VALUE NUMBER);
+       --PROCEDURE SET_ID_PARAMETER(PNNEW_VALUE NUMBER, PNOLD_VALUE NUMBER);
+       PROCEDURE SET_PARAMETER_NAME(PNID_PARAMETER NUMBER, PNNEW_VALUE VARCHAR2);
+       PROCEDURE SET_PARAMETER_VALUE(PNID_PARAMETER NUMBER, PNNEW_VALUE VARCHAR2);
+       PROCEDURE GET_ALL_PARAMETER(PRECORDSET OUT SYS_REFCURSOR, PNID_PARAMETER IN number default null);
+       PROCEDURE DELETE_ALL_PARAMETER (pnId_Parameter IN NUMBER DEFAULT NULL);
+END PKG_ADMIN_PARAMETER;
+
+
+CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PARAMETER IS
+        --FUNCTION GET_ID_PARAMETER IMPLEMENTATION
+        FUNCTION GET_ID_PARAMETER(PNPARAMETER_NAME IN VARCHAR2)  RETURN NUMBER
+         IS
+                 VMENERROR      EXCEPTION;
+                  VNID_PARAMETER   NUMBER(10);
+         BEGIN
+                  SELECT ID_PARAMETER
+                  INTO VNID_PARAMETER
+                  FROM PARAMETER
+                  WHERE PARAMETER_NAME=PNPARAMETER_NAME;
+                  RETURN (VNID_PARAMETER);
+                 EXCEPTION 
+                         WHEN TOO_MANY_ROWS THEN
+                           DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
+                         WHEN NO_DATA_FOUND THEN
+                           DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                         WHEN OTHERS THEN
+                           DBMS_OUTPUT.PUT_LINE('ERROR');
+         END;
+
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_PARAMETER_NAME IMPLEMENTATION
+        FUNCTION GET_PARAMETER_NAME(PNID_PARAMETER IN NUMBER) RETURN VARCHAR2
+        IS
+                 VMENERROR      EXCEPTION;
+                 VNPARAMETER_NAME VARCHAR2(30);
+
+        BEGIN
+                  SELECT PARAMETER_NAME
+                  INTO VNPARAMETER_NAME
+                  FROM PARAMETER
+                  WHERE ID_PARAMETER=PNID_PARAMETER;
+                  RETURN (VNPARAMETER_NAME);
+                 EXCEPTION 
+                         WHEN TOO_MANY_ROWS THEN
+                           DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
+                         WHEN NO_DATA_FOUND THEN
+                           DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                         WHEN OTHERS THEN
+                           DBMS_OUTPUT.PUT_LINE('ERROR');
+        END;
+
+        -------------------------------------------------------------------------------
+        --FUNCTION GET_PARAMETER_VALUE IMPLEMENTATION
+        FUNCTION GET_PARAMETER_VALUE(PNID_PARAMETER IN NUMBER) RETURN NUMBER
+        IS
+                 VMENERROR      EXCEPTION;
+                 VNPARAMETER_VALUE NUMBER;
+
+        BEGIN
+                  SELECT PARAMETER_VALUE
+                  INTO VNPARAMETER_VALUE
+                  FROM PARAMETER
+                  WHERE ID_PARAMETER=PNID_PARAMETER;
+                  RETURN (VNPARAMETER_VALUE);
+                 EXCEPTION 
+                         WHEN TOO_MANY_ROWS THEN
+                           DBMS_OUTPUT.PUT_LINE('YOUR SELECTION RETURNS MORE THAN ONE RESULT.');
+                         WHEN NO_DATA_FOUND THEN
+                           DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+                         WHEN OTHERS THEN
+                           DBMS_OUTPUT.PUT_LINE('ERROR');
+        END;
+
+        PROCEDURE INSERT_PARAMETER(PNPARAMETER_NAME VARCHAR2,PNPARAMETER_VALUE NUMBER) IS
+      VMENERROR                                 EXCEPTION;
+
+           BEGIN
+             INSERT INTO PARAMETER(ID_PARAMETER,PARAMETER_NAME,PARAMETER_VALUE)
+             VALUES (S_PARAMETER.NEXTVAL,PNPARAMETER_NAME,PNPARAMETER_VALUE);
+              
+            IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+
+           END INSERT_PARAMETER;
+
+
+           ---------------------------------------------------------------------------------
+
+    PROCEDURE SET_PARAMETER_NAME(PNID_PARAMETER NUMBER, PNNEW_VALUE VARCHAR2) IS
+      VMENERROR                                 EXCEPTION;
+         BEGIN
+             UPDATE PARAMETER SET PARAMETER_NAME= PNNEW_VALUE WHERE ID_PARAMETER=PNID_PARAMETER;
+             IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+         END SET_PARAMETER_NAME;
+
+
+         ---------------------------------------------------------------------------------
+    PROCEDURE SET_PARAMETER_VALUE(PNID_PARAMETER NUMBER, PNNEW_VALUE VARCHAR2) IS
+      VMENERROR                                  EXCEPTION;
+         BEGIN
+             UPDATE PARAMETER SET PARAMETER_VALUE= PNNEW_VALUE WHERE ID_PARAMETER=PNID_PARAMETER;
+             IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+         END SET_PARAMETER_VALUE;
+         
+         
+      PROCEDURE GET_ALL_PARAMETER(PRECORDSET OUT SYS_REFCURSOR, PNID_PARAMETER IN number default null) AS
+                VMENERROR        EXCEPTION;
+       BEGIN
+              OPEN pRecordSet FOR
+              SELECT ID_PARAMETER,PARAMETER_NAME, PARAMETER_VALUE
+              FROM PARAMETER
+              WHERE ID_PARAMETER = NVL(PNID_PARAMETER, ID_PARAMETER);
+              
+            IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+          END GET_ALL_PARAMETER;
+          
+       PROCEDURE DELETE_ALL_PARAMETER (pnId_Parameter IN NUMBER DEFAULT NULL) AS
+         vmError exception;
+         begin
+            DELETE FROM PARAMETER WHERE ID_PARAMETER = NVL(pnId_Parameter,id_parameter);
+            IF SQL%NOTFOUND THEN
+              RAISE VMERROR;
+            END IF;
+            EXCEPTION
+              WHEN VMERROR THEN
+                DBMS_OUTPUT.PUT_LINE('The element doesn´t exists in the database');
+                DBMS_OUTPUT.PUT_LINE(SQLERRM);
+        END DELETE_ALL_PARAMETER;
+        
+END PKG_ADMIN_PARAMETER;
+
