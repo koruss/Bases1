@@ -7,9 +7,11 @@ package Frames;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -31,6 +33,9 @@ public class mainWindow extends javax.swing.JFrame {
         }
         
     }
+    
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +51,9 @@ public class mainWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JScrollPane();
         panelScroll = new javax.swing.JPanel();
+        checkBox = new javax.swing.JCheckBox();
         cbxCombo = new javax.swing.JComboBox<>();
+        kButton1 = new keeptoo.KButton();
         panelFiltros = new javax.swing.JPanel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         btnHome = new javax.swing.JLabel();
@@ -66,7 +73,7 @@ public class mainWindow extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, -1, 40));
+        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Propuestas");
@@ -86,6 +93,14 @@ public class mainWindow extends javax.swing.JFrame {
 
         kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 760, 290));
 
+        checkBox.setText("Aplicar Filtro");
+        checkBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, -1, -1));
+
         cbxCombo.setBackground(new java.awt.Color(204, 0, 204));
         cbxCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxCombo.setMaximumRowCount(5);
@@ -98,6 +113,9 @@ public class mainWindow extends javax.swing.JFrame {
         });
         kGradientPanel2.add(cbxCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 190, -1));
 
+        kButton1.setText("Consultar");
+        kGradientPanel2.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 70, 30));
+
         panelFiltros.setBackground(new Color(0,0,0,80));
         panelFiltros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,7 +123,7 @@ public class mainWindow extends javax.swing.JFrame {
             }
         });
         panelFiltros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        kGradientPanel2.add(panelFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 760, 100));
+        kGradientPanel2.add(panelFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 760, 100));
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 790, 560));
 
@@ -199,6 +217,43 @@ public class mainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_panelFiltrosMouseClicked
 
+    private void checkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxActionPerformed
+       String opcion=cbxCombo.getSelectedItem().toString();
+       switch(opcion){
+           case "Fecha":
+               if(arreglo[0]==1)arreglo[0]=0;
+               else{
+                   arreglo[0]=1;
+               }
+               
+               break;
+           case "Top Propuestas":
+               if(arreglo[3]==1)arreglo[3]=0;
+               else{
+                   arreglo[3]=1;
+               }
+               break;
+           case "Mis Propuestas":
+               if(arreglo[2]==1)arreglo[2]=0;
+               else{
+                   arreglo[2]=1;
+               }
+               break;
+           case "Clasificacion":
+               if(arreglo[1]==1)arreglo[1]=0;
+               else{
+                   arreglo[1]=1;
+               }
+               break;
+       } 
+       
+       for (int i=0;i<arreglo.length;i++){
+           System.out.print(arreglo[i]);
+           
+       }
+       System.out.println("----");
+    }//GEN-LAST:event_checkBoxActionPerformed
+  
     
  
    private void panelMouseClicked(java.awt.event.MouseEvent evt,String letra){
@@ -206,6 +261,8 @@ public class mainWindow extends javax.swing.JFrame {
        proposalVisualizer ventana = new proposalVisualizer();
        ventana.setVisible(true);
    } 
+   
+
        
     public void filtros(int opc){
         switch (opc){
@@ -213,24 +270,36 @@ public class mainWindow extends javax.swing.JFrame {
              javax.swing.JLabel txtFecha1 =new javax.swing.JLabel();
              javax.swing.JLabel txtfecha2 =new javax.swing.JLabel();
              javax.swing.JLabel txtGuion=new javax.swing.JLabel();
-            fechaField1= new javax.swing.JFormattedTextField();
-            fechaField2= new javax.swing.JFormattedTextField();
-            fechaField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-            panelFiltros.add(fechaField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 100, -1));
+
+            com.toedter.calendar.JDateChooser fechaDesde = new com.toedter.calendar.JDateChooser();
+            com.toedter.calendar.JDateChooser fechaHasta = new com.toedter.calendar.JDateChooser();
+            ((JTextField)fechaDesde.getDateEditor()).setEditable(false);
+            ((JTextField)fechaHasta.getDateEditor()).setEditable(false);
+                 
+            panelFiltros.add(fechaDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 100, -1));
             txtFecha1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
             txtFecha1.setForeground(new java.awt.Color(255, 0, 204));
             txtFecha1.setText("Desde");
+            
             panelFiltros.add(txtFecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 35, -1, -1));
             txtGuion.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
             txtGuion.setForeground(new java.awt.Color(255, 0, 204));
             txtGuion.setText("-");
             panelFiltros.add(txtGuion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 35, -1, -1));
-            fechaField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-            panelFiltros.add(fechaField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40,100, -1));
+            panelFiltros.add(fechaHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40,100, -1));
             txtfecha2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
             txtfecha2.setForeground(new java.awt.Color(255, 0, 204));
             txtfecha2.setText("Hasta");
             panelFiltros.add(txtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 35, -1,-1));
+            
+           if(arreglo[0]==1){
+               checkBox.setSelected(true);
+           }
+           else{
+               checkBox.setSelected(false);  
+           }
+            
+            
             pack();
             break;
             
@@ -244,6 +313,13 @@ public class mainWindow extends javax.swing.JFrame {
                 spinnerTop.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 spinnerTop.setModel(new SpinnerNumberModel(0, 0, 20, 1));
                 panelFiltros.add(spinnerTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 50, -1));
+           if(arreglo[3]==1){
+               checkBox.setSelected(true);
+           }
+           else{
+               checkBox.setSelected(false);  
+           }
+               
                 pack();
                 break;
             case 3:// clasificacion
@@ -256,9 +332,24 @@ public class mainWindow extends javax.swing.JFrame {
                 txtCategoria.setForeground(new java.awt.Color(255, 0, 204));
                 txtCategoria.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
                 panelFiltros.add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+                if(arreglo[1]==1){
+               checkBox.setSelected(true);
+           }
+           else{
+               checkBox.setSelected(false);  
+           }
+            
                 pack();
                 break;
             case 4://mis propuestas
+               if(arreglo[2]==1){
+               checkBox.setSelected(true);
+           }
+           else{
+               checkBox.setSelected(false);  
+           }
+             
+                pack();
                 break;
                 
                 
@@ -343,20 +434,20 @@ public class mainWindow extends javax.swing.JFrame {
     }
    
     //mi declaracion de variables 
-    public javax.swing.JFormattedTextField fechaField2;
-    public javax.swing.JFormattedTextField fechaField1;
     public javax.swing.JSpinner spinnerTop;
     public javax.swing.JComboBox<String> comboCategoria;
     public javax.swing.JButton btnAceptar;
-    
+    public int[ ] arreglo = {0, 0,0, 0}; 
     //fin de mi declaracion de variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnConfig;
     private javax.swing.JLabel btnHome;
     private javax.swing.JLabel btnNewProposal;
     private javax.swing.JComboBox<String> cbxCombo;
+    private javax.swing.JCheckBox checkBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
+    private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JScrollPane mainPanel;

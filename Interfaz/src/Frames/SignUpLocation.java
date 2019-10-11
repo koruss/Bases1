@@ -173,12 +173,12 @@ public class SignUpLocation extends javax.swing.JFrame {
     private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
         try {
             Funciones utilidades = new Funciones();
-            String user = this.txtUser.getText();
+ //           String user = this.txtUser.getText();
             //char[] passw = this.txtPassw.getPassword();
             //String passwF = new String(passw);
-            String passwF=this.txtPassw.getText();
+//            String passwF=this.txtPassw.getText();
 
-            int validation=utilidades.correctLogIn(user, passwF);
+  //          int validation=utilidades.correctLogIn(user, passwF);
             if(validation!=-1){
                 mainWindow ventana;
                 JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);

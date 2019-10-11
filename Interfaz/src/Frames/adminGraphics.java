@@ -2,10 +2,13 @@
 package Frames;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import org.jfree.chart.ChartFactory;
 import org.jfree.data.general.PieDataset;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.util.Rotation;
@@ -114,14 +117,19 @@ public class adminGraphics extends javax.swing.JFrame {
     public void crearPieChart(){
 
         DefaultPieDataset result =new DefaultPieDataset();
-        result.setValue("hola", 65);
-        result.setValue("jaja",35);
+        result.setValue("hola", 1);
+        result.setValue("jaja",55);
         
         JFreeChart chart =ChartFactory.createPieChart3D("", result, true,true,false);
         PiePlot3D plot = (PiePlot3D) chart.getPlot();
         plot.setStartAngle(0);
         plot.setDirection(Rotation.CLOCKWISE);
-        plot.setForegroundAlpha(1f);
+        plot.setForegroundAlpha(0.5f);
+        plot.setSimpleLabels(true);
+        
+        PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
+            "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+        plot.setLabelGenerator(gen);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(700,500));
         chartPanel.setBackground(new Color(0,0,0,80));
