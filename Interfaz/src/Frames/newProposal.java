@@ -25,8 +25,10 @@ public class newProposal extends javax.swing.JFrame {
     /**
      * Creates new form newProposal
      */
-    public newProposal() throws SQLException {
-        initComponents();   
+    public newProposal(int pUserType,String pCedula) throws SQLException {
+        initComponents();  
+        this.cedula=pCedula;
+        this.userType=pUserType;
         jPanel1.setBackground(new Color(0,0,0,80));
         this.txtPresupuesto.setBackground(new Color(102,0,102,80));
         this.txtDescripcion.setBackground(new Color(102,0,102,80));
@@ -53,6 +55,8 @@ public class newProposal extends javax.swing.JFrame {
                    
     }
     
+    public static String cedula;
+    public static int userType;    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,8 +84,7 @@ public class newProposal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         btnHome = new javax.swing.JLabel();
-        btnNewProposal = new javax.swing.JLabel();
-        btnConfig = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel5.setText("jLabel5");
@@ -109,7 +112,7 @@ public class newProposal extends javax.swing.JFrame {
         txtPresupuesto.setDisabledTextColor(new java.awt.Color(204, 255, 204));
         txtPresupuesto.setMargin(new java.awt.Insets(0, 1, 0, 0));
         txtPresupuesto.setName(""); // NOI18N
-        jPanel1.add(txtPresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 250, 40));
+        jPanel1.add(txtPresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 250, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 204));
@@ -122,7 +125,7 @@ public class newProposal extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 640, 110));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 640, 110));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
@@ -166,9 +169,7 @@ public class newProposal extends javax.swing.JFrame {
                 comboCategoriaActionPerformed(evt);
             }
         });
-        jPanel1.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 510, 30));
-
-        kGradientPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 840, 540));
+        jPanel1.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 510, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,9 +177,11 @@ public class newProposal extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, -1, 40));
 
-        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 890, 610));
+        kGradientPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 840, 500));
+
+        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 890, 540));
 
         kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
@@ -192,24 +195,11 @@ public class newProposal extends javax.swing.JFrame {
         });
         kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
-        btnNewProposal.setText("jLabel8");
-        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNewProposalMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 60, -1));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setText("Menú Principal");
+        kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, 40));
 
-        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConfigMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
-
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 610));
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -220,27 +210,11 @@ public class newProposal extends javax.swing.JFrame {
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         // TODO add your handling code here:
-        mainWindow ventana =new mainWindow();
+        mainWindow ventana =new mainWindow(userType,cedula);
         ventana.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btnHomeMouseClicked
-
-    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
-        try {
-            newProposal ventana =new newProposal();
-            ventana.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(newProposal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnNewProposalMouseClicked
-
-    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas();
-        ventana.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnConfigMouseClicked
 
     private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
         // TODO add your handling code here:
@@ -301,7 +275,7 @@ public class newProposal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new newProposal().setVisible(true);
+                    new newProposal(userType,cedula).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(newProposal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -310,9 +284,7 @@ public class newProposal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnConfig;
     private javax.swing.JLabel btnHome;
-    private javax.swing.JLabel btnNewProposal;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -321,6 +293,7 @@ public class newProposal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KButton kButton1;

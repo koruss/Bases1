@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz/src/Frames/SignUp.java</file>
-            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz/src/connect/connectDB.java</file>
-            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz/src/Frames/admiModifyProposal.java</file>
-            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz/src/Frames/adminDataModify.java</file>
-            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz/src/Frames/newProposal.java</file>
-            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz/src/Business/Funciones.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/SingIn.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/userConsultas.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/newProposal.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/adminGraphics.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/SignUp.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/SignUpLocation.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/AdminDataModify.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/admiModifyProposal.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/mainWindow.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/createAdministrator.java</file>
+            <file>file:/C:/Documents%20and%20Settings/stevenpc/Escritorio/Interfaz(v2)-12-10-19/Interfaz/src/Frames/proposalVisualizer.java</file>
         </group>
     </open-files>
 </project-private>

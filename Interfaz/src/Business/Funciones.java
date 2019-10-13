@@ -85,9 +85,14 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
         return connect.connectDB.getCategory(pcategory);
     }
     
-    public void registerCommunity(String pCedula,int pCommunity) throws SQLException{
+   public void registerCommunity(String pCedula,int pCommunity) throws SQLException{
         connect.connectDB.registerCommunity(pCedula,pCommunity);
     }
+   
+   public String getCedulaByUser(String pUser) throws SQLException{
+       return connect.connectDB.getCedulaByUser(pUser);
+   }
+    
  //esta es la funcion para encriptar la contrasena   
     public String  EncryptPassw(String passw){
         String encryptedPassw=new String();

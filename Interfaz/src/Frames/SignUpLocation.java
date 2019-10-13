@@ -6,6 +6,8 @@
 package Frames;
 
 import Business.Funciones;
+import static Frames.proposalVisualizer.cedula;
+import static Frames.proposalVisualizer.userType;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,7 +73,7 @@ public class SignUpLocation extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+        kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, -1, -1));
 
         comboPais.setBackground(new java.awt.Color(204, 255, 204));
         comboPais.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -152,7 +154,7 @@ public class SignUpLocation extends javax.swing.JFrame {
         jLabel11.setText("4) Comunidad");
         kGradientPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 250, 20));
 
-        btnSignIn.setText("ENTRAR");
+        btnSignIn.setText("Asignar Comunidad");
         btnSignIn.setActionCommand("Ingresar");
         btnSignIn.setBorderPainted(false);
         btnSignIn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,6 +195,30 @@ public class SignUpLocation extends javax.swing.JFrame {
     }//GEN-LAST:event_comboComunidadActionPerformed
 
     private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
+
+//        try {
+//            Funciones utilidades = new Funciones();
+//           String user = this.txtUser.getText();
+//            char[] passw = this.txtPassw.getPassword();
+//           String passwF = new String(passw);
+//           //String passwF=this.txtPassw.getText();
+//
+//            int validation=utilidades.correctLogIn(user, passwF);
+//            if(validation!=-1){
+//                mainWindow ventana;
+//                JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);
+//
+//                ventana = new mainWindow();
+//                ventana.setVisible(true);
+//                this.dispose();
+//            }
+//            else{
+//                JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(SingIn.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
     
     }//GEN-LAST:event_btnSignInMouseClicked
 
@@ -206,7 +232,10 @@ public class SignUpLocation extends javax.swing.JFrame {
                     
                     int idCommunity=business.getCommunityId((String) comboComunidad.getSelectedItem(),idCanton);
                     business.registerCommunity(cedula,idCommunity);
-                    JOptionPane.showMessageDialog(null,"Usted ha sido registrado correctamente en la comunidad: "+(String)comboComunidad.getSelectedItem()+" de "+(String)comboCanton.getSelectedItem()+" ,"+(String)comboProvincia.getSelectedItem());
+                    JOptionPane.showMessageDialog(null,"Usted ha sido registrado correctamente en la comunidad: "+(String)comboComunidad.getSelectedItem()+" de "+(String)comboCanton.getSelectedItem()+" ,"+(String)comboProvincia.getSelectedItem()+"\n"+" Por favor, vuelva a ingresar sus credenciales de usuario para poder utilizar el sistema");
+                    SingIn ventana =new SingIn();
+                    ventana.setVisible(true);
+                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
                 }};

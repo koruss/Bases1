@@ -145,7 +145,7 @@ public class SingIn extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         try {
-            SignUp ventana = new SignUp();
+            SignUp ventana = new SignUp(1);
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -161,18 +161,18 @@ public class SingIn extends javax.swing.JFrame {
         try {
             Funciones utilidades = new Funciones();
             String user = this.txtUser.getText();
-            //char[] passw = this.txtPassw.getPassword();
-            //String passwF = new String(passw);
-            String passwF=this.txtPassw.getText();
+            char[] passw = this.txtPassw.getPassword();
+            String passwF = new String(passw);
+            //String passwF=this.txtPassw.getText();
             
             int validation=utilidades.correctLogIn(user, passwF);
             if(validation!=-1){
-                mainWindow ventana;
-                JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);
-
-                ventana = new mainWindow();
+                //String cedula=utilidades.getCedulaByUser(user);
+                String cedula="117060279";
+                //mainWindow ventana= new mainWindow(validation,cedula);
+                mainWindow ventana= new mainWindow(0,cedula);
                 ventana.setVisible(true);
-                this.dispose();
+                this.dispose();         
             }
             else{
                 JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
