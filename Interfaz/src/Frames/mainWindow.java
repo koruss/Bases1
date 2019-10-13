@@ -25,9 +25,13 @@ public class mainWindow extends javax.swing.JFrame {
      */
     public mainWindow() {
         initComponents();
-        //this.mainPanel.setBackground(new Color(0,0,0,80));
-        //this.panelScroll.setBackground(new Color(0,0,0,80));
-        
+        try {
+            //this.mainPanel.setBackground(new Color(0,0,0,80));
+            //this.panelScroll.setBackground(new Color(0,0,0,80));
+            connect.connectDB.getProposal(-1, -1, null,null,-1);
+        } catch (SQLException ex) {
+            System.out.println("Me cago");
+        }
         for(int i=30;i<1000;i+=170){
             crearPaneles(i);
         }
@@ -35,7 +39,9 @@ public class mainWindow extends javax.swing.JFrame {
     }
     
     
-
+ private void cargarPropuestas(){
+     
+ }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,7 +61,7 @@ public class mainWindow extends javax.swing.JFrame {
         cbxCombo = new javax.swing.JComboBox<>();
         kButton1 = new keeptoo.KButton();
         panelFiltros = new javax.swing.JPanel();
-        kGradientPanel1 = new keeptoo.KGradientPanel();
+        panelMenu = new keeptoo.KGradientPanel();
         btnHome = new javax.swing.JLabel();
         btnNewProposal = new javax.swing.JLabel();
         btnConfig = new javax.swing.JLabel();
@@ -127,9 +133,9 @@ public class mainWindow extends javax.swing.JFrame {
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 790, 560));
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
-        kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
-        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelMenu.setkEndColor(new java.awt.Color(51, 0, 204));
+        panelMenu.setkStartColor(new java.awt.Color(204, 0, 204));
+        panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,7 +143,7 @@ public class mainWindow extends javax.swing.JFrame {
                 btnHomeMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        panelMenu.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
         btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
         btnNewProposal.setText("jLabel8");
@@ -146,7 +152,7 @@ public class mainWindow extends javax.swing.JFrame {
                 btnNewProposalMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 60, -1));
+        panelMenu.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 60, -1));
 
         btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
         btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,9 +160,9 @@ public class mainWindow extends javax.swing.JFrame {
                 btnConfigMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
+        panelMenu.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
 
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 560));
+        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,7 +190,15 @@ public class mainWindow extends javax.swing.JFrame {
                break;
        } 
     }//GEN-LAST:event_cbxComboActionPerformed
-
+    
+    private void cargarMenu(){
+        if(typeUser==1){
+            
+        }
+    }
+    
+    
+    
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         // TODO add your handling code here:
         mainWindow ventana =new mainWindow();
@@ -434,6 +448,7 @@ public class mainWindow extends javax.swing.JFrame {
     }
    
     //mi declaracion de variables 
+   public static int typeUser;
     public javax.swing.JSpinner spinnerTop;
     public javax.swing.JComboBox<String> comboCategoria;
     public javax.swing.JButton btnAceptar;
@@ -448,10 +463,10 @@ public class mainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private keeptoo.KButton kButton1;
-    private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JScrollPane mainPanel;
     private javax.swing.JPanel panelFiltros;
+    private keeptoo.KGradientPanel panelMenu;
     private javax.swing.JPanel panelScroll;
     // End of variables declaration//GEN-END:variables
 }

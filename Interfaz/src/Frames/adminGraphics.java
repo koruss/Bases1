@@ -2,7 +2,10 @@
 package Frames;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.data.general.PieDataset;
 import org.jfree.chart.JFreeChart;
@@ -32,9 +35,16 @@ public class adminGraphics extends javax.swing.JFrame {
 
         kButton1 = new keeptoo.KButton();
         panel = new keeptoo.KGradientPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         kButton2 = new keeptoo.KButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        kGradientPanel1 = new keeptoo.KGradientPanel();
+        btnHome = new javax.swing.JLabel();
+        btnNewProposal = new javax.swing.JLabel();
+        btnConfig = new javax.swing.JLabel();
 
         kButton1.setText("kButton1");
 
@@ -44,18 +54,21 @@ public class adminGraphics extends javax.swing.JFrame {
 
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jCheckBox1.setText("jCheckBox1");
+        panel.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, -1, -1));
+
         kButton2.setText("Draw Graphics");
         kButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton2ActionPerformed(evt);
             }
         });
-        panel.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 100, 60));
+        panel.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 100, 60));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
         jLabel3.setText("Sign Up");
-        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 160, 60));
+        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, 60));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,8 +77,41 @@ public class adminGraphics extends javax.swing.JFrame {
             }
         });
         panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, -1));
+        panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 910, 490));
+        panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 910, 130));
 
         getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 960, 800));
+
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
+        kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
+        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+
+        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
+        btnNewProposal.setText("jLabel8");
+        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNewProposalMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 60, -1));
+
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
+        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfigMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
+
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,6 +124,30 @@ public class adminGraphics extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        // TODO add your handling code here:
+        mainWindow ventana =new mainWindow();
+        ventana.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
+        try {
+            newProposal ventana =new newProposal();
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnNewProposalMouseClicked
+
+    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
+        userConsultas ventana= new userConsultas();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConfigMouseClicked
 
     /**
      * @param args the command line arguments
@@ -139,10 +209,17 @@ public class adminGraphics extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnConfig;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnNewProposal;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private keeptoo.KButton kButton1;
     private keeptoo.KButton kButton2;
+    private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel panel;
     // End of variables declaration//GEN-END:variables
 }

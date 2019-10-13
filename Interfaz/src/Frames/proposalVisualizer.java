@@ -6,6 +6,9 @@
 package Frames;
 
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -245,8 +248,14 @@ public class proposalVisualizer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeMouseClicked
 
     private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
-        newProposal ventana =new newProposal();
-        ventana.setVisible(true);
+        
+        try {
+            newProposal ventana = new newProposal();
+            ventana.setVisible(true);
+        } catch (SQLException ex) {
+            
+        }
+        
         this.dispose();
     }//GEN-LAST:event_btnNewProposalMouseClicked
 

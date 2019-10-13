@@ -29,6 +29,29 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
        connect.connectDB.insertProposal(pIdentification,pTitle,  pDescription,pCategory,pBudget);        
     }
     
+    public void insertNationality(String pNationality) throws SQLException{
+        connect.connectDB.insertNationality(pNationality);
+    }
+    
+    public void insertCategory(String pCategory) throws SQLException{
+        connect.connectDB.insertCategory(pCategory);
+    }
+    
+    public void insertCountry(String pCountry) throws SQLException{
+        connect.connectDB.insertCountry(pCountry);
+    }
+    
+    public void insertProvince(String pProvince,int pCountry) throws SQLException{
+        connect.connectDB.insertProvince(pProvince,pCountry);
+    }
+ 
+    public void insertCanton(String pCanton,int pProvince) throws SQLException{
+        connect.connectDB.insertCanton(pCanton,pProvince);
+    }
+    public void insertCommunity(String pCommunity,int pCanton) throws SQLException{
+        connect.connectDB.insertCommunity(pCommunity,pCanton);
+    }
+    
     public ResultSet getNationalities(int pNationality) throws SQLException {
         return connect.connectDB.getNationality(pNationality);
     }
@@ -37,21 +60,35 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
         return connect.connectDB.getCountry(pCountry);
     }
     
-    public ResultSet getProvinces(int pCountry throws SQLException {
+    public ResultSet getProvinces(String pCountry) throws SQLException {
         return connect.connectDB.getProvince(pCountry);
     }
     
-    public ResultSet getCantons(int pProvince) throws SQLException {
+    public ResultSet getCantons(String pProvince) throws SQLException {
         return connect.connectDB.getCanton(pProvince);
     }
     
-    public ResultSet getCommunities(int pCanton) throws SQLException {
+    public ResultSet getCommunities(String pCanton) throws SQLException {
         return connect.connectDB.getCommunity(pCanton);
     }
+    public int getNationalityId(String pNationality) throws SQLException {
+        return connect.connectDB.getNationalityId(pNationality); 
+    }    
+    public int getCommunityId(String pComunidad,int pCanton) throws SQLException {
+        return connect.connectDB.getCommunityId(pComunidad,pCanton); 
+    }
     
+    public int getCantonId(String pCanton) throws SQLException {
+        return connect.connectDB.getCantonId(pCanton); 
+    }   
     public ResultSet getCategories(int pcategory) throws SQLException {
         return connect.connectDB.getCategory(pcategory);
     }
+    
+   public void registerCommunity(String pCedula,int pCommunity) throws SQLException{
+        connect.connectDB.registerCommunity(pCedula,pCommunity);
+    }
+    
  //esta es la funcion para encriptar la contrasena   
     public String  EncryptPassw(String passw){
         String encryptedPassw=new String();

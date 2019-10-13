@@ -134,7 +134,7 @@ public class newProposal extends javax.swing.JFrame {
         jLabel4.setText("Descripción");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 250, 30));
 
-        kButton1.setText("kButton1");
+        kButton1.setText("Registrar Propuesta");
         kButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton1ActionPerformed(evt);

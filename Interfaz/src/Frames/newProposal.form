@@ -185,7 +185,7 @@
             </Component>
             <Component class="keeptoo.KButton" name="kButton1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="kButton1"/>
+                <Property name="text" type="java.lang.String" value="Registrar Propuesta"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kButton1ActionPerformed"/>

@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package connect;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,19 +103,22 @@ public class connectDB{
     
     public static void insertCommunity(String pCommunity, int pIdCanton) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
-        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_COMMUNITY.INSERT_COMMUNITY(?,?)}");
-        
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_COMMUNITY.INSERT_COMMUNITY(?,?)}"); 
         stmt.setString(1,pCommunity);
         stmt.setInt(2,pIdCanton);
         stmt.execute();   
-    }  
+    } 
+    
+    
     public static void insertCategory(String pCategory) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
         CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_CATEGORY.INSERT_CATEGORY(?)}");
         
         stmt.setString(1,pCategory);
         stmt.execute();   
-    }    
+    }  
+    
+    
     public static void insertUserType(String pUserType) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
         CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_KIND_PERSON.INSERT_KIND_PERSON(?)}");
@@ -128,8 +129,7 @@ public class connectDB{
     
     public static void insertParameter(String pParameterName, int pValue) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
-        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PARAMETER.INSERT_PARAMETER(?,?)}");
-        
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PARAMETER.INSERT_PARAMETER(?,?)}");    
         stmt.setString(1,pParameterName);
         stmt.setInt(2,pValue);
         stmt.execute();   
@@ -137,8 +137,7 @@ public class connectDB{
     
     public static void registerVote(int pIdProposal, String pIdPerson) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
-        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_VOTE.INSERT_VOTE(?,?)}");
-        
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_VOTE.INSERT_VOTE(?,?)}");        
         stmt.setInt(1,pIdProposal);
         stmt.setString(2,pIdPerson);
         stmt.execute();           
@@ -164,7 +163,6 @@ public class connectDB{
     public static void changePassword(String pIdPerson,String pNewPassword) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
         CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_USERNAME.SET_PASSWORD(?,?)}");
-        
         stmt.setString(1,pIdPerson);
         stmt.setString(2,pNewPassword);
         stmt.execute();           
@@ -275,20 +273,27 @@ public class connectDB{
            if(!flag) System.out.println("No data to show, incorrect identificator");
        }
        
-       public static ResultSet getCanton(int pIdProvince) throws SQLException  {
+       public static ResultSet getCanton(String pIdProvince) throws SQLException  {
            con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_CANTON.GET_ALL_CANTON(?,?)}");
-           stmt.registerOutParameter(1,OracleTypes.CURSOR);
-           if (pIdProvince == -1) stmt.setNull(2,java.sql.Types.BIGINT);
-           else stmt.setInt(2,pIdProvince);
-           stmt.executeQuery();
-           ResultSet r=(ResultSet) stmt.getObject(1);
-           //boolean flag=false;
-           //while(r.next()){
-           //    flag=true;
-           //    System.out.println(r.getString("ID_CANTON")+" "+r.getString("CANTON_NAME")+" "+r.getString("ID_PROVINCE"));
-           //}
-           //if(!flag) System.out.println("No data to show, incorrect identificator");
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_PROVINCE.GET_ID_PROVINCE(?)}");
+           stmt2.setString(2,pIdProvince);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           
+              CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_CANTON.GET_ALL_CANTON(?,?)}");
+              stmt.registerOutParameter(1,OracleTypes.CURSOR);
+              if (result == -1) stmt.setNull(2,java.sql.Types.BIGINT);
+              else stmt.setInt(2,result);
+              stmt.executeQuery();
+              ResultSet r=(ResultSet) stmt.getObject(1);           
+           
+           boolean flag=false;
+           while(r.next()){
+               flag=true;
+               System.out.println(r.getString("ID_CANTON")+" "+r.getString("CANTON_NAME")+" "+r.getString("ID_PROVINCE"));
+           }
+           if(!flag) System.out.println("No data to show, incorrect identificator");
            return r;     
        }
        
@@ -347,39 +352,76 @@ public class connectDB{
            return r;
            }
        
-       public static ResultSet getProvince (int pIdCountry) throws SQLException {
+       public static ResultSet getProvince (String pIdCountry) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_PROVINCE.GET_ALL_PROVINCE(?,?)}");
-           stmt.registerOutParameter(1,OracleTypes.CURSOR);
-           if (pIdCountry == -1) stmt.setNull(2,java.sql.Types.BIGINT);
-           else stmt.setInt(2,pIdCountry);
-           stmt.executeQuery();
-           ResultSet r=(ResultSet) stmt.getObject(1);
-           /*boolean flag=false;
-           while(r.next()){
-               flag=true;
-               System.out.println(r.getString("ID_PROVINCE")+" "+r.getString("PROVINCE_NAME")+" "+r.getString("ID_COUNTRY"));
-           }
-           if(!flag) System.out.println("No data to show, incorrect identificator");
-          */
-           return r;
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_COUNTRY.GET_ID_COUNTRY(?)}");
+           stmt2.setString(2,pIdCountry);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           
+              CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_PROVINCE.GET_ALL_PROVINCE(?,?)}");
+              stmt.registerOutParameter(1,OracleTypes.CURSOR);
+              if (result == -1) stmt.setNull(2,java.sql.Types.BIGINT);
+              else stmt.setInt(2,result);
+              stmt.executeQuery();
+              ResultSet r=(ResultSet) stmt.getObject(1);           
+           
+           //boolean flag=false;
+           //while(r.next()){
+           //    flag=true;
+           //    System.out.println(r.getString("ID_CANTON")+" "+r.getString("CANTON_NAME")+" "+r.getString("ID_PROVINCE"));
+           //}
+           //if(!flag) System.out.println("No data to show, incorrect identificator");
+           return r;     
            }
        
-       public static ResultSet getCommunity(int pIdcanton) throws SQLException {
+       public static ResultSet getCommunity(String pIdcanton) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_COMMUNITY.GET_ALL_COMMUNITY(?,?)}");
-           stmt.registerOutParameter(1,OracleTypes.CURSOR);
-           if (pIdcanton == -1) stmt.setNull(2,java.sql.Types.BIGINT);
-           else stmt.setInt(2,pIdcanton);
-           stmt.executeQuery();
-           ResultSet r=(ResultSet) stmt.getObject(1);
-           boolean flag=false;
-           while(r.next()){
-               flag=true;
-               System.out.println(r.getString("ID_COMMUNITY")+" "+r.getString("COMMUNITY_NAME")+" "+r.getString("ID_CANTON"));
-           }
-           if(!flag) System.out.println("No data to show, incorrect identificator");
-       }
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_CANTON.GET_ID_CANTON(?)}");
+           stmt2.setString(2,pIdcanton);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           
+              CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_COMMUNITY.GET_ALL_COMMUNITY(?,?)}");
+              stmt.registerOutParameter(1,OracleTypes.CURSOR);
+              if (result == -1) stmt.setNull(2,java.sql.Types.BIGINT);
+              else stmt.setInt(2,result);
+              stmt.executeQuery();
+              ResultSet r=(ResultSet) stmt.getObject(1);           
+          return r;    
+        }
+       public static int getNationalityId(String pNationality) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_NATIONALITY.GET_ID_NATIONALITY(?)}");
+           stmt2.setString(2,pNationality);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           return result;  
+        } 
+       public static int getCommunityId(String pIdCommunity,int pCanton) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_COMMUNITY.GET_ID_COMMUNITY(?,?)}");
+           stmt2.setString(2,pIdCommunity);
+           if(pCanton==-1) stmt2.setNull(3,java.sql.Types.BIGINT);
+           else stmt2.setInt(3,pCanton);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           return result;  
+        }
+       
+       public static int getCantonId(String pIdCanton) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_CANTON.GET_ID_CANTON(?)}");
+           stmt2.setString(2,pIdCanton);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           return result;  
+        }
        
         public static void getVote(int pIdCommunity) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
@@ -529,23 +571,41 @@ public class connectDB{
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
        }
-   
-        public static void getTopProposals(int pTop) throws SQLException {
+ 
+        
+        //este es el get proposal que estamos utilizando
+public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_TOP_PROPOSAL(?,?)}");
+           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?,?,?)}");
            stmt.registerOutParameter(1,OracleTypes.CURSOR);
-           if (pTop == -1) stmt.setNull(2,java.sql.Types.BIGINT);
-           else stmt.setInt(2,pTop);
+           if (pIdProposal == -1) stmt.setNull(2,java.sql.Types.BIGINT);
+           else stmt.setInt(2,pIdProposal);
+           if (pVote == -1) stmt.setNull(3,java.sql.Types.BIGINT);
+           else stmt.setInt(3,pVote);
+           if (pInicialDate == null) stmt.setNull(4,java.sql.Types.DATE);
+           else {
+               java.sql.Date sqlDate = new java.sql.Date(pInicialDate.getTime());        
+               stmt.setDate(4,sqlDate);
+           }
+           if (pFinalDate== null) stmt.setNull(5,java.sql.Types.DATE);
+           else {
+               java.sql.Date sqlDate = new java.sql.Date(pFinalDate.getTime());        
+               stmt.setDate(5,sqlDate);
+           }
+           if (pCategory == -1) stmt.setNull(6,java.sql.Types.BIGINT);
+           else stmt.setInt(6,pCategory);
            stmt.executeQuery();
-           ResultSet r=(ResultSet) stmt.getObject(1);
+          ResultSet r=(ResultSet) stmt.getObject(1);
            boolean flag=false;
            while(r.next()){
                flag=true;
-               System.out.println(r.getString("TITLE")+" "+r.getString("PROPOSAL_DESCRIPTION")+" "+r.getString("VOTE"));
+               System.out.println(r.getString("ID_PROPOSAL")+" "+r.getString("TITLE")+" "+r.getString("PROPOSAL_DESCRIPTION")+" "+r.getString("BUDGET")+" "+r.getString("VOTE")+" "+r.getString("PROPOSAL_DATE")+r.getString("CATEGORY_NAME"));
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
-       }
-     
+           
+           return r;
+}
+
          public static int userValidation (String pUsername,String pPassword) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.VALIDATE_USER(?,?,?)}");
@@ -559,6 +619,10 @@ public class connectDB{
            if((r.getString("USERNAME").equals(pUsername)) && (r.getString("PASSWORD").equals(pPassword))) return Integer.parseInt(r.getString("ID_USERTYPE"));
            else return -1;
        }
+        
+         public static void registerCommunity(String pCedula,int pComunnity){
+             
+         }
          
        /*  
          public static boolean userValidation (String pUsername,String pPassword) throws SQLException {

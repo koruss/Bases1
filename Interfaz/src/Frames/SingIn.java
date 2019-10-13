@@ -20,7 +20,7 @@ public class SingIn extends javax.swing.JFrame {
     /**
      * Creates new form SingIn
      */
-    public SingIn() {
+    public SingIn() throws SQLException {
         initComponents();
     }
 
@@ -69,8 +69,8 @@ public class SingIn extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel3.setText("Sign In");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 70, 30));
+        jLabel3.setText("Inicio de sesión");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 180, 30));
 
         txtUser.setBackground(new java.awt.Color(204, 255, 204));
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -104,19 +104,19 @@ public class SingIn extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(204, 0, 204));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 0, 204));
-        jLabel8.setText("-Sign Up-");
+        jLabel8.setText("¿No tiene un usuario? Registrarse Aquí!!");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 70, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 250, 20));
 
         kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 350, 400));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("PROGRA 1");
-        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 100, 70));
+        jLabel1.setText("Activá tu comunidad!!");
+        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 210, 70));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("<html>\nEl valor de una nación no es otra cosa que \n<br>\nel valor de los individuos que la componen\n");
@@ -145,7 +145,7 @@ public class SingIn extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         try {
-            SignUp ventana = new SignUp();
+            SignUp ventana = new SignUp(1);
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -161,18 +161,26 @@ public class SingIn extends javax.swing.JFrame {
         try {
             Funciones utilidades = new Funciones();
             String user = this.txtUser.getText();
-            //char[] passw = this.txtPassw.getPassword();
-            //String passwF = new String(passw);
-            String passwF=this.txtPassw.getText();
+            char[] passw = this.txtPassw.getPassword();
+            String passwF = new String(passw);
+            //String passwF=this.txtPassw.getText();
             
             int validation=utilidades.correctLogIn(user, passwF);
             if(validation!=-1){
-                mainWindow ventana;
-                JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);
-
-                ventana = new mainWindow();
+                if (validation==1){
+                mainWindow ventana= new mainWindow();
+                //JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);
                 ventana.setVisible(true);
                 this.dispose();
+                    
+                }
+                if(validation==2){
+                    PricipalMenu ventana = new PricipalMenu();
+                    ventana.setVisible(true);
+                    this.dispose();
+                }
+                
+
             }
             else{
                 JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
@@ -185,7 +193,7 @@ public class SingIn extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -212,7 +220,11 @@ public class SingIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SingIn().setVisible(true);
+                try {
+                    new SingIn().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SingIn.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
