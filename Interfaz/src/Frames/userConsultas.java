@@ -253,8 +253,14 @@ public class userConsultas extends javax.swing.JFrame {
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         // TODO add your handling code here:
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
+        mainWindow ventana;
+        try {
+            ventana = new mainWindow(userType,cedula);
+            ventana.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.dispose();
 
     }//GEN-LAST:event_btnHomeMouseClicked

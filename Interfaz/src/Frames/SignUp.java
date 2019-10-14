@@ -127,6 +127,7 @@ public class SignUp extends javax.swing.JFrame {
         btnHome = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        fechaNacimiento1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -329,6 +330,11 @@ public class SignUp extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 40));
 
+        fechaNacimiento1.setBackground(new Color(0,0,0,80));
+        fechaNacimiento1.setForeground(new java.awt.Color(204, 255, 204));
+        fechaNacimiento1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel1.add(fechaNacimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 130, 20));
+
         kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 980, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -473,6 +479,7 @@ public class SignUp extends javax.swing.JFrame {
     private keeptoo.KButton btnSignUp;
     private javax.swing.JComboBox<String> comboNacionalidad;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
+    private com.toedter.calendar.JDateChooser fechaNacimiento1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

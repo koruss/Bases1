@@ -7,7 +7,7 @@ package Frames;
 
 import Business.Funciones;
 import static Frames.proposalVisualizer.cedula;
-import static Frames.proposalVisualizer.userType;
+import static Frames.proposalVisualizer.typeUser;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;

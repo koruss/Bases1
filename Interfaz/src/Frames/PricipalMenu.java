@@ -5,6 +5,10 @@
  */
 package Frames;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author stevenpc
@@ -14,8 +18,11 @@ public class PricipalMenu extends javax.swing.JFrame {
     /**
      * Creates new form PricipalMenu
      */
-    public PricipalMenu() {
+    public PricipalMenu(int ptypeUser, String pcedula) {
+        this.typeUser=ptypeUser;
+        this.cedula=pcedula;
         initComponents();
+        
     }
 
     /**
@@ -178,10 +185,14 @@ public class PricipalMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow();
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            mainWindow ventana =new mainWindow(typeUser,cedula);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(PricipalMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnHomeMouseClicked
 
     private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
@@ -209,7 +220,7 @@ public class PricipalMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignIn1MouseClicked
 
     private void btnSignIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignIn1ActionPerformed
-        userConsultas ventana =new userConsultas();
+        userConsultas ventana =new userConsultas(typeUser,cedula);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSignIn1ActionPerformed
@@ -268,10 +279,14 @@ public class PricipalMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PricipalMenu().setVisible(true);
+                new PricipalMenu(typeUser,cedula).setVisible(true);
             }
         });
     }
+    
+    
+    private static int typeUser;
+    private static String cedula;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnConfig;

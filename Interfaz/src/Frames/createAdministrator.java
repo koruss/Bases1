@@ -230,9 +230,13 @@ public class createAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            mainWindow ventana =new mainWindow(userType,cedula);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(createAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnMainMenuMouseClicked
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

@@ -96,6 +96,11 @@ public class newProposal extends javax.swing.JFrame {
 
         kGradientPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -209,10 +214,14 @@ public class newProposal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            mainWindow ventana =new mainWindow(userType,cedula);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(newProposal.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnHomeMouseClicked
 
@@ -235,6 +244,10 @@ public class newProposal extends javax.swing.JFrame {
             Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
         }       // TODO add your handling code here:
     }//GEN-LAST:event_kButton1ActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     private void llenarComboCategorias() throws SQLException{
         Funciones business = new Funciones();

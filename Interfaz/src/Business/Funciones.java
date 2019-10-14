@@ -123,7 +123,27 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
     }
 
     
+    public ResultSet obtenerPropuestas(int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException{     
+        return connect.connectDB.getProposal(pIdProposal, pVote, pInicialDate,pFinalDate,pCategory);
+    }
     
+    public String[] getPropuestas(int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory)throws SQLException{
+        ResultSet r=connect.connectDB.getProposal(pIdProposal, pVote, pInicialDate,pFinalDate,pCategory);
+        String[] arreglo ={r.getString("ID_PROPOSAL"),r.getString("TITLE"),r.getString("PROPOSAL_DESCRIPTION"),r.getString("BUDGET"),r.getString("VOTE"),r.getString("PROPOSAL_DATE"),r.getString("CATEGORY_NAME")};
+        return arreglo;
+    }
+    
+    public ResultSet obtenerComentarios(String pIdPropuesta) throws SQLException{
+        int id=Integer.parseInt(pIdPropuesta);       
+        connect.connectDB.getProposalComments(id);
+        return null ;
+    }
+    
+    
+    public void  insertCommentary(String pCedula, String pIdpProposal,String comment){
+        //aqui van los connect para insertar los comentarios a la base
+        
+    }
     
     
 }

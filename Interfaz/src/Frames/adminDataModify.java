@@ -15,12 +15,12 @@ import javax.swing.JTextField;
  *
  * @author Kenneth
  */
-public class AdminDataModify extends javax.swing.JFrame {
+public class adminDataModify extends javax.swing.JFrame {
 
     /**
      * Creates new form adminDataModify
      */
-    public AdminDataModify(int pUserType,String pCedula) {
+    public adminDataModify(int pUserType,String pCedula) {
         initComponents();
         this.userType=pUserType;
         this.cedula=pCedula;
@@ -280,7 +280,7 @@ public class AdminDataModify extends javax.swing.JFrame {
             else if (comboCanton.getSelectedIndex()==1)  business.insertCategory(jTextField1.getText());
             else if (comboCanton.getSelectedIndex()==2)  business.insertCountry(jTextField1.getText());
         } catch (SQLException ex) {
-            Logger.getLogger(AdminDataModify.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(adminDataModify.class.getName()).log(Level.SEVERE, null, ex);
         }
     } else  JOptionPane.showMessageDialog(null,"Por favor ingrese un nuevo dato para agregar al catálogo"+(String)comboCanton.getSelectedItem());
 
@@ -292,9 +292,13 @@ public class AdminDataModify extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            mainWindow ventana =new mainWindow(userType,cedula);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(adminDataModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnMainMenuMouseClicked
 
     private void comboEdicion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEdicion2ActionPerformed
@@ -345,7 +349,7 @@ public class AdminDataModify extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -354,9 +358,9 @@ public class AdminDataModify extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDataModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adminDataModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDataModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adminDataModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(AdminDataModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
@@ -370,11 +374,11 @@ public class AdminDataModify extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+*/
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminDataModify(userType,cedula).setVisible(true);
+                new adminDataModify(userType,cedula).setVisible(true);
             }
         });
     }
