@@ -46,21 +46,6 @@ public class adminDataModify extends javax.swing.JFrame {
         lblPais = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-<<<<<<< HEAD
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        comboEdicion = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        btnMainMenu = new javax.swing.JLabel();
-        kGradientPanel2 = new keeptoo.KGradientPanel();
-        btnHome = new javax.swing.JLabel();
-        btnNewProposal = new javax.swing.JLabel();
-        btnConfig = new javax.swing.JLabel();
-=======
         comboCanton = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -83,7 +68,6 @@ public class adminDataModify extends javax.swing.JFrame {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         btnMainMenu = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
->>>>>>> Steven
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,27 +92,15 @@ public class adminDataModify extends javax.swing.JFrame {
         kGradientPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 980, 10));
         kGradientPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 980, 20));
 
-<<<<<<< HEAD
-        jLabel2.setText("Seleccione la tabla donde desea \nagregar nuevos datos");
-        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, 70));
-=======
         lblPais.setText("Seleccione Provincia a la que pertenece el cantón:");
         kGradientPanel1.add(lblPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 50));
->>>>>>> Steven
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-        kGradientPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 190, 40));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        kGradientPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 180, 40));
-=======
         kGradientPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 190, 40));
->>>>>>> Steven
 
         jLabel3.setText("Ingrese el nuevo Dato");
         kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 130, 40));
@@ -199,15 +171,6 @@ public class adminDataModify extends javax.swing.JFrame {
         jLabel13.setText("Ingrese el nuevo Dato");
         kGradientPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 130, 40));
 
-<<<<<<< HEAD
-        comboEdicion.setBackground(new java.awt.Color(0, 0, 0));
-        comboEdicion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        comboEdicion.setForeground(new java.awt.Color(204, 255, 204));
-        comboEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nacionalidad", "Categoría de propuesta", "País", "" }));
-        comboEdicion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        comboEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        comboEdicion.addActionListener(new java.awt.event.ActionListener() {
-=======
         jLabel14.setText("Seleccione la tabla donde desea  modificar datos");
         kGradientPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 240, 50));
 
@@ -216,63 +179,10 @@ public class adminDataModify extends javax.swing.JFrame {
         comboEdicion3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         comboEdicion3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         comboEdicion3.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> Steven
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEdicion3ActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-        kGradientPanel1.add(comboEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 250, 30));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, -1, -1));
-
-        btnMainMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
-        btnMainMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMainMenuMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 60, 60));
-
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
-
-        kGradientPanel2.setkEndColor(new java.awt.Color(51, 0, 204));
-        kGradientPanel2.setkStartColor(new java.awt.Color(204, 0, 204));
-        kGradientPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconMenu.png"))); // NOI18N
-        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHomeMouseClicked(evt);
-            }
-        });
-        kGradientPanel2.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
-
-        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
-        btnNewProposal.setText("jLabel8");
-        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNewProposalMouseClicked(evt);
-            }
-        });
-        kGradientPanel2.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 60, -1));
-
-        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConfigMouseClicked(evt);
-            }
-        });
-        kGradientPanel2.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
-
-        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
-=======
         kGradientPanel1.add(comboEdicion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 220, 30));
 
         lblpais1.setText("Seleccione el Pais");
@@ -350,7 +260,6 @@ public class adminDataModify extends javax.swing.JFrame {
         kGradientPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 110, 40));
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 580));
->>>>>>> Steven
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -382,37 +291,6 @@ public class adminDataModify extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-<<<<<<< HEAD
-    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow();
-        ventana.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_btnHomeMouseClicked
-
-    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
-        try {
-            newProposal ventana =new newProposal();
-            ventana.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnNewProposalMouseClicked
-
-    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas();
-        ventana.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnConfigMouseClicked
-
-    private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
-        PricipalMenu ventana = new PricipalMenu();
-        ventana.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnMainMenuMouseClicked
-=======
     private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
         try {
             mainWindow ventana =new mainWindow(userType,cedula);
@@ -462,7 +340,6 @@ public class adminDataModify extends javax.swing.JFrame {
     private void comboComunidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComunidad1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboComunidad1ActionPerformed
->>>>>>> Steven
 
     /**
      * @param args the command line arguments
@@ -507,22 +384,6 @@ public class adminDataModify extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
-    private javax.swing.JLabel btnConfig;
-    private javax.swing.JLabel btnHome;
-    private javax.swing.JLabel btnMainMenu;
-    private javax.swing.JLabel btnNewProposal;
-    private javax.swing.JComboBox<String> comboEdicion;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-=======
     private javax.swing.JLabel btnMainMenu;
     private javax.swing.JComboBox<String> comboCanton;
     private javax.swing.JComboBox<String> comboCanton1;
@@ -539,7 +400,6 @@ public class adminDataModify extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
->>>>>>> Steven
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
@@ -548,14 +408,11 @@ public class adminDataModify extends javax.swing.JFrame {
     private keeptoo.KButton kButton2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
-<<<<<<< HEAD
-=======
     private javax.swing.JLabel lblCanton1;
     private javax.swing.JLabel lblComunidad;
     private javax.swing.JLabel lblComunidad1;
     private javax.swing.JLabel lblPais;
     private javax.swing.JLabel lblProvincia1;
     private javax.swing.JLabel lblpais1;
->>>>>>> Steven
     // End of variables declaration//GEN-END:variables
 }

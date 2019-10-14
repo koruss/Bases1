@@ -41,7 +41,8 @@ public class PricipalMenu extends javax.swing.JFrame {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnNewAdmi = new keeptoo.KButton();
+        btnSignIn = new keeptoo.KButton();
+        btnSignIn1 = new keeptoo.KButton();
         btnModuloEstadisticas = new keeptoo.KButton();
         btnSignIn3 = new keeptoo.KButton();
         btnModificarCatalogo = new keeptoo.KButton();
@@ -58,7 +59,7 @@ public class PricipalMenu extends javax.swing.JFrame {
                 btnHomeMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
         btnNewProposal.setText("jLabel8");
@@ -67,7 +68,7 @@ public class PricipalMenu extends javax.swing.JFrame {
                 btnNewProposalMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 60, -1));
+        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 60, -1));
 
         btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
         btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,7 +76,7 @@ public class PricipalMenu extends javax.swing.JFrame {
                 btnConfigMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
         kGradientPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -85,25 +86,39 @@ public class PricipalMenu extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, 40));
+        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Menú Principal");
-        kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, 50));
+        kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, 50));
 
-        btnNewAdmi.setText("Crear Administrador");
-        btnNewAdmi.setBorderPainted(false);
-        btnNewAdmi.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSignIn.setText("Registrar Propuestas");
+        btnSignIn.setBorderPainted(false);
+        btnSignIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNewAdmiMouseClicked(evt);
+                btnSignInMouseClicked(evt);
             }
         });
-        btnNewAdmi.addActionListener(new java.awt.event.ActionListener() {
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewAdmiActionPerformed(evt);
+                btnSignInActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(btnNewAdmi, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
+        kGradientPanel2.add(btnSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
+
+        btnSignIn1.setText("Editar Perfil");
+        btnSignIn1.setBorderPainted(false);
+        btnSignIn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSignIn1MouseClicked(evt);
+            }
+        });
+        btnSignIn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignIn1ActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(btnSignIn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
         btnModuloEstadisticas.setText("Módulo de estadísticas");
         btnModuloEstadisticas.setBorderPainted(false);
@@ -117,7 +132,7 @@ public class PricipalMenu extends javax.swing.JFrame {
                 btnModuloEstadisticasActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(btnModuloEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
+        kGradientPanel2.add(btnModuloEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
 
         btnSignIn3.setText("Consultar Propuestas");
         btnSignIn3.setBorderPainted(false);
@@ -131,7 +146,7 @@ public class PricipalMenu extends javax.swing.JFrame {
                 btnSignIn3ActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(btnSignIn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        kGradientPanel2.add(btnSignIn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
 
         btnModificarCatalogo.setText("Modificar Catálogos");
         btnModificarCatalogo.setBorderPainted(false);
@@ -145,7 +160,7 @@ public class PricipalMenu extends javax.swing.JFrame {
                 btnModificarCatalogoActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(btnModificarCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, -1, -1));
+        kGradientPanel2.add(btnModificarCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,9 +176,9 @@ public class PricipalMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,31 +207,26 @@ public class PricipalMenu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void btnNewAdmiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewAdmiMouseClicked
-        
-        try {
-            SignUp ventana;
-            ventana = new SignUp(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(PricipalMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnNewAdmiMouseClicked
+    private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
 
-<<<<<<< HEAD
-    private void btnNewAdmiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewAdmiActionPerformed
-        userConsultas ventana =new userConsultas();
-=======
+    }//GEN-LAST:event_btnSignInMouseClicked
+
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+
+    }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void btnSignIn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignIn1MouseClicked
+
+    }//GEN-LAST:event_btnSignIn1MouseClicked
+
     private void btnSignIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignIn1ActionPerformed
         userConsultas ventana =new userConsultas(typeUser,cedula);
->>>>>>> Steven
         ventana.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnNewAdmiActionPerformed
+    }//GEN-LAST:event_btnSignIn1ActionPerformed
 
     private void btnModuloEstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModuloEstadisticasMouseClicked
-        adminGraphics ventana =new adminGraphics();
-        ventana.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btnModuloEstadisticasMouseClicked
 
     private void btnModuloEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModuloEstadisticasActionPerformed
@@ -232,9 +242,7 @@ public class PricipalMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignIn3ActionPerformed
 
     private void btnModificarCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCatalogoMouseClicked
-        adminDataModify ventana = new adminDataModify();
-        ventana.setVisible(true);
-        this.dispose();  
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarCatalogoMouseClicked
 
     private void btnModificarCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCatalogoActionPerformed
@@ -285,8 +293,9 @@ public class PricipalMenu extends javax.swing.JFrame {
     private javax.swing.JLabel btnHome;
     private keeptoo.KButton btnModificarCatalogo;
     private keeptoo.KButton btnModuloEstadisticas;
-    private keeptoo.KButton btnNewAdmi;
     private javax.swing.JLabel btnNewProposal;
+    private keeptoo.KButton btnSignIn;
+    private keeptoo.KButton btnSignIn1;
     private keeptoo.KButton btnSignIn3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

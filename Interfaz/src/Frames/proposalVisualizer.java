@@ -7,18 +7,12 @@ package Frames;
 
 import Business.Funciones;
 import java.awt.Color;
-<<<<<<< HEAD
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-=======
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
->>>>>>> Steven
 
 /**
  *
@@ -331,23 +325,9 @@ public class proposalVisualizer extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnHomeMouseClicked
 
-<<<<<<< HEAD
-    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
-        
-        try {
-            newProposal ventana = new newProposal();
-            ventana.setVisible(true);
-        } catch (SQLException ex) {
-            
-        }
-        
-        this.dispose();
-    }//GEN-LAST:event_btnNewProposalMouseClicked
-=======
     private void btnNewCommentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewCommentMouseClicked
             newComment ventana =new newComment(cedula,idProposal);
     }//GEN-LAST:event_btnNewCommentMouseClicked
->>>>>>> Steven
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:

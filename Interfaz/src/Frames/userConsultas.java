@@ -265,27 +265,6 @@ public class userConsultas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnHomeMouseClicked
 
-<<<<<<< HEAD
-    private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
-        newProposal ventana;
-        try {
-            ventana = new newProposal();
-            ventana.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btnNewProposalMouseClicked
-
-    private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas();
-        ventana.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnConfigMouseClicked
-
-=======
->>>>>>> Steven
     private void  configHelper(int opc){
         mainPanel.removeAll();
         mainPanel.repaint();

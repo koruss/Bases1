@@ -167,29 +167,12 @@ public class SingIn extends javax.swing.JFrame {
             
             int validation=utilidades.correctLogIn(user, passwF);
             if(validation!=-1){
-<<<<<<< HEAD
-                if (validation==1){
-                mainWindow ventana= new mainWindow();
-                //JOptionPane.showMessageDialog(null, "Ha ingresado un usuario de tipo "+validation);
-                ventana.setVisible(true);
-                this.dispose();
-                    
-                }
-                if(validation==2){
-                    PricipalMenu ventana = new PricipalMenu();
-                    ventana.setVisible(true);
-                    this.dispose();
-                }
-                
-
-=======
                 //String cedula=utilidades.getCedulaByUser(user);
                 String cedula="117060279";
                 //mainWindow ventana= new mainWindow(validation,cedula);
                 mainWindow ventana= new mainWindow(0,cedula);
                 ventana.setVisible(true);
                 this.dispose();         
->>>>>>> Steven
             }
             else{
                 JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
