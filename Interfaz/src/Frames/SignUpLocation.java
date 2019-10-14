@@ -6,6 +6,8 @@
 package Frames;
 
 import Business.Funciones;
+import static Frames.proposalVisualizer.cedula;
+import static Frames.proposalVisualizer.typeUser;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -152,7 +154,7 @@ public class SignUpLocation extends javax.swing.JFrame {
         jLabel11.setText("4) Comunidad");
         kGradientPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 250, 20));
 
-        btnSignIn.setText("ENTRAR");
+        btnSignIn.setText("Asignar Comunidad");
         btnSignIn.setActionCommand("Ingresar");
         btnSignIn.setBorderPainted(false);
         btnSignIn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,7 +232,10 @@ public class SignUpLocation extends javax.swing.JFrame {
                     
                     int idCommunity=business.getCommunityId((String) comboComunidad.getSelectedItem(),idCanton);
                     business.registerCommunity(cedula,idCommunity);
-                    JOptionPane.showMessageDialog(null,"Usted ha sido registrado correctamente en la comunidad: "+(String)comboComunidad.getSelectedItem()+" de "+(String)comboCanton.getSelectedItem()+" ,"+(String)comboProvincia.getSelectedItem());
+                    JOptionPane.showMessageDialog(null,"Usted ha sido registrado correctamente en la comunidad: "+(String)comboComunidad.getSelectedItem()+" de "+(String)comboCanton.getSelectedItem()+" ,"+(String)comboProvincia.getSelectedItem()+"\n"+" Por favor, vuelva a ingresar sus credenciales de usuario para poder utilizar el sistema");
+                    SingIn ventana =new SingIn();
+                    ventana.setVisible(true);
+                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
                 }};

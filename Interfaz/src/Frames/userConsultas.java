@@ -19,9 +19,14 @@ public class userConsultas extends javax.swing.JFrame {
     /**
      * Creates new form userConsultas
      */
-    public userConsultas() {
+    public userConsultas(int pUserType,String pCedula) {
         initComponents();
+        this.userType=pUserType;
+        this.cedula=pCedula;
     }
+    
+    public static int userType;
+    public static String cedula;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +42,6 @@ public class userConsultas extends javax.swing.JFrame {
         kButton1 = new keeptoo.KButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        kButton2 = new keeptoo.KButton();
         kButton3 = new keeptoo.KButton();
         kButton4 = new keeptoo.KButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -50,14 +54,11 @@ public class userConsultas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtPassw2 = new javax.swing.JPasswordField();
         txtPassw1 = new javax.swing.JPasswordField();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtApellido1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -65,8 +66,7 @@ public class userConsultas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         btnHome = new javax.swing.JLabel();
-        btnNewProposal = new javax.swing.JLabel();
-        btnConfig = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -83,7 +83,7 @@ public class userConsultas extends javax.swing.JFrame {
                 kButton1ActionPerformed(evt);
             }
         });
-        mainPanel.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 140, -1));
+        mainPanel.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 140, -1));
 
         jLabel2.setBackground(new java.awt.Color(204, 0, 204));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16));
@@ -95,19 +95,16 @@ public class userConsultas extends javax.swing.JFrame {
         jLabel3.setText("Cambiar Datos de Contacto");
         mainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-        kButton2.setText("Modificar");
-        mainPanel.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, 140, -1));
-
         kButton3.setText("Modificar");
         kButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton3ActionPerformed(evt);
             }
         });
-        mainPanel.add(kButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, 140, -1));
+        mainPanel.add(kButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 140, -1));
 
         kButton4.setText("Modificar");
-        mainPanel.add(kButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 140, -1));
+        mainPanel.add(kButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 140, -1));
         mainPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 940, 10));
 
         txtApellido.setFont(new java.awt.Font("Segoe UI", 0, 14));
@@ -152,16 +149,6 @@ public class userConsultas extends javax.swing.JFrame {
         txtPassw1.setPreferredSize(new java.awt.Dimension(70, 30));
         mainPanel.add(txtPassw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 330, 40));
 
-        jLabel10.setBackground(new java.awt.Color(204, 0, 204));
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 16));
-        jLabel10.setText("Borrar Propuesta");
-        mainPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(70, 30));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(70, 30));
-        mainPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 560, 330, 40));
-
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTelefono.setPreferredSize(new java.awt.Dimension(70, 30));
@@ -192,11 +179,6 @@ public class userConsultas extends javax.swing.JFrame {
         jLabel14.setText("Nueva Contraseña");
         mainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, -1, -1));
 
-        jLabel15.setBackground(new java.awt.Color(51, 51, 255));
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14));
-        jLabel15.setText("Propuesta a borrar");
-        mainPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 570, -1, -1));
-
         jLabel16.setBackground(new java.awt.Color(51, 51, 255));
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14));
         jLabel16.setText("Nueva Contraseña");
@@ -212,7 +194,7 @@ public class userConsultas extends javax.swing.JFrame {
         jLabel13.setText("Segundo Apellido");
         mainPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
 
-        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 940, 630));
+        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 810, 510));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,13 +202,13 @@ public class userConsultas extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 40));
+        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Ajustes");
-        kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, 50));
+        jLabel1.setText("Modificar Datos Personales");
+        kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 50));
 
-        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 980, 800));
+        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 870, 800));
 
         kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
@@ -238,26 +220,13 @@ public class userConsultas extends javax.swing.JFrame {
                 btnHomeMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
-        btnNewProposal.setText("jLabel8");
-        btnNewProposal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNewProposalMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 60, -1));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setText("Menú Principal");
+        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 110, 40));
 
-        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
-        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConfigMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
-
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 800));
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -284,12 +253,19 @@ public class userConsultas extends javax.swing.JFrame {
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         // TODO add your handling code here:
-        mainWindow ventana =new mainWindow();
-        ventana.setVisible(true);
+        mainWindow ventana;
+        try {
+            ventana = new mainWindow(userType,cedula);
+            ventana.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.dispose();
 
     }//GEN-LAST:event_btnHomeMouseClicked
 
+<<<<<<< HEAD
     private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
         newProposal ventana;
         try {
@@ -308,6 +284,8 @@ public class userConsultas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnConfigMouseClicked
 
+=======
+>>>>>>> Steven
     private void  configHelper(int opc){
         mainPanel.removeAll();
         mainPanel.repaint();
@@ -405,7 +383,7 @@ public class userConsultas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new userConsultas().setVisible(true);
+                new userConsultas(userType,cedula).setVisible(true);
             }
         });
     }
@@ -414,17 +392,12 @@ public class userConsultas extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnConfig;
     private javax.swing.JLabel btnHome;
-    private javax.swing.JLabel btnNewProposal;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -432,11 +405,11 @@ public class userConsultas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private keeptoo.KButton kButton1;
-    private keeptoo.KButton kButton2;
     private keeptoo.KButton kButton3;
     private keeptoo.KButton kButton4;
     private keeptoo.KGradientPanel kGradientPanel1;

@@ -124,7 +124,10 @@ public class SignUp extends javax.swing.JFrame {
         txtFirstLastName = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         txtUser = new javax.swing.JTextField();
+        btnHome = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        fechaNacimiento1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -140,18 +143,18 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel2.setText("Primer Apellido");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 250, 30));
+        jLabel2.setText("Primer Apellido:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 250, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
         jLabel3.setText("Registro de nuevos usuarios");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 400, 60));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 550, 60));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
         jLabel4.setText("Confirmar Contraseña");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, 250, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 250, 20));
 
         btnSignUp.setBorderPainted(false);
         btnSignUp.setLabel("REGISTRARSE");
@@ -165,55 +168,55 @@ public class SignUp extends javax.swing.JFrame {
                 btnSignUpActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, -1, -1));
+        jPanel1.add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 204));
         jLabel5.setText("Email");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 250, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 250, 30));
 
         txtPasswConfirm.setBackground(new java.awt.Color(204, 255, 204));
         txtPasswConfirm.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtPasswConfirm.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPasswConfirm.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtPasswConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 250, 40));
+        jPanel1.add(txtPasswConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 250, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel6.setText("Nombre");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 250, 20));
+        jLabel6.setText("Nombre:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 20));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 0, 204));
         jLabel7.setText("Nacionalidad");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 250, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 250, 20));
 
         fechaNacimiento.setBackground(new Color(0,0,0,80));
         fechaNacimiento.setForeground(new java.awt.Color(204, 255, 204));
         fechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 370, 130, 20));
+        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 130, 20));
 
         txtEmail.setBackground(new java.awt.Color(204, 255, 204));
         txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 250, 40));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 250, 40));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel8.setText("Telefono");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 250, 20));
+        jLabel8.setText("Telefono:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 20));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 204));
         jLabel9.setText("Fecha de Nacimiento");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 250, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 250, 20));
 
         txtSecondLastName.setBackground(new java.awt.Color(204, 255, 204));
         txtSecondLastName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSecondLastName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSecondLastName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtSecondLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 250, 40));
+        jPanel1.add(txtSecondLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 40));
 
         comboNacionalidad.setBackground(new java.awt.Color(204, 255, 204));
         comboNacionalidad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -224,39 +227,39 @@ public class SignUp extends javax.swing.JFrame {
                 comboNacionalidadActionPerformed(evt);
             }
         });
-        jPanel1.add(comboNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 250, 30));
+        jPanel1.add(comboNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 250, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 204));
         jLabel10.setText("Cédula");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 250, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 250, 30));
 
-        txtCedula.setBackground(new java.awt.Color(102, 0, 102));
+        txtCedula.setBackground(new java.awt.Color(204, 255, 204));
         txtCedula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCedula.setBorder(null);
+        txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 250, 40));
+        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 250, 40));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 204));
         jLabel11.setText("Usuario");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, 250, 20));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 250, 20));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 204));
         jLabel12.setText("Contraseña");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 260, 250, 20));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 250, 20));
 
         txtPassw.setBackground(new java.awt.Color(204, 255, 204));
         txtPassw.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtPassw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPassw.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtPassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 250, 40));
+        jPanel1.add(txtPassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 230, 250, 40));
 
         btnFoto.setText("Ingresa una Foto");
         btnFoto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -265,26 +268,26 @@ public class SignUp extends javax.swing.JFrame {
                 btnFotoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 110, 30));
+        jPanel1.add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 370, 110, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel13.setText("Segundo Apellido");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 250, 20));
+        jLabel13.setText("Segundo Apellido:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 20));
 
         txtTelefono.setBackground(new java.awt.Color(204, 255, 204));
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTelefono.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 250, 40));
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 250, 40));
 
         txtFirstLastName.setBackground(new java.awt.Color(204, 255, 204));
         txtFirstLastName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtFirstLastName.setForeground(new java.awt.Color(255, 255, 255));
         txtFirstLastName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFirstLastName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtFirstLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 250, 40));
+        jPanel1.add(txtFirstLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 40));
 
         txtName.setBackground(new java.awt.Color(204, 255, 204));
         txtName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -299,15 +302,25 @@ public class SignUp extends javax.swing.JFrame {
                 txtNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 250, 40));
+        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 250, 40));
 
         txtUser.setBackground(new java.awt.Color(204, 255, 204));
         txtUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 250, 40));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 150, 250, 40));
 
-        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1040, 650));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setText("Menú Principal");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 110, 40));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,21 +328,26 @@ public class SignUp extends javax.swing.JFrame {
                 jLabel14MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, 40));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 40));
+
+        fechaNacimiento1.setBackground(new Color(0,0,0,80));
+        fechaNacimiento1.setForeground(new java.awt.Color(204, 255, 204));
+        fechaNacimiento1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel1.add(fechaNacimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 130, 20));
+
+        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 980, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1097, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 103, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 71, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -394,6 +412,17 @@ public class SignUp extends javax.swing.JFrame {
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        try {
+            // TODO add your handling code here:
+            SingIn ventana =new SingIn();
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHomeMouseClicked
     
     private void llenarComboNacionalidades() throws SQLException{
         Funciones business = new Funciones();
@@ -446,14 +475,17 @@ public class SignUp extends javax.swing.JFrame {
     private static int typeUser;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private keeptoo.KButton btnFoto;
+    private javax.swing.JLabel btnHome;
     private keeptoo.KButton btnSignUp;
     private javax.swing.JComboBox<String> comboNacionalidad;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
+    private com.toedter.calendar.JDateChooser fechaNacimiento1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

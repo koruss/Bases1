@@ -486,7 +486,7 @@ public class connectDB{
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
        }
-        
+       /* 
         public static void getProposal (int pProposal,int pCantidadVotos,int pCategory) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_PROPOSAL.GET_ALL_PROPOSAL(?,?,?,?)}");
@@ -505,7 +505,7 @@ public class connectDB{
                System.out.println(r.getString("ID_PROPOSAL")+" "+r.getString("TITLE")+" "+r.getString("PROPOSAL_DESCRIPTION")+" "+r.getString("BUDGET")+" "+r.getString("VOTE")+" "+r.getString("PROPOSAL_DATE"));
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
-       }
+       }*/
         
         public static void getEmail(String pIdPerson) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
@@ -574,15 +574,25 @@ public class connectDB{
  
         
         //este es el get proposal que estamos utilizando
+<<<<<<< HEAD
 public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?,?,?)}");
+=======
+          public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?)}");
+>>>>>>> Steven
            stmt.registerOutParameter(1,OracleTypes.CURSOR);
            if (pIdProposal == -1) stmt.setNull(2,java.sql.Types.BIGINT);
            else stmt.setInt(2,pIdProposal);
            if (pVote == -1) stmt.setNull(3,java.sql.Types.BIGINT);
            else stmt.setInt(3,pVote);
+<<<<<<< HEAD
            if (pInicialDate == null) stmt.setNull(4,java.sql.Types.DATE);
+=======
+         /*  if (pInicialDate == null) stmt.setNull(4,java.sql.Types.DATE);
+>>>>>>> Steven
            else {
                java.sql.Date sqlDate = new java.sql.Date(pInicialDate.getTime());        
                stmt.setDate(4,sqlDate);
@@ -592,16 +602,31 @@ public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date p
                java.sql.Date sqlDate = new java.sql.Date(pFinalDate.getTime());        
                stmt.setDate(5,sqlDate);
            }
+<<<<<<< HEAD
            if (pCategory == -1) stmt.setNull(6,java.sql.Types.BIGINT);
            else stmt.setInt(6,pCategory);
            stmt.executeQuery();
           ResultSet r=(ResultSet) stmt.getObject(1);
+=======
+*/
+           if (pCategory == -1) stmt.setNull(4,java.sql.Types.BIGINT);
+           else stmt.setInt(4,pCategory);
+           stmt.executeQuery();
+          ResultSet r=(ResultSet) stmt.getObject(1);
+          /*ResultSet r2=(ResultSet) stmt.getObject(1);
+>>>>>>> Steven
            boolean flag=false;
-           while(r.next()){
+           while(r2.next()){
                flag=true;
+<<<<<<< HEAD
                System.out.println(r.getString("ID_PROPOSAL")+" "+r.getString("TITLE")+" "+r.getString("PROPOSAL_DESCRIPTION")+" "+r.getString("BUDGET")+" "+r.getString("VOTE")+" "+r.getString("PROPOSAL_DATE")+r.getString("CATEGORY_NAME"));
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
+=======
+               System.out.println(r2.getString("ID_PROPOSAL")+" "+r2.getString("TITLE")+" "+r2.getString("PROPOSAL_DESCRIPTION")+" "+r2.getString("BUDGET")+" "+r2.getString("VOTE")+" "+r2.getString("PROPOSAL_DATE")+r2.getString("CATEGORY_NAME"));
+           }
+           if(!flag) System.out.println("No data to show, incorrect identificator");*/
+>>>>>>> Steven
            
            return r;
 }
@@ -619,6 +644,7 @@ public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date p
            if((r.getString("USERNAME").equals(pUsername)) && (r.getString("PASSWORD").equals(pPassword))) return Integer.parseInt(r.getString("ID_USERTYPE"));
            else return -1;
        }
+<<<<<<< HEAD
         
          public static void registerCommunity(String pCedula,int pComunnity){
              
@@ -626,17 +652,36 @@ public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date p
          
        /*  
          public static boolean userValidation (String pUsername,String pPassword) throws SQLException {
+=======
+       public static String getCedulaByUser(String pUser) throws SQLException {
+>>>>>>> Steven
            con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.VALIDATE_USER(?,?)}");
-           stmt.registerOutParameter(1,Types.INTEGER);
-           stmt.setString(1,pUsername);
-           stmt.setString(2,pPassword);
-           stmt.executeQuery();
-           int response =stmt.getInt(1);
-           if (response==1)  return true;
-           else return false;
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_CANTON.GET_ID_CANTON(?)}");
+           stmt2.setString(2,pUser);
+           stmt2.registerOutParameter(1,Types.VARCHAR);
+           stmt2.execute();
+           String cedula=stmt2.getString(1);
+           return cedula;  
+        }
+       
+       
+       public static void registerCommunity(String pCedula, int idComunnity){
+           
        }
-*/
+      
+       
+
+         
+        public static ResultSet getProposalComments(int pIdProposal) throws SQLException{
+            con=DriverManager.getConnection(host,uName,uPass);
+             CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.VALIDATE_USER(?)}");
+             stmt.registerOutParameter(1,OracleTypes.CURSOR);
+             stmt.setInt(2,pIdProposal);
+             stmt.executeQuery();
+             ResultSet r=(ResultSet) stmt.getObject(1);
+            return r;
+            
+        }
     
     
     

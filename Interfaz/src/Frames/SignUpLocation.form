@@ -267,7 +267,7 @@
         </Component>
         <Component class="keeptoo.KButton" name="btnSignIn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ENTRAR"/>
+            <Property name="text" type="java.lang.String" value="Asignar Comunidad"/>
             <Property name="actionCommand" type="java.lang.String" value="Ingresar"/>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>

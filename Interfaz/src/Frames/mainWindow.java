@@ -5,9 +5,14 @@
  */
 package Frames;
 
+import Business.Funciones;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+<<<<<<< HEAD
+=======
+import java.sql.ResultSet;
+>>>>>>> Steven
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +28,11 @@ public class mainWindow extends javax.swing.JFrame {
     /**
      * Creates new form mainWindow
      */
-    public mainWindow() {
+    public mainWindow(int pUserType,String pCedula) throws SQLException {
+        this.userType=pUserType;
+        this.cedula=pCedula;
         initComponents();
+<<<<<<< HEAD
         try {
             //this.mainPanel.setBackground(new Color(0,0,0,80));
             //this.panelScroll.setBackground(new Color(0,0,0,80));
@@ -32,15 +40,59 @@ public class mainWindow extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Me cago");
         }
+=======
+        if(userType>0){
+           this.btnHome2.setVisible(false);
+           this.btnHome4.setVisible(false);
+           this.jLabel3.setVisible(false);
+           this.jLabel4.setVisible(false);
+        }
+        Funciones utils = new Funciones();
+        ResultSet r = utils.obtenerPropuestas(-1,-1, null, null, -1);
+        //String[] arreglo= utils.getPropuestas(-1, -1, null, null, -1);
+        //this.mainPanel.setBackground(new Color(0,0,0,80));
+        //this.panelScroll.setBackground(new Color(0,0,0,80));
+        //connect.connectDB.getProposal(-1, -1, null,null,-1);
+        int posY=30;
+        while(r.next()){
+            String[] arreglo ={r.getString("ID_PROPOSAL"),r.getString("TITLE"),r.getString("PROPOSAL_DESCRIPTION"),r.getString("BUDGET"),r.getString("VOTE"),r.getString("PROPOSAL_DATE"),r.getString("CATEGORY_NAME")};
+            System.out.println(arreglo[6]);
+            crearPaneles(posY,arreglo);
+            posY+=170;
+        }
+            
+            
+            
+       
+      /*  
+>>>>>>> Steven
         for(int i=30;i<1000;i+=170){
             crearPaneles(i);
         }
+        */
+        
         
     }
+<<<<<<< HEAD
+=======
+   public static int typeUser;
+    private static int userType;
+    private static String cedula;
+    private static int idPropuesta;
+    private static String title;
+    private static String description;
+    private static String budget;
+    private static String proposalDate;
+    private static String votes;
+>>>>>>> Steven
     
     
  private void cargarPropuestas(){
      
+<<<<<<< HEAD
+=======
+     
+>>>>>>> Steven
  }
 
     /**
@@ -61,10 +113,26 @@ public class mainWindow extends javax.swing.JFrame {
         cbxCombo = new javax.swing.JComboBox<>();
         kButton1 = new keeptoo.KButton();
         panelFiltros = new javax.swing.JPanel();
+<<<<<<< HEAD
         panelMenu = new keeptoo.KGradientPanel();
         btnHome = new javax.swing.JLabel();
+=======
+        btnHome5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        panelMenu = new keeptoo.KGradientPanel();
+>>>>>>> Steven
         btnNewProposal = new javax.swing.JLabel();
         btnConfig = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnHome2 = new javax.swing.JLabel();
+        btnHome3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnHome4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        fechaNacimiento2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -79,16 +147,20 @@ public class mainWindow extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
+<<<<<<< HEAD
         kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, 40));
+=======
+        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, 40));
+>>>>>>> Steven
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Propuestas");
+        jLabel1.setText("Vista Principal de propuestas");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, 50));
+        kGradientPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, 50));
 
         mainPanel.setBackground(new Color(0,0,0,80));
         mainPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -97,7 +169,15 @@ public class mainWindow extends javax.swing.JFrame {
         panelScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainPanel.setViewportView(panelScroll);
 
-        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 760, 290));
+        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 760, 290));
+
+        checkBox.setText("Aplicar Filtro");
+        checkBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, -1, -1));
 
         checkBox.setText("Aplicar Filtro");
         checkBox.addActionListener(new java.awt.event.ActionListener() {
@@ -130,20 +210,41 @@ public class mainWindow extends javax.swing.JFrame {
         });
         panelFiltros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         kGradientPanel2.add(panelFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 760, 100));
+<<<<<<< HEAD
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 790, 560));
 
         panelMenu.setkEndColor(new java.awt.Color(51, 0, 204));
         panelMenu.setkStartColor(new java.awt.Color(204, 0, 204));
         panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+=======
+>>>>>>> Steven
 
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
-        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnHome5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/78577912f72451db70d3379f1846011e-icono-grafico-de-la-pantalla-del-proyector_opt.png"))); // NOI18N
+        btnHome5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHomeMouseClicked(evt);
+                btnHome5MouseClicked(evt);
             }
         });
+<<<<<<< HEAD
         panelMenu.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+=======
+        kGradientPanel2.add(btnHome5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 60, 60));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("de estadísticas");
+        kGradientPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 140, 40));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setText("Consultar Módulo");
+        kGradientPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, 40));
+
+        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 790, 560));
+
+        panelMenu.setkEndColor(new java.awt.Color(51, 0, 204));
+        panelMenu.setkStartColor(new java.awt.Color(204, 0, 204));
+        panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+>>>>>>> Steven
 
         btnNewProposal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/newProposal.png"))); // NOI18N
         btnNewProposal.setText("jLabel8");
@@ -152,16 +253,77 @@ public class mainWindow extends javax.swing.JFrame {
                 btnNewProposalMouseClicked(evt);
             }
         });
+<<<<<<< HEAD
         panelMenu.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 60, -1));
+=======
+        panelMenu.add(btnNewProposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 60, 60));
+>>>>>>> Steven
 
-        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/config.png"))); // NOI18N
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/male-user-edit_25348_opt.png"))); // NOI18N
         btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfigMouseClicked(evt);
             }
         });
+<<<<<<< HEAD
         panelMenu.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
 
+=======
+        panelMenu.add(btnConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 80, 70));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Editar  Perfil");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        panelMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 160, 20));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Modificar Catálogos");
+        panelMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Asignar Administrador");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        panelMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 160, 20));
+
+        btnHome2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/306818_opt.png"))); // NOI18N
+        btnHome2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHome2MouseClicked(evt);
+            }
+        });
+        panelMenu.add(btnHome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 70, 70));
+
+        btnHome3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/apagar-09_opt.png"))); // NOI18N
+        btnHome3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHome3MouseClicked(evt);
+            }
+        });
+        panelMenu.add(btnHome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 60, 60));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Cerrar Sesión");
+        panelMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 100, 40));
+
+        btnHome4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icono-modificar-png-3_opt.png"))); // NOI18N
+        btnHome4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHome4MouseClicked(evt);
+            }
+        });
+        panelMenu.add(btnHome4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 70, 70));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setText("Nueva  Propuesta");
+        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        panelMenu.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 160, 20));
+
+        fechaNacimiento2.setBackground(new Color(0,0,0,80));
+        fechaNacimiento2.setForeground(new java.awt.Color(204, 255, 204));
+        fechaNacimiento2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        panelMenu.add(fechaNacimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 130, 20));
+
+>>>>>>> Steven
         getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 560));
 
         pack();
@@ -191,6 +353,7 @@ public class mainWindow extends javax.swing.JFrame {
        } 
     }//GEN-LAST:event_cbxComboActionPerformed
     
+<<<<<<< HEAD
     private void cargarMenu(){
         if(typeUser==1){
             
@@ -207,9 +370,20 @@ public class mainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnHomeMouseClicked
 
+=======
+//  private void cargarMenu(){
+//        if(typeUser==1){
+//            
+//        }
+//    }
+    
+    
+    
+>>>>>>> Steven
     private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
+
         try {
-            newProposal ventana =new newProposal();
+            newProposal ventana =new newProposal(userType,cedula);
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -218,7 +392,7 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewProposalMouseClicked
 
     private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas();
+        userConsultas ventana= new userConsultas(userType,cedula);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfigMouseClicked
@@ -267,6 +441,7 @@ public class mainWindow extends javax.swing.JFrame {
        }
        System.out.println("----");
     }//GEN-LAST:event_checkBoxActionPerformed
+<<<<<<< HEAD
   
     
  
@@ -275,6 +450,43 @@ public class mainWindow extends javax.swing.JFrame {
        proposalVisualizer ventana = new proposalVisualizer();
        ventana.setVisible(true);
    } 
+=======
+
+    private void btnHome2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome2MouseClicked
+            createAdministrator ventana =new createAdministrator(userType,cedula);
+            ventana.setVisible(true);
+            this.dispose();        
+    }//GEN-LAST:event_btnHome2MouseClicked
+
+    private void btnHome3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome3MouseClicked
+        try {
+            SingIn ventana =new SingIn();
+            ventana.setVisible(true);
+            this.dispose();        
+        } catch (SQLException ex) {
+            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHome3MouseClicked
+
+    private void btnHome4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome4MouseClicked
+            adminGraphics ventana =new adminGraphics(userType,cedula);
+            ventana.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_btnHome4MouseClicked
+
+    private void btnHome5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHome5MouseClicked
+  
+    
+ private void panelproposalMouseClicked(java.awt.event.MouseEvent evt,String[] arreglo) throws SQLException{
+            proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo);
+            ventana.setVisible(true);
+            this.dispose();
+     
+ }
+
+>>>>>>> Steven
    
 
        
@@ -372,13 +584,23 @@ public class mainWindow extends javax.swing.JFrame {
         
     } 
     
-    private void crearPaneles(int posY){
+    private void crearPaneles(int posY,String[] arreglo) throws SQLException{
         javax.swing.JLabel txtMainTitle;
         javax.swing.JLabel txtTitulo;
         javax.swing.JPanel panelproposal;
-        javax.swing.JTextField boxInfo;
+        javax.swing.JTextArea boxInfo;
         //creo el panel
         panelproposal = new javax.swing.JPanel();
+        
+       panelproposal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+                    panelproposalMouseClicked(evt,arreglo);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
        // panelproposal.setBackground(new Color(0,0,0,80));
@@ -387,19 +609,20 @@ public class mainWindow extends javax.swing.JFrame {
         txtMainTitle = new javax.swing.JLabel();
         txtMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtMainTitle.setText("Titulo:");
-        panelproposal.add(txtMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, -1, 50));
+        panelproposal.add(txtMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 400, 50));
         //creo el subtitulo y lo inserto en el panel
         txtTitulo = new javax.swing.JLabel();
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTitulo.setText("aqui va el titulo de la propuesta");
-        panelproposal.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 210, 40));
-        boxInfo = new javax.swing.JTextField();
+        
+        txtTitulo.setText(arreglo[1]);
+        panelproposal.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 40));
+        boxInfo = new javax.swing.JTextArea();
         //creo e inserto la caja de texto
-        boxInfo.setText("jTextField1");
+        boxInfo.setText(arreglo[2]);
         boxInfo.setBackground(new Color(0,0,0,100));
         boxInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
-        panelproposal.add(boxInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 700, 90));
-        
+        boxInfo.setLineWrap(true);
+        panelproposal.add(boxInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 700, 90));    
         this.panelScroll.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, posY, 860, 160));
         
         pack();
@@ -442,13 +665,21 @@ public class mainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainWindow().setVisible(true);
+                try {
+                    new mainWindow(userType,cedula).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
    
     //mi declaracion de variables 
+<<<<<<< HEAD
    public static int typeUser;
+=======
+   
+>>>>>>> Steven
     public javax.swing.JSpinner spinnerTop;
     public javax.swing.JComboBox<String> comboCategoria;
     public javax.swing.JButton btnAceptar;
@@ -456,12 +687,29 @@ public class mainWindow extends javax.swing.JFrame {
     //fin de mi declaracion de variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnConfig;
-    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnHome2;
+    private javax.swing.JLabel btnHome3;
+    private javax.swing.JLabel btnHome4;
+    private javax.swing.JLabel btnHome5;
     private javax.swing.JLabel btnNewProposal;
     private javax.swing.JComboBox<String> cbxCombo;
     private javax.swing.JCheckBox checkBox;
+<<<<<<< HEAD
+=======
+    private com.toedter.calendar.JDateChooser fechaNacimiento2;
+>>>>>>> Steven
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+>>>>>>> Steven
     private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JScrollPane mainPanel;
