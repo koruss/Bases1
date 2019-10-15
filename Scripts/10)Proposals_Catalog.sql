@@ -154,6 +154,6 @@ values (s_proposal.nextval,'Feria de artesanías en el salón comunal','Utilizar e
 insert into proposal_x_category(id_proposal,id_category) values (4,6);
 insert into person_x_proposal(id_proposal,id_person) values (4,'136690451');
 
-select proposal.id_proposal,proposal_name,proposal_description,budget,proposal_x_category.id_category from proposal inner join proposal_x_category on proposal.id_proposal=proposal_x_category.id_proposal inner join person_x_proposal 
-on proposal.id_proposal=person_x_proposal.id_proposal ;
-commit;
+--select proposal.id_proposal,proposal_name,proposal_description,budget,proposal_x_category.id_category from proposal inner join proposal_x_category on proposal.id_proposal=proposal_x_category.id_proposal inner join person_x_proposal 
+--on proposal.id_proposal=person_x_proposal.id_proposal ;
+--commit;

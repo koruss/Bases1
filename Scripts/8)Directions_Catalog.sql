@@ -10,8 +10,6 @@ insert into province (id_province,id_country,province_name) values (s_province.n
 insert into province (id_province,id_country,province_name) values (s_province.nextVal,1,'Guanacaste');
 insert into province (id_province,id_country,province_name) values (s_province.nextVal,1,'Limón');
 ----------------Cantones de San José---------------
-delete from canton;
-select * from canton;
 insert into canton (id_canton,canton_name,id_province) values (s_canton.nextVal,'San José',1);
 insert into canton (id_canton,canton_name,id_province) values (s_canton.nextVal,'Escazú',1);
 insert into canton (id_canton,canton_name,id_province) values (s_canton.nextVal,'Desamparados',1);
@@ -684,7 +682,7 @@ insert into community (id_community,community_name,id_canton) values (s_communit
 insert into community (id_community,community_name,id_canton) values (s_community.nextVal,'Río Jiménez',82);
 insert into community (id_community,community_name,id_canton) values (s_community.nextVal,'Duacarí',82);
 
-select country_name,province_name,canton_name,community_name from country inner join province on province.id_country=country.id_country inner join canton 
-on canton.id_province=province.id_province inner join community on canton.id_canton=community.id_canton ;
+--select country_name,province_name,canton_name,community_name from country inner join province on province.id_country=country.id_country inner join canton 
+--on canton.id_province=province.id_province inner join community on canton.id_canton=community.id_canton ;
 commit;
 
