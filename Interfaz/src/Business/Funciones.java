@@ -67,17 +67,50 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
     public ResultSet getCantons(String pProvince) throws SQLException {
         return connect.connectDB.getCanton(pProvince);
     }
-    
+    public ResultSet getPaises() throws SQLException {
+        return connect.connectDB.getCountry(-1);
+    }
+    public ResultSet getNacionalidades() throws SQLException {
+        return connect.connectDB.getNationality(-1);
+    }
+    public ResultSet getComunidades(String pCanton) throws SQLException {
+        return connect.connectDB.getCommunity(pCanton);
+    }
+    public ResultSet getCategorias() throws SQLException {
+        return connect.connectDB.getCategory(-1);
+    }
     public ResultSet getCommunities(String pCanton) throws SQLException {
         return connect.connectDB.getCommunity(pCanton);
     }
+    
+    public void setNationality(String pNat,String pNewVal) throws SQLException {
+        connect.connectDB.setNationality(pNat,pNewVal);
+    }
+    public void setCategory(String pCat,String pNewVal) throws SQLException {
+        connect.connectDB.setCategory(pCat,pNewVal);
+    }
+    public void setCountry(String pCoun,String pNewVal) throws SQLException {
+        connect.connectDB.setCountry(pCoun,pNewVal);
+    }
+    public void setProvince(String pProv,String pNewVal) throws SQLException {
+        connect.connectDB.setProvince(pProv,pNewVal);
+    }
+    public void setCanton(String pCanton,String pNewVal) throws SQLException {
+        connect.connectDB.setCanton(pCanton,pNewVal);
+    }
+    public void setCommunity(String pComm,String pNewVal) throws SQLException {
+        connect.connectDB.setCommunity(pComm,pNewVal);
+    }
+
     public int getNationalityId(String pNationality) throws SQLException {
         return connect.connectDB.getNationalityId(pNationality); 
     }    
     public int getCommunityId(String pComunidad,int pCanton) throws SQLException {
         return connect.connectDB.getCommunityId(pComunidad,pCanton); 
     }
-    
+    public int getProvinceId(String pProvince) throws SQLException {
+        return connect.connectDB.getProvinceId(pProvince); 
+    }   
     public int getCantonId(String pCanton) throws SQLException {
         return connect.connectDB.getCantonId(pCanton); 
     }   
@@ -93,6 +126,9 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
        return connect.connectDB.getCedulaByUser(pUser);
    }
     
+   public int getCommunityByPerson(String pCedula) throws SQLException{
+       return connect.connectDB.getCommunityByUser(pCedula);
+   }
  //esta es la funcion para encriptar la contrasena   
     public String  EncryptPassw(String passw){
         String encryptedPassw=new String();
@@ -121,9 +157,57 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
         //codigo que conecta a la base
         return(connect.connectDB.userValidation(user, passw)); 
     }
-
+    public ResultSet obtenerPropuestas(int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory,int pProposal) throws SQLException{     
+        return connect.connectDB.getProposal(pIdProposal, pVote, pInicialDate,pFinalDate,pCategory,pProposal);
+    }
+    
+    public ResultSet getUsers() throws SQLException{     
+        return connect.connectDB.getUsers();
+    }
+    
+    public ResultSet getPerson(String pIdentification) throws SQLException{     
+        return connect.connectDB.getPerson(pIdentification);
+    }   
+    
+    public void changePassword(String pCedula,String pNewValue) throws SQLException{
+        connect.connectDB.changePassword(pCedula, pNewValue);
+    }
+    public void updateNombre(String pCedula,String pNewVal)throws SQLException{
+        connect.connectDB.updateNombre(pCedula,pNewVal);
+    }
+    public void updateApellido(String pCedula,String pNewVal)throws SQLException{
+        connect.connectDB.updateNombre(pCedula,pNewVal);
+    }
+    public void updateApellido1(String pCedula,String pNewVal)throws SQLException{
+        connect.connectDB.updateNombre(pCedula,pNewVal);
+    }
+    public void updateTelefono(String pCedula,String pNewVal)throws SQLException{
+        connect.connectDB.updateNombre(pCedula,pNewVal);
+    }
+    public void updateCorreo(String pCedula,String pNewVal)throws SQLException{
+        connect.connectDB.updateNombre(pCedula,pNewVal);
+    }
+    
+    public void changeUserType(String pCedula) throws SQLException{     
+        connect.connectDB.changeUserType(pCedula);
+    }  
+    public String[] getPropuestas(int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory,int pProposal)throws SQLException{
+        ResultSet r=connect.connectDB.getProposal(pIdProposal, pVote, pInicialDate,pFinalDate,pCategory,pProposal);
+        String[] arreglo ={r.getString("ID_PROPOSAL"),r.getString("TITLE"),r.getString("PROPOSAL_DESCRIPTION"),r.getString("BUDGET"),r.getString("VOTE"),r.getString("PROPOSAL_DATE"),r.getString("CATEGORY_NAME")};
+        return arreglo;
+    }
+    
+    public ResultSet obtenerComentarios(String pIdPropuesta) throws SQLException{
+        int id=Integer.parseInt(pIdPropuesta);       
+        connect.connectDB.getProposalComments(id);
+        return null ;
+    }
     
     
+    public void  insertCommentary(String pCedula, String pIdpProposal,String comment){
+        //aqui van los connect para insertar los comentarios a la base
+        
+    }
     
     
 }

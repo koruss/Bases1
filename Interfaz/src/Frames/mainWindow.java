@@ -5,9 +5,11 @@
  */
 package Frames;
 
+import Business.Funciones;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,30 +25,59 @@ public class mainWindow extends javax.swing.JFrame {
     /**
      * Creates new form mainWindow
      */
-    public mainWindow(int pUserType,String pCedula) {
+    public mainWindow(int pUserType,String pCedula,int pComunidad) throws SQLException {
         this.userType=pUserType;
         this.cedula=pCedula;
+        this.comunidad=pComunidad;
         initComponents();
         if(userType>0){
            this.btnHome2.setVisible(false);
            this.btnHome4.setVisible(false);
            this.jLabel3.setVisible(false);
            this.jLabel4.setVisible(false);
+           this.btnHome5.setVisible(false);
+           this.jLabel8.setVisible(false);
+           this.jLabel9.setVisible(false);
         }
+        Funciones utils = new Funciones();
+        ResultSet r = utils.obtenerPropuestas(-1,-1, null, null, -1,comunidad);
+        //String[] arreglo= utils.getPropuestas(-1, -1, null, null, -1);
         //this.mainPanel.setBackground(new Color(0,0,0,80));
         //this.panelScroll.setBackground(new Color(0,0,0,80));
         //connect.connectDB.getProposal(-1, -1, null,null,-1);
+        int posY=30;
+        while(r.next()){
+            String[] arreglo ={r.getString("ID_PROPOSAL"),r.getString("TITLE"),r.getString("PROPOSAL_DESCRIPTION"),r.getString("BUDGET"),r.getString("VOTE"),r.getString("PROPOSAL_DATE"),r.getString("CATEGORY_NAME")};
+            System.out.println(arreglo[6]);
+            crearPaneles(posY,arreglo);
+            posY+=170;
+        }
+            
+            
+            
+       
+      /*  
         for(int i=30;i<1000;i+=170){
             crearPaneles(i);
         }
+        */
+        
         
     }
-
+   public static int typeUser;
     private static int userType;
     private static String cedula;
+    private static int comunidad;
     private static int idPropuesta;
+    private static String title;
+    private static String description;
+    private static String budget;
+    private static String proposalDate;
+    private static String votes;
+    
     
  private void cargarPropuestas(){
+     
      
  }
 
@@ -82,6 +113,7 @@ public class mainWindow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnHome4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        fechaNacimiento2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -114,7 +146,7 @@ public class mainWindow extends javax.swing.JFrame {
         panelScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainPanel.setViewportView(panelScroll);
 
-        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 760, 290));
+        kGradientPanel2.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 760, 290));
 
         checkBox.setText("Aplicar Filtro");
         checkBox.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +266,11 @@ public class mainWindow extends javax.swing.JFrame {
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         panelMenu.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 160, 20));
 
+        fechaNacimiento2.setBackground(new Color(0,0,0,80));
+        fechaNacimiento2.setForeground(new java.awt.Color(204, 255, 204));
+        fechaNacimiento2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        panelMenu.add(fechaNacimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 130, 20));
+
         getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 560));
 
         pack();
@@ -263,18 +300,18 @@ public class mainWindow extends javax.swing.JFrame {
        } 
     }//GEN-LAST:event_cbxComboActionPerformed
     
-    private void cargarMenu(){
-        if(typeUser==1){
-            
-        }
-    }
+//  private void cargarMenu(){
+//        if(typeUser==1){
+//            
+//        }
+//    }
     
     
     
     private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
 
         try {
-            newProposal ventana =new newProposal(userType,cedula);
+            newProposal ventana =new newProposal(userType,cedula,comunidad);
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -283,9 +320,13 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewProposalMouseClicked
 
     private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            userConsultas ventana= new userConsultas(userType,cedula,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnConfigMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -334,7 +375,12 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxActionPerformed
 
     private void btnHome2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome2MouseClicked
-            createAdministrator ventana =new createAdministrator(userType,cedula);
+            createAdministrator ventana = null;
+        try {
+            ventana = new createAdministrator(userType,cedula,comunidad);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
             ventana.setVisible(true);
             this.dispose();        
     }//GEN-LAST:event_btnHome2MouseClicked
@@ -350,7 +396,7 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHome3MouseClicked
 
     private void btnHome4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome4MouseClicked
-            adminGraphics ventana =new adminGraphics(userType,cedula);
+            adminDataModify ventana =new adminDataModify(userType,cedula,comunidad);
             ventana.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btnHome4MouseClicked
@@ -360,13 +406,13 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHome5MouseClicked
   
     
- 
-   private void panelMouseClicked(java.awt.event.MouseEvent evt,String letra){
-       this.dispose();
-       //proposalVisualizer ventana = new proposalVisualizer(userType,cedula,idPropuesta);
-        proposalVisualizer ventana = new proposalVisualizer(userType,cedula,1);
-        ventana.setVisible(true);
-   } 
+ private void panelproposalMouseClicked(java.awt.event.MouseEvent evt,String[] arreglo) throws SQLException{
+            proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+     
+ }
+
    
 
        
@@ -464,13 +510,23 @@ public class mainWindow extends javax.swing.JFrame {
         
     } 
     
-    private void crearPaneles(int posY){
+    private void crearPaneles(int posY,String[] arreglo) throws SQLException{
         javax.swing.JLabel txtMainTitle;
         javax.swing.JLabel txtTitulo;
         javax.swing.JPanel panelproposal;
-        javax.swing.JTextField boxInfo;
+        javax.swing.JTextArea boxInfo;
         //creo el panel
         panelproposal = new javax.swing.JPanel();
+        
+       panelproposal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+                    panelproposalMouseClicked(evt,arreglo);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         panelproposal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
        // panelproposal.setBackground(new Color(0,0,0,80));
@@ -479,19 +535,20 @@ public class mainWindow extends javax.swing.JFrame {
         txtMainTitle = new javax.swing.JLabel();
         txtMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtMainTitle.setText("Titulo:");
-        panelproposal.add(txtMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, -1, 50));
+        panelproposal.add(txtMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 400, 50));
         //creo el subtitulo y lo inserto en el panel
         txtTitulo = new javax.swing.JLabel();
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTitulo.setText("aqui va el titulo de la propuesta");
-        panelproposal.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 210, 40));
-        boxInfo = new javax.swing.JTextField();
+        
+        txtTitulo.setText(arreglo[1]);
+        panelproposal.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 40));
+        boxInfo = new javax.swing.JTextArea();
         //creo e inserto la caja de texto
-        boxInfo.setText("jTextField1");
+        boxInfo.setText(arreglo[2]);
         boxInfo.setBackground(new Color(0,0,0,100));
         boxInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
-        panelproposal.add(boxInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 700, 90));
-        
+        boxInfo.setLineWrap(true);
+        panelproposal.add(boxInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 700, 90));    
         this.panelScroll.add(panelproposal, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, posY, 860, 160));
         
         pack();
@@ -534,13 +591,17 @@ public class mainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainWindow(userType,cedula).setVisible(true);
+                try {
+                    new mainWindow(userType,cedula,comunidad).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
    
     //mi declaracion de variables 
-   public static int typeUser;
+   
     public javax.swing.JSpinner spinnerTop;
     public javax.swing.JComboBox<String> comboCategoria;
     public javax.swing.JButton btnAceptar;
@@ -555,6 +616,7 @@ public class mainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel btnNewProposal;
     private javax.swing.JComboBox<String> cbxCombo;
     private javax.swing.JCheckBox checkBox;
+    private com.toedter.calendar.JDateChooser fechaNacimiento2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

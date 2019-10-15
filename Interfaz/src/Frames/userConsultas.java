@@ -5,7 +5,9 @@
  */
 package Frames;
 
+import Business.Funciones;
 import java.awt.Color;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,15 +21,29 @@ public class userConsultas extends javax.swing.JFrame {
     /**
      * Creates new form userConsultas
      */
-    public userConsultas(int pUserType,String pCedula) {
+    public userConsultas(int pUserType,String pCedula,int pComunidad) throws SQLException {
         initComponents();
         this.userType=pUserType;
         this.cedula=pCedula;
+        this.comunidad=pComunidad;
+        llenarDatos();
     }
     
     public static int userType;
     public static String cedula;
+    public static int comunidad;
 
+    private void llenarDatos() throws SQLException{
+        Funciones business = new Funciones();
+        ResultSet r=business.getPerson(cedula);
+        r.next();
+        txtNombre.setText(r.getString("NOMBRE"));
+        txtApellido.setText(r.getString("FIRST_LAST_NAME"));
+        txtApellido1.setText(r.getString("SECOND_LAST_NAME"));
+        txtTelefono.setText(r.getString("TELEPHONE"));
+        txtCorreo.setText(r.getString("EMAIL"));
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +58,6 @@ public class userConsultas extends javax.swing.JFrame {
         kButton1 = new keeptoo.KButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        kButton3 = new keeptoo.KButton();
         kButton4 = new keeptoo.KButton();
         jSeparator1 = new javax.swing.JSeparator();
         txtApellido = new javax.swing.JTextField();
@@ -95,15 +110,12 @@ public class userConsultas extends javax.swing.JFrame {
         jLabel3.setText("Cambiar Datos de Contacto");
         mainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-        kButton3.setText("Modificar");
-        kButton3.addActionListener(new java.awt.event.ActionListener() {
+        kButton4.setText("Modificar");
+        kButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton3ActionPerformed(evt);
+                kButton4ActionPerformed(evt);
             }
         });
-        mainPanel.add(kButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 140, -1));
-
-        kButton4.setText("Modificar");
         mainPanel.add(kButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 140, -1));
         mainPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 940, 10));
 
@@ -244,20 +256,53 @@ public class userConsultas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Funciones business = new Funciones();
+            business.updateNombre(cedula,txtNombre.getText());
+            business.updateApellido(cedula,txtApellido.getText());
+            business.updateApellido(cedula,txtApellido1.getText());
+            business.updateTelefono(cedula,txtTelefono.getText());
+            business.updateCorreo(cedula,txtCorreo.getText());
+            javax.swing.JOptionPane.showMessageDialog(null,"Se han modificado correctamente los datos del perfil!");
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null,"No se han podido modificar los datos del perfil");
+
+                        Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_kButton1ActionPerformed
 
-    private void kButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kButton3ActionPerformed
-
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            mainWindow ventana;
+            
+            ventana = new mainWindow(userType,cedula,comunidad);
+            ventana.setVisible(true);
+            
+            
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void kButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton4ActionPerformed
+        if(txtPassw1.getText().equals(txtPassw2.getText())) {
+            Funciones business=new Funciones();
+            try {
+                business.changePassword(cedula,txtPassw1.getText());
+                javax.swing.JOptionPane.showMessageDialog(null,"Se han modificado la cédula con éxito!!");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
+                javax.swing.JOptionPane.showMessageDialog(null,"Las contraseñas no coinciden, favor ingresarlas bien para modificar la contraseña!!");
+           
+            }
+
+        }
+    }//GEN-LAST:event_kButton4ActionPerformed
 
     private void  configHelper(int opc){
         mainPanel.removeAll();
@@ -356,7 +401,11 @@ public class userConsultas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new userConsultas(userType,cedula).setVisible(true);
+                try {
+                    new userConsultas(userType,cedula,comunidad).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -383,7 +432,6 @@ public class userConsultas extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private keeptoo.KButton kButton1;
-    private keeptoo.KButton kButton3;
     private keeptoo.KButton kButton4;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;

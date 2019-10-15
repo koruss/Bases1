@@ -20,14 +20,16 @@ public class adminGraphics extends javax.swing.JFrame {
     /**
      * Creates new form adminGraphics
      */
-    public adminGraphics(int pUserType,String pCedula) {
+    public adminGraphics(int pUserType,String pCedula,int pComunidad) {
         initComponents();
         this.userType=pUserType;
         this.cedula=pCedula;
+        this.comunidad=pComunidad;
     }
     
     public static int userType;
     public static String cedula;
+    public static int comunidad;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +48,7 @@ public class adminGraphics extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        kGradientPanel1 = new keeptoo.KGradientPanel();
+        menuPanel = new keeptoo.KGradientPanel();
         btnHome = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -71,8 +73,8 @@ public class adminGraphics extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel3.setText("Sign Up");
-        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, 60));
+        jLabel3.setText("GRÁFICA");
+        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 160, 60));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,9 +88,14 @@ public class adminGraphics extends javax.swing.JFrame {
 
         getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 960, 800));
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(51, 0, 204));
-        kGradientPanel1.setkStartColor(new java.awt.Color(204, 0, 204));
-        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        menuPanel.setkEndColor(new java.awt.Color(51, 0, 204));
+        menuPanel.setkStartColor(new java.awt.Color(204, 0, 204));
+        menuPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuPanelMouseClicked(evt);
+            }
+        });
+        menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,13 +103,13 @@ public class adminGraphics extends javax.swing.JFrame {
                 btnHomeMouseClicked(evt);
             }
         });
-        kGradientPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        menuPanel.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Menú Principal");
-        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 110, 40));
+        menuPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 110, 40));
 
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 660));
+        getContentPane().add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,12 +124,20 @@ public class adminGraphics extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            mainWindow ventana =new mainWindow(userType,cedula,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(adminGraphics.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void menuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPanelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPanelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,7 +169,7 @@ public class adminGraphics extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminGraphics(userType,cedula).setVisible(true);
+                new adminGraphics(userType,cedula,comunidad).setVisible(true);
             }
         });
     }
@@ -193,7 +208,7 @@ public class adminGraphics extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private keeptoo.KButton kButton1;
     private keeptoo.KButton kButton2;
-    private keeptoo.KGradientPanel kGradientPanel1;
+    private keeptoo.KGradientPanel menuPanel;
     private keeptoo.KGradientPanel panel;
     // End of variables declaration//GEN-END:variables
 }

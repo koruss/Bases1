@@ -25,10 +25,11 @@ public class newProposal extends javax.swing.JFrame {
     /**
      * Creates new form newProposal
      */
-    public newProposal(int pUserType,String pCedula) throws SQLException {
+    public newProposal(int pUserType,String pCedula,int pComunidad) throws SQLException {
         initComponents();  
         this.cedula=pCedula;
         this.userType=pUserType;
+        this.comunidad=pComunidad;
         jPanel1.setBackground(new Color(0,0,0,80));
         this.txtPresupuesto.setBackground(new Color(102,0,102,80));
         this.txtDescripcion.setBackground(new Color(102,0,102,80));
@@ -57,6 +58,7 @@ public class newProposal extends javax.swing.JFrame {
     
     public static String cedula;
     public static int userType;    
+    public static int comunidad; 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,6 +98,11 @@ public class newProposal extends javax.swing.JFrame {
 
         kGradientPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -209,10 +216,14 @@ public class newProposal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-        mainWindow ventana =new mainWindow(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            mainWindow ventana =new mainWindow(userType,cedula,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(newProposal.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnHomeMouseClicked
 
@@ -232,9 +243,15 @@ public class newProposal extends javax.swing.JFrame {
             business.RegisterProposal("117060279",titulo, descripcion,1, presupuesto);
             JOptionPane.showMessageDialog(null,"La propuesta se ha registrado con éxito en el sistema");
         } catch (SQLException ex) {
-            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se ha podido regstrar correctamente la propuesta en el sistema!!");
+
+                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
         }       // TODO add your handling code here:
     }//GEN-LAST:event_kButton1ActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     private void llenarComboCategorias() throws SQLException{
         Funciones business = new Funciones();
@@ -275,7 +292,7 @@ public class newProposal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new newProposal(userType,cedula).setVisible(true);
+                    new newProposal(userType,cedula,comunidad).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(newProposal.class.getName()).log(Level.SEVERE, null, ex);
                 }
