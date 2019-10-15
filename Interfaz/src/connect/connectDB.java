@@ -54,6 +54,14 @@ public class connectDB{
         stmt.setInt(4,pId_Usertype);
         stmt.execute();      
     }
+  
+    public static void changeUserType(String pCedula) throws SQLException {
+        // pId_Usertype se recibe en 0 si es administrador y en 1 si es usuario normal
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_KIND_PERSON.SET_ADMIN(?)}");
+        stmt.setString(1,pCedula);
+        stmt.execute();      
+    }
     
     public static void insertProposal(String pIdentification,String pTitle, String pDescription, int pIdCategory, int pBudget) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
@@ -256,7 +264,48 @@ public class connectDB{
            stmt.executeQuery();            
     }
  
-   
+     
+    public static void updateNombre(String pCedula,String pNewVal) throws SQLException {
+        // pId_Usertype se recibe en 0 si es administrador y en 1 si es usuario normal
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.SET_NAME_PERSON(?,?)}");
+        stmt.setString(1,pCedula);
+        stmt.setString(2,pNewVal);
+        stmt.execute();      
+    }
+    public static void updateApellido(String pCedula,String pNewVal) throws SQLException {
+        // pId_Usertype se recibe en 0 si es administrador y en 1 si es usuario normal
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.SET_FIRST_LAST_NAME(?,?)}");
+        stmt.setString(1,pCedula);
+        stmt.setString(2,pNewVal);
+        stmt.execute();      
+    }
+    public static void updateApellido1(String pCedula,String pNewVal) throws SQLException {
+        // pId_Usertype se recibe en 0 si es administrador y en 1 si es usuario normal
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.SET_SECOND_LAST_NAME(?,?)}");
+        stmt.setString(1,pCedula);
+        stmt.setString(2,pNewVal);
+        stmt.execute();      
+    }
+    public static void updateCorreo(String pCedula,String pNewVal) throws SQLException {
+        // pId_Usertype se recibe en 0 si es administrador y en 1 si es usuario normal
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.SET_EMAIL(?,?)}");
+        stmt.setString(1,pCedula);
+        stmt.setString(2,pNewVal);
+        stmt.execute();      
+    }
+    public static void updateTelefono(String pCedula,String pNewVal) throws SQLException {
+        // pId_Usertype se recibe en 0 si es administrador y en 1 si es usuario normal
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.SET_TELEPHONE(?,?)}");
+        stmt.setString(1,pCedula);
+        stmt.setString(2,pNewVal);
+        stmt.execute();      
+    }
+  
        public static void getBinnacle(int pIdProposal) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_BINNACLE.GET_ALL_BINNACLE(?,?)}");
@@ -288,12 +337,13 @@ public class connectDB{
               stmt.executeQuery();
               ResultSet r=(ResultSet) stmt.getObject(1);           
            
-           boolean flag=false;
+           /*boolean flag=false;
            while(r.next()){
                flag=true;
                System.out.println(r.getString("ID_CANTON")+" "+r.getString("CANTON_NAME")+" "+r.getString("ID_PROVINCE"));
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
+           */
            return r;     
        }
        
@@ -401,6 +451,15 @@ public class connectDB{
            int result=stmt2.getInt(1);
            return result;  
         } 
+       public static int getProvinceId(String pProvince) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_PROVINCE.GET_ID_PROVINCE(?)}");
+           stmt2.setString(2,pProvince);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int result=stmt2.getInt(1);
+           return result;  
+        } 
        public static int getCommunityId(String pIdCommunity,int pCanton) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_COMMUNITY.GET_ID_COMMUNITY(?,?)}");
@@ -422,7 +481,6 @@ public class connectDB{
            int result=stmt2.getInt(1);
            return result;  
         }
-       
         public static void getVote(int pIdCommunity) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_VOTE.GET_ALL_VOTE(?,?)}");
@@ -470,8 +528,21 @@ public class connectDB{
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
        }
-        
-        public static void getPerson (String pIdentification) throws SQLException {
+       public static ResultSet getUsers () throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.GET_ALL_USERS(?)}");
+           stmt.registerOutParameter(1,OracleTypes.CURSOR);
+           stmt.executeQuery();
+           ResultSet r=(ResultSet) stmt.getObject(1);
+           //boolean flag=false;
+           //while(r.next()){
+             //  flag=true;
+             //  System.out.println(r.getString("ID_CATEGORY")+" "+r.getString("CATEGORY_NAME"));
+           //}
+           //if(!flag) System.out.println("No data to show, incorrect identificator");
+           return r;
+       }        
+        public static ResultSet getPerson (String pIdentification) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_PERSON.GET_ALL_PERSON(?,?)}");
            stmt.registerOutParameter(1,OracleTypes.CURSOR);
@@ -479,13 +550,19 @@ public class connectDB{
            else stmt.setString(2,pIdentification);
            stmt.executeQuery();
            ResultSet r=(ResultSet) stmt.getObject(1);
-           boolean flag=false;
+           /*boolean flag=false;
            while(r.next()){
                flag=true;
                System.out.println(r.getString("IDENTIFICATION")+" "+r.getString("NAME")+" "+r.getString("FIRST_LAST_NAME")+" "+r.getString("SECOND_LAST_NAME")+" "+r.getString("ID_COMMUNITY"));
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
+<<<<<<< HEAD
        }
+=======
+       */
+           return r;
+           }
+>>>>>>> Steven
        /* 
         public static void getProposal (int pProposal,int pCantidadVotos,int pCategory) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
@@ -574,9 +651,15 @@ public class connectDB{
  
         
         //este es el get proposal que estamos utilizando
+<<<<<<< HEAD
           public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?)}");
+=======
+          public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory,int pIdCommunity) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?,?)}");
+>>>>>>> Steven
            stmt.registerOutParameter(1,OracleTypes.CURSOR);
            if (pIdProposal == -1) stmt.setNull(2,java.sql.Types.BIGINT);
            else stmt.setInt(2,pIdProposal);
@@ -595,6 +678,12 @@ public class connectDB{
 */
            if (pCategory == -1) stmt.setNull(4,java.sql.Types.BIGINT);
            else stmt.setInt(4,pCategory);
+<<<<<<< HEAD
+=======
+           if(pIdCommunity==-1) stmt.setNull(5,java.sql.Types.BIGINT);
+           else stmt.setInt(5,pIdCommunity);
+           //stmt.setNull(5,java.sql.Types.BIGINT);
+>>>>>>> Steven
            stmt.executeQuery();
           ResultSet r=(ResultSet) stmt.getObject(1);
           /*ResultSet r2=(ResultSet) stmt.getObject(1);
@@ -607,7 +696,96 @@ public class connectDB{
            
            return r;
 }
-
+         public static void setNationality(String pName,String pNewVal) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{? = call PKG_ADMIN_NATIONALITY.GET_ID_NATIONALITY(?)}");  
+           stmt.registerOutParameter(1,Types.NUMERIC);
+           stmt.setString(2,pName);
+           stmt.execute();
+           int id=Integer.parseInt(stmt.getString(1));
+           
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt1= con.prepareCall("{call PKG_ADMIN_NATIONALITY.SET_NAME_NATIONALITY(?,?)}");
+           stmt1.setInt(1,id);
+           stmt1.setString(2,pNewVal);
+           stmt1.executeQuery();      
+           
+         }
+         public static void setCountry(String pName,String pNewVal) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{? = call PKG_ADMIN_COUNTRY.GET_ID_COUNTRY(?)}");  
+           stmt.registerOutParameter(1,Types.NUMERIC);
+           stmt.setString(2,pName);
+           stmt.execute();
+           int id=Integer.parseInt(stmt.getString(1));
+           
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt1= con.prepareCall("{call PKG_ADMIN_COUNTRY.SET_NAME_COUNTRY(?,?)}");
+           stmt1.setInt(1,id);
+           stmt1.setString(2,pNewVal);
+           stmt1.executeQuery();      
+           
+         }
+         public static void setCategory(String pName,String pNewVal) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{? = call PKG_ADMIN_CATEGORY.GET_ID_CATEGORY(?)}");  
+           stmt.registerOutParameter(1,Types.NUMERIC);
+           stmt.setString(2,pName);
+           stmt.execute();
+           int id=Integer.parseInt(stmt.getString(1));
+           
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt1= con.prepareCall("{call PKG_ADMIN_CATEGORY.SET_NAME_CATEGORY(?,?)}");
+           stmt1.setInt(1,id);
+           stmt1.setString(2,pNewVal);
+           stmt1.executeQuery();      
+           
+         }
+         public static void setProvince(String pName,String pNewVal) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{? = call PKG_ADMIN_PROVINCE.GET_ID_PROVINCE(?)}");  
+           stmt.registerOutParameter(1,Types.NUMERIC);
+           stmt.setString(2,pName);
+           stmt.execute();
+           int id=Integer.parseInt(stmt.getString(1));
+           
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt1= con.prepareCall("{call PKG_ADMIN_PROVINCE.SET_NAME_PROVINCE(?,?)}");
+           stmt1.setInt(1,id);
+           stmt1.setString(2,pNewVal);
+           stmt1.executeQuery();      
+           
+         }
+         public static void setCanton(String pName,String pNewVal) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{? = call PKG_ADMIN_CANTON.GET_ID_CANTON(?)}");  
+           stmt.registerOutParameter(1,Types.NUMERIC);
+           stmt.setString(2,pName);
+           stmt.execute();
+           int id=Integer.parseInt(stmt.getString(1));
+           
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt1= con.prepareCall("{call PKG_ADMIN_CANTON.SET_NAME_CANTON(?,?)}");
+           stmt1.setInt(1,id);
+           stmt1.setString(2,pNewVal);
+           stmt1.executeQuery();      
+           
+         }
+         public static void setCommunity(String pName,String pNewVal) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{? = call PKG_ADMIN_COMUNITY.GET_ID_COMMUNITY(?)}");  
+           stmt.registerOutParameter(1,Types.NUMERIC);
+           stmt.setString(2,pName);
+           stmt.execute();
+           int id=Integer.parseInt(stmt.getString(1));
+           
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt1= con.prepareCall("{call PKG_ADMIN_COMMUNITY.SET_NAME_COMMUNITY(?,?)}");
+           stmt1.setInt(1,id);
+           stmt1.setString(2,pNewVal);
+           stmt1.executeQuery();      
+           
+         }
          public static int userValidation (String pUsername,String pPassword) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.VALIDATE_USER(?,?,?)}");
@@ -621,16 +799,29 @@ public class connectDB{
            if((r.getString("USERNAME").equals(pUsername)) && (r.getString("PASSWORD").equals(pPassword))) return Integer.parseInt(r.getString("ID_USERTYPE"));
            else return -1;
        }
+
        public static String getCedulaByUser(String pUser) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_CANTON.GET_ID_CANTON(?)}");
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_KIND_PERSON.GET_ID_BYUSER(?)}");
            stmt2.setString(2,pUser);
            stmt2.registerOutParameter(1,Types.VARCHAR);
            stmt2.execute();
            String cedula=stmt2.getString(1);
            return cedula;  
         }
+<<<<<<< HEAD
        
+=======
+       public static int getCommunityByUser(String pCedula) throws SQLException {
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_PERSON.GET_ID_COMMUNITY(?)}");
+           stmt2.setString(2,pCedula);
+           stmt2.registerOutParameter(1,Types.NUMERIC);
+           stmt2.execute();
+           int community=Integer.parseInt(stmt2.getString(1));
+           return community;  
+        }       
+>>>>>>> Steven
        
        public static void registerCommunity(String pCedula, int idComunnity){
            

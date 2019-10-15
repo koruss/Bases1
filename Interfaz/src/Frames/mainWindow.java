@@ -25,18 +25,30 @@ public class mainWindow extends javax.swing.JFrame {
     /**
      * Creates new form mainWindow
      */
+<<<<<<< HEAD
     public mainWindow(int pUserType,String pCedula) throws SQLException {
+=======
+    public mainWindow(int pUserType,String pCedula,int pComunidad) throws SQLException {
+>>>>>>> Steven
         this.userType=pUserType;
         this.cedula=pCedula;
+        this.comunidad=pComunidad;
         initComponents();
         if(userType>0){
            this.btnHome2.setVisible(false);
            this.btnHome4.setVisible(false);
            this.jLabel3.setVisible(false);
            this.jLabel4.setVisible(false);
+           this.btnHome5.setVisible(false);
+           this.jLabel8.setVisible(false);
+           this.jLabel9.setVisible(false);
         }
         Funciones utils = new Funciones();
+<<<<<<< HEAD
         ResultSet r = utils.obtenerPropuestas(-1,-1, null, null, -1);
+=======
+        ResultSet r = utils.obtenerPropuestas(-1,-1, null, null, -1,comunidad);
+>>>>>>> Steven
         //String[] arreglo= utils.getPropuestas(-1, -1, null, null, -1);
         //this.mainPanel.setBackground(new Color(0,0,0,80));
         //this.panelScroll.setBackground(new Color(0,0,0,80));
@@ -47,12 +59,28 @@ public class mainWindow extends javax.swing.JFrame {
             System.out.println(arreglo[6]);
             crearPaneles(posY,arreglo);
             posY+=170;
+<<<<<<< HEAD
         }
    
+=======
+        }
+            
+            
+            
+       
+      /*  
+        for(int i=30;i<1000;i+=170){
+            crearPaneles(i);
+        }
+        */
+        
+        
+>>>>>>> Steven
     }
    public static int typeUser;
     private static int userType;
     private static String cedula;
+    private static int comunidad;
     private static int idPropuesta;
     private static String title;
     private static String description;
@@ -296,7 +324,7 @@ public class mainWindow extends javax.swing.JFrame {
     private void btnNewProposalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewProposalMouseClicked
 
         try {
-            newProposal ventana =new newProposal(userType,cedula);
+            newProposal ventana =new newProposal(userType,cedula,comunidad);
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -305,9 +333,13 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewProposalMouseClicked
 
     private void btnConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseClicked
-        userConsultas ventana= new userConsultas(userType,cedula);
-        ventana.setVisible(true);
-        this.dispose();
+        try {
+            userConsultas ventana= new userConsultas(userType,cedula,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnConfigMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -356,7 +388,12 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxActionPerformed
 
     private void btnHome2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome2MouseClicked
-            createAdministrator ventana =new createAdministrator(userType,cedula);
+            createAdministrator ventana = null;
+        try {
+            ventana = new createAdministrator(userType,cedula,comunidad);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
             ventana.setVisible(true);
             this.dispose();        
     }//GEN-LAST:event_btnHome2MouseClicked
@@ -372,7 +409,7 @@ public class mainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHome3MouseClicked
 
     private void btnHome4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome4MouseClicked
-            adminGraphics ventana =new adminGraphics(userType,cedula);
+            adminDataModify ventana =new adminDataModify(userType,cedula,comunidad);
             ventana.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btnHome4MouseClicked
@@ -383,10 +420,17 @@ public class mainWindow extends javax.swing.JFrame {
   
     
  private void panelproposalMouseClicked(java.awt.event.MouseEvent evt,String[] arreglo) throws SQLException{
+<<<<<<< HEAD
             proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo);
             ventana.setVisible(true);
             this.dispose();
 
+=======
+            proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+     
+>>>>>>> Steven
  }
 
    
@@ -568,7 +612,11 @@ public class mainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+<<<<<<< HEAD
                     new mainWindow(userType,cedula).setVisible(true);
+=======
+                    new mainWindow(userType,cedula,comunidad).setVisible(true);
+>>>>>>> Steven
                 } catch (SQLException ex) {
                     Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }

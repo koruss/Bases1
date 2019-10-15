@@ -20,14 +20,16 @@ public class adminGraphics extends javax.swing.JFrame {
     /**
      * Creates new form adminGraphics
      */
-    public adminGraphics(int pUserType,String pCedula) {
+    public adminGraphics(int pUserType,String pCedula,int pComunidad) {
         initComponents();
         this.userType=pUserType;
         this.cedula=pCedula;
+        this.comunidad=pComunidad;
     }
     
     public static int userType;
     public static String cedula;
+    public static int comunidad;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,7 +126,11 @@ public class adminGraphics extends javax.swing.JFrame {
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         try {
             // TODO add your handling code here:
+<<<<<<< HEAD
             mainWindow ventana =new mainWindow(userType,cedula);
+=======
+            mainWindow ventana =new mainWindow(userType,cedula,comunidad);
+>>>>>>> Steven
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -167,7 +173,7 @@ public class adminGraphics extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminGraphics(userType,cedula).setVisible(true);
+                new adminGraphics(userType,cedula,comunidad).setVisible(true);
             }
         });
     }

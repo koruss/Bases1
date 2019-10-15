@@ -6,6 +6,7 @@
 package Frames;
 
 import Business.Funciones;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,18 +21,25 @@ public class createAdministrator extends javax.swing.JFrame {
     /**
      * Creates new form adminDataModify
      */
-    public createAdministrator(int pUserType,String pCedula) {
+    public createAdministrator(int pUserType,String pCedula,int pComunidad) throws SQLException {
         initComponents();
+        kButton1.setEnabled(false);
+        try {
+            llenarComboUsuarios();
+        } catch (SQLException ex) {
+            Logger.getLogger(createAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.userType=pUserType;
         this.cedula=pCedula;
+        this.comunidad=pComunidad;
         this.txtNombre.setEditable(false);
         this.txtCedula.setEditable(false);
-        this.txtCorreo.setEditable(false);
-        this.txtTelefono.setEditable(false);
+
     }
 
     public static int userType;
     public static String cedula;
+    public static int comunidad;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,9 +55,7 @@ public class createAdministrator extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -59,10 +65,8 @@ public class createAdministrator extends javax.swing.JFrame {
         comboEdicion = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         btnMainMenu = new javax.swing.JLabel();
@@ -79,7 +83,7 @@ public class createAdministrator extends javax.swing.JFrame {
                 kButton1ActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
+        kGradientPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 165, -1, 50));
 
         kButton2.setText("kButton2");
         kGradientPanel1.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
@@ -89,18 +93,8 @@ public class createAdministrator extends javax.swing.JFrame {
         jLabel2.setText("Seleccione la cédula del usuario al que desea convertir en administrador");
         kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 70));
 
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
-        kGradientPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 190, 40));
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         kGradientPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 180, 40));
-
-        jLabel3.setText("Correo:");
-        kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 70, 40));
 
         jLabel5.setText("Ingrese el nuevo Dato");
         kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 130, 40));
@@ -130,12 +124,17 @@ public class createAdministrator extends javax.swing.JFrame {
         comboEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         comboEdicion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         comboEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboEdicion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboEdicionItemStateChanged(evt);
+            }
+        });
         comboEdicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEdicionActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(comboEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, 30));
+        kGradientPanel1.add(comboEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 250, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,32 +147,22 @@ public class createAdministrator extends javax.swing.JFrame {
         jLabel4.setText("Cedula:");
         kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 50, 40));
 
-        jLabel10.setText("Teléfono:");
-        kGradientPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 60, 40));
-
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 190, 40));
+        kGradientPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 190, 40));
 
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 190, 40));
-
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
-        kGradientPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 190, 40));
+        kGradientPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 190, 40));
 
         jLabel11.setText("Nombre Completo:");
-        kGradientPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 90, 40));
+        kGradientPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 90, 40));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 590, 350));
 
@@ -198,10 +187,6 @@ public class createAdministrator extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -209,18 +194,30 @@ public class createAdministrator extends javax.swing.JFrame {
     private void comboEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEdicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboEdicionActionPerformed
-
-    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-    if(txtCorreo.getText()!=null){
-        try {
-            Funciones business=new Funciones();
-            if(comboEdicion.getSelectedIndex()==0) business.insertNationality(txtCorreo.getText());
-            else if (comboEdicion.getSelectedIndex()==1)  business.insertCategory(txtCorreo.getText());
-            else if (comboEdicion.getSelectedIndex()==2)  business.insertCountry(txtCorreo.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(createAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+    private void llenarComboUsuarios() throws SQLException{
+        Funciones business = new Funciones();
+        ResultSet usuarios=business.getUsers();
+        //nationalities.beforeFirst();
+        while(usuarios.next()){
+            comboEdicion.addItem(usuarios.getString("IDENTIFICATION"));
         }
-    } else  JOptionPane.showMessageDialog(null,"Por favor ingrese un nuevo dato para agregar al catálogo"+(String)comboEdicion.getSelectedItem());
+    }
+    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
+    
+        Funciones business=new Funciones();
+        try {
+            business.changeUserType(cedUser);
+            JOptionPane.showMessageDialog(null, "El usuario se ha convertido en administrador correctamente!");
+            mainWindow ventana =new mainWindow(userType,cedula,comunidad);
+            ventana.setVisible(true);
+            this.dispose();
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "El usuario no se ha podido modificar!");
+           Logger.getLogger(createAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+
 
 
     }//GEN-LAST:event_kButton1ActionPerformed
@@ -231,7 +228,11 @@ public class createAdministrator extends javax.swing.JFrame {
 
     private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
         try {
+<<<<<<< HEAD
             mainWindow ventana =new mainWindow(userType,cedula);
+=======
+            mainWindow ventana =new mainWindow(userType,cedula,comunidad);
+>>>>>>> Steven
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -246,10 +247,22 @@ public class createAdministrator extends javax.swing.JFrame {
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
+public static String cedUser;
+    private void comboEdicionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboEdicionItemStateChanged
+        try {
+            String cedula,nombre;
+            Funciones business =new Funciones();
+            ResultSet res=business.getPerson((String)comboEdicion.getSelectedItem());
+            cedula=res.getString("IDENTIFICATION");
+            res.next();
+            cedUser=cedula;
+            nombre=res.getString("NAME")+" "+res.getString("FIRST_LAST_NAME")+" "+res.getString("SECOND_LAST_NAME");
+            txtCedula.setText(cedula);
+            txtNombre.setText(nombre);
+        } catch (SQLException ex) {
+            Logger.getLogger(createAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboEdicionItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -282,7 +295,11 @@ public class createAdministrator extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createAdministrator(userType,cedula).setVisible(true);
+                try {
+                    new createAdministrator(userType,cedula,comunidad).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(createAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -293,10 +310,8 @@ public class createAdministrator extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -311,8 +326,6 @@ public class createAdministrator extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

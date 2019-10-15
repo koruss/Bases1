@@ -28,6 +28,7 @@ public class SignUp extends javax.swing.JFrame {
     public SignUp(int pTypeUser) throws SQLException{
         this.typeUser=pTypeUser;
         initComponents();
+        btnFoto.setVisible(false);
        ((JTextField)this.fechaNacimiento.getDateEditor()).setEditable(false);
         jPanel1.setBackground(new Color(0,0,0,80));
         txtCedula.setBackground(new Color(102,0,102,80));
@@ -51,6 +52,7 @@ public class SignUp extends javax.swing.JFrame {
         this.txtSecondLastName.setForeground(new Color(222,222,222));
         pack();
         llenarComboNacionalidades();
+        
         
         
         txtCedula.addKeyListener(new KeyAdapter()
@@ -393,6 +395,7 @@ public class SignUp extends javax.swing.JFrame {
             //        JOptionPane.showMessageDialog(null,"Error,Las Contraseñas no son iguales");
             //       }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"No ha sido posible registrarlo en el sistema!, esto puede suceder debido a que la identificaciòn ingresada ya se encuentra en el sistema");
             Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSignUpActionPerformed

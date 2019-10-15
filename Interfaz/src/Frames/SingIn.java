@@ -22,6 +22,8 @@ public class SingIn extends javax.swing.JFrame {
      */
     public SingIn() throws SQLException {
         initComponents();
+        btnSignIn.setEnabled(true);
+        btnSignIn.setText("Entrar");
     }
 
     /**
@@ -36,15 +38,14 @@ public class SingIn extends javax.swing.JFrame {
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPassw = new javax.swing.JPasswordField();
         btnSignIn = new keeptoo.KButton();
         jLabel8 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,27 +66,22 @@ public class SingIn extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 204));
         jLabel2.setText("Contraseña");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 100, 40));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 204));
-        jLabel3.setText("Inicio de sesión");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 180, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 100, 40));
 
         txtUser.setBackground(new java.awt.Color(204, 255, 204));
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 40));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 250, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 204));
         jLabel4.setText("Usuario");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 70, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 40));
 
         txtPassw.setBackground(new java.awt.Color(204, 255, 204));
         txtPassw.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtPassw.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(51, 51, 255)));
-        jPanel1.add(txtPassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 250, 40));
+        jPanel1.add(txtPassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 40));
 
         btnSignIn.setText("ENTRAR");
         btnSignIn.setBorderPainted(false);
@@ -99,7 +95,7 @@ public class SingIn extends javax.swing.JFrame {
                 btnSignInActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
+        jPanel1.add(btnSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(204, 0, 204));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -110,21 +106,19 @@ public class SingIn extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 250, 20));
-
-        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 350, 400));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Activá tu comunidad!!");
-        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 210, 70));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 250, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("<html>\nEl valor de una nación no es otra cosa que \n<br>\nel valor de los individuos que la componen\n");
-        kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, 130));
+        jLabel5.setText("<html> \"El valor de una nación no es otra cosa que  <br> el valor de los individuos que la componen\" ");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, 50));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("-John Stuart Mill- ");
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 520, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2019-10-15 at 2_opt.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 250, 120));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,9 +126,11 @@ public class SingIn extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
 
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 350, 550));
+
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,11 +150,10 @@ public class SingIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        
-    }//GEN-LAST:event_btnSignInActionPerformed
+            btnSignIn.setText("Iniciando Sesión...");
+            //btnSignIn.setEnabled(false);
+            try {
 
-    private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
-        try {
             Funciones utilidades = new Funciones();
             String user = this.txtUser.getText();
             char[] passw = this.txtPassw.getPassword();
@@ -168,18 +163,27 @@ public class SingIn extends javax.swing.JFrame {
             int validation=utilidades.correctLogIn(user, passwF);
             if(validation!=-1){
                 //String cedula=utilidades.getCedulaByUser(user);
-                String cedula="117060279";
+                String cedula=utilidades.getCedulaByUser(user);
+                int comunidad=utilidades.getCommunityByPerson(cedula);
                 //mainWindow ventana= new mainWindow(validation,cedula);
-                mainWindow ventana= new mainWindow(0,cedula);
+                mainWindow ventana= new mainWindow(validation,cedula,comunidad);
                 ventana.setVisible(true);
                 this.dispose();         
             }
             else{
                 JOptionPane.showMessageDialog(null, "Constraseña o Usuario incorrecto");
+                txtUser.setText("");
+                txtPassw.setText("");
+                btnSignIn.setEnabled(true);
+                btnSignIn.setText("Entrar");
             }
         } catch (SQLException ex) {
             Logger.getLogger(SingIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
+    }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
+
     }//GEN-LAST:event_btnSignInMouseClicked
 
     /**
@@ -225,7 +229,6 @@ public class SingIn extends javax.swing.JFrame {
     private keeptoo.KButton btnSignIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

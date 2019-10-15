@@ -237,7 +237,8 @@ public class SignUpLocation extends javax.swing.JFrame {
                     ventana.setVisible(true);
                     this.dispose();
                 } catch (SQLException ex) {
-                    Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
+                   JOptionPane.showMessageDialog(null,"No se ha podido registrar correctamente en la comunidad! ");
+                   Logger.getLogger(SignUpLocation.class.getName()).log(Level.SEVERE, null, ex);
                 }};
 
 
