@@ -25,11 +25,7 @@ public class mainWindow extends javax.swing.JFrame {
     /**
      * Creates new form mainWindow
      */
-<<<<<<< HEAD
-    public mainWindow(int pUserType,String pCedula) throws SQLException {
-=======
     public mainWindow(int pUserType,String pCedula,int pComunidad) throws SQLException {
->>>>>>> Steven
         this.userType=pUserType;
         this.cedula=pCedula;
         this.comunidad=pComunidad;
@@ -44,11 +40,7 @@ public class mainWindow extends javax.swing.JFrame {
            this.jLabel9.setVisible(false);
         }
         Funciones utils = new Funciones();
-<<<<<<< HEAD
-        ResultSet r = utils.obtenerPropuestas(-1,-1, null, null, -1);
-=======
         ResultSet r = utils.obtenerPropuestas(-1,-1, null, null, -1,comunidad);
->>>>>>> Steven
         //String[] arreglo= utils.getPropuestas(-1, -1, null, null, -1);
         //this.mainPanel.setBackground(new Color(0,0,0,80));
         //this.panelScroll.setBackground(new Color(0,0,0,80));
@@ -59,10 +51,6 @@ public class mainWindow extends javax.swing.JFrame {
             System.out.println(arreglo[6]);
             crearPaneles(posY,arreglo);
             posY+=170;
-<<<<<<< HEAD
-        }
-   
-=======
         }
             
             
@@ -75,7 +63,6 @@ public class mainWindow extends javax.swing.JFrame {
         */
         
         
->>>>>>> Steven
     }
    public static int typeUser;
     private static int userType;
@@ -420,17 +407,10 @@ public class mainWindow extends javax.swing.JFrame {
   
     
  private void panelproposalMouseClicked(java.awt.event.MouseEvent evt,String[] arreglo) throws SQLException{
-<<<<<<< HEAD
-            proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo);
-            ventana.setVisible(true);
-            this.dispose();
-
-=======
             proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo,comunidad);
             ventana.setVisible(true);
             this.dispose();
      
->>>>>>> Steven
  }
 
    
@@ -612,11 +592,7 @@ public class mainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-<<<<<<< HEAD
-                    new mainWindow(userType,cedula).setVisible(true);
-=======
                     new mainWindow(userType,cedula,comunidad).setVisible(true);
->>>>>>> Steven
                 } catch (SQLException ex) {
                     Logger.getLogger(mainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -228,11 +228,7 @@ public class createAdministrator extends javax.swing.JFrame {
 
     private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
         try {
-<<<<<<< HEAD
-            mainWindow ventana =new mainWindow(userType,cedula);
-=======
             mainWindow ventana =new mainWindow(userType,cedula,comunidad);
->>>>>>> Steven
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {

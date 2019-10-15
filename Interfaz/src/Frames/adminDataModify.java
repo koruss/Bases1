@@ -21,11 +21,7 @@ public class adminDataModify extends javax.swing.JFrame {
     /**
      * Creates new form adminDataModify
      */
-<<<<<<< HEAD
-    public adminDataModify(int pUserType,String pCedula) {
-=======
     public adminDataModify(int pUserType,String pCedula,int pComunidad) {
->>>>>>> Steven
         initComponents();
         setVisibleAll();
         this.userType=pUserType;
@@ -457,11 +453,7 @@ public class adminDataModify extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Se ha agregado el dato correctamente al catálogo de: "+(String)comboEdicion2.getSelectedItem());
             
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            Logger.getLogger(adminDataModify.class.getName()).log(Level.SEVERE, null, ex);
-=======
             JOptionPane.showMessageDialog(null,"Por favor ingrese un nuevo dato para agregar al catálogo"+(String)comboEdicion2.getSelectedItem());            Logger.getLogger(adminDataModify.class.getName()).log(Level.SEVERE, null, ex);
->>>>>>> Steven
         }
     } else  JOptionPane.showMessageDialog(null,"Por favor ingrese un nuevo dato para agregar al catálogo"+(String)comboEdicion2.getSelectedItem());
 
@@ -474,11 +466,7 @@ public class adminDataModify extends javax.swing.JFrame {
 
     private void btnMainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainMenuMouseClicked
         try {
-<<<<<<< HEAD
-            mainWindow ventana =new mainWindow(userType,cedula);
-=======
             mainWindow ventana =new mainWindow(userType,cedula,comunidad);
->>>>>>> Steven
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -813,11 +801,7 @@ public void setVisibleAll(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-<<<<<<< HEAD
-                new adminDataModify(userType,cedula).setVisible(true);
-=======
                 new adminDataModify(userType,cedula,comunidad).setVisible(true);
->>>>>>> Steven
             }
         });
     }

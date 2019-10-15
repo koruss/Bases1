@@ -23,20 +23,13 @@ public class proposalVisualizer extends javax.swing.JFrame {
     /**
      * Creates new form proposalVisualizer
      */
-<<<<<<< HEAD
-    public proposalVisualizer(int ptypeUser,String pCedula,String[] arreglo) throws SQLException {
-=======
     public proposalVisualizer(int ptypeUser,String pCedula,String[] arreglo,int pComunidad) throws SQLException {
->>>>>>> Steven
         initComponents();
        txtDescripcion.setEditable(false);  
         this.typeUser=ptypeUser;
         this.cedula=pCedula;
         this.arreglo=arreglo;
-<<<<<<< HEAD
-=======
         this.comunidad=pComunidad;
->>>>>>> Steven
         /*this.titulo=pTitulo;
         this.descripcion=pDescripcion;
         this.budget=pBudget;
@@ -49,29 +42,18 @@ public class proposalVisualizer extends javax.swing.JFrame {
         this.lblVotos.setText(arreglo[4]);
         this.lblCategoria.setText(arreglo[6]);
         Funciones utils = new Funciones();
-<<<<<<< HEAD
-        /* ResultSet r=utils.obtenerComentarios(arreglo[0]);
-=======
          ResultSet r=utils.obtenerComentarios(arreglo[0]);
->>>>>>> Steven
          int posY=30;
          while(r.next()){
              String[] arregloComentario={r.getString("ID_COMMENT"),r.getString("COMMENT_DESCRIPTION"),r.getString("COMMENT_DATE"),r.getString("NAME")};
              crearComentarios(posY,arregloComentario);
              posY+=170;
-<<<<<<< HEAD
-         }*/
-=======
          }
->>>>>>> Steven
     }
     
     public static int typeUser;
     public static String cedula;
-<<<<<<< HEAD
-=======
     public static int comunidad;
->>>>>>> Steven
     public static String titulo;
     public static String descripcion;
     public static String budget;
@@ -336,11 +318,7 @@ public class proposalVisualizer extends javax.swing.JFrame {
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         try {
             // TODO add your handling code here:
-<<<<<<< HEAD
-            mainWindow ventana =new mainWindow(typeUser,cedula);
-=======
             mainWindow ventana =new mainWindow(typeUser,cedula,comunidad);
->>>>>>> Steven
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -350,11 +328,7 @@ public class proposalVisualizer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeMouseClicked
 
     private void btnNewCommentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewCommentMouseClicked
-<<<<<<< HEAD
-            newComment ventana =new newComment(cedula,idProposal);
-=======
             newComment ventana =new newComment(cedula,idProposal,comunidad);
->>>>>>> Steven
     }//GEN-LAST:event_btnNewCommentMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -392,11 +366,7 @@ public class proposalVisualizer extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-<<<<<<< HEAD
-                    new proposalVisualizer( typeUser,cedula, arreglo).setVisible(true);
-=======
                     new proposalVisualizer( typeUser,cedula, arreglo,comunidad).setVisible(true);
->>>>>>> Steven
                 } catch (SQLException ex) {
                     System.out.println("Problemas en la excepcion de la ventana proposalVisualizer");
                 }

@@ -14,7 +14,6 @@ import java.sql.SQLException;
  * @author Kenneth
  */
 public class Funciones {//recibe los datos, la contrasena ya esta encriptada
-    private static String key="IloveBD1";
     
  //metodos de la clase   
     
@@ -133,15 +132,10 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
  //esta es la funcion para encriptar la contrasena   
     public String  EncryptPassw(String passw){
         String encryptedPassw=new String();
-        encryptedPassw=AESencrypter.encrypt(passw,key);
-        return encryptedPassw;
-    }
-    
-    public String DecryptPassw(String encryptedPassw){
-                String DecryptedPassw=new String();
-        DecryptedPassw=AESencrypter.decrypt(encryptedPassw, key);
-        return encryptedPassw;
+        //aqui viene el codigo para encriptar el passw
         
+        
+        return encryptedPassw;
     }
   
     
@@ -194,23 +188,6 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
         connect.connectDB.updateNombre(pCedula,pNewVal);
     }
     
-<<<<<<< HEAD
-    public ResultSet obtenerPropuestas(int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException{     
-        return connect.connectDB.getProposal(pIdProposal, pVote, pInicialDate,pFinalDate,pCategory);
-    }
-    
-    public String[] getPropuestas(int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory)throws SQLException{
-        ResultSet r=connect.connectDB.getProposal(pIdProposal, pVote, pInicialDate,pFinalDate,pCategory);
-        String[] arreglo ={r.getString("ID_PROPOSAL"),r.getString("TITLE"),r.getString("PROPOSAL_DESCRIPTION"),r.getString("BUDGET"),r.getString("VOTE"),r.getString("PROPOSAL_DATE"),r.getString("CATEGORY_NAME")};
-        return arreglo;
-    }
-    
-    public ResultSet obtenerComentarios(String pIdPropuesta) throws SQLException{
-        int id=Integer.parseInt(pIdPropuesta);       
-        connect.connectDB.getProposalComments(id);
-        return null ;
-    }
-=======
     public void changeUserType(String pCedula) throws SQLException{     
         connect.connectDB.changeUserType(pCedula);
     }  
@@ -219,7 +196,6 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
         String[] arreglo ={r.getString("ID_PROPOSAL"),r.getString("TITLE"),r.getString("PROPOSAL_DESCRIPTION"),r.getString("BUDGET"),r.getString("VOTE"),r.getString("PROPOSAL_DATE"),r.getString("CATEGORY_NAME")};
         return arreglo;
     }
->>>>>>> Steven
     
     public ResultSet obtenerComentarios(String pIdPropuesta) throws SQLException{
         int id=Integer.parseInt(pIdPropuesta);       
@@ -227,11 +203,6 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
         return null ;
     }
     
-    
-    public void  insertCommentary(String pCedula, String pIdpProposal,String comment){
-        //aqui van los connect para insertar los comentarios a la base
-        
-    }
     
     public void  insertCommentary(String pCedula, String pIdpProposal,String comment){
         //aqui van los connect para insertar los comentarios a la base

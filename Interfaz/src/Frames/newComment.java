@@ -16,26 +16,16 @@ public class newComment extends javax.swing.JFrame {
     /**
      * Creates new form newComment
      */
-<<<<<<< HEAD
-    public newComment(String cedula,String idProposal) {
-        initComponents();
-        this.cedula=cedula;
-        this.idProposal=idProposal;
-=======
     public newComment(String cedula,String idProposal,int pComunidad) {
         initComponents();
         this.cedula=cedula;
         this.idProposal=idProposal;
         this.comunidad=pComunidad;
->>>>>>> Steven
     }
     
     public static String cedula;
     public static String idProposal;
-<<<<<<< HEAD
-=======
     public static int comunidad;
->>>>>>> Steven
     
 
 
@@ -60,24 +50,17 @@ public class newComment extends javax.swing.JFrame {
 
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-<<<<<<< HEAD
-        kButton1.setText("kButton1");
-=======
         kButton1.setText("Agregar Comentario");
->>>>>>> Steven
         kButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kButton1MouseClicked(evt);
             }
         });
-<<<<<<< HEAD
-=======
         kButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton1ActionPerformed(evt);
             }
         });
->>>>>>> Steven
         kGradientPanel1.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, -1, -1));
 
         txtComentario.setColumns(20);
@@ -88,14 +71,9 @@ public class newComment extends javax.swing.JFrame {
 
         kGradientPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 580, 210));
 
-<<<<<<< HEAD
-        jLabel1.setText("Ingresa tu Comentario");
-        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 140, 50));
-=======
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Ingresa aquí tu Comentario");
         kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 330, 50));
->>>>>>> Steven
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel36px.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,13 +99,10 @@ public class newComment extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
 
-<<<<<<< HEAD
-=======
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kButton1ActionPerformed
 
->>>>>>> Steven
     /**
      * @param args the command line arguments
      */
@@ -158,11 +133,7 @@ public class newComment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-<<<<<<< HEAD
-                new newComment(cedula,idProposal).setVisible(true);
-=======
                 new newComment(cedula,idProposal,comunidad).setVisible(true);
->>>>>>> Steven
             }
         });
     }

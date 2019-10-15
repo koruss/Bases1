@@ -218,11 +218,7 @@ public class newProposal extends javax.swing.JFrame {
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         try {
             // TODO add your handling code here:
-<<<<<<< HEAD
-            mainWindow ventana =new mainWindow(userType,cedula);
-=======
             mainWindow ventana =new mainWindow(userType,cedula,comunidad);
->>>>>>> Steven
             ventana.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {

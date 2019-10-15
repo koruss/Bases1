@@ -273,18 +273,6 @@ public class userConsultas extends javax.swing.JFrame {
     }//GEN-LAST:event_kButton1ActionPerformed
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-<<<<<<< HEAD
-        // TODO add your handling code here:
-        mainWindow ventana;
-        try {
-            ventana = new mainWindow(userType,cedula);
-            ventana.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        this.dispose();
-=======
         try {
             // TODO add your handling code here:
             mainWindow ventana;
@@ -297,7 +285,6 @@ public class userConsultas extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(userConsultas.class.getName()).log(Level.SEVERE, null, ex);
         }
->>>>>>> Steven
 
     }//GEN-LAST:event_btnHomeMouseClicked
 

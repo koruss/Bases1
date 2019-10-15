@@ -556,13 +556,9 @@ public class connectDB{
                System.out.println(r.getString("IDENTIFICATION")+" "+r.getString("NAME")+" "+r.getString("FIRST_LAST_NAME")+" "+r.getString("SECOND_LAST_NAME")+" "+r.getString("ID_COMMUNITY"));
            }
            if(!flag) System.out.println("No data to show, incorrect identificator");
-<<<<<<< HEAD
-       }
-=======
        */
            return r;
            }
->>>>>>> Steven
        /* 
         public static void getProposal (int pProposal,int pCantidadVotos,int pCategory) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
@@ -651,15 +647,9 @@ public class connectDB{
  
         
         //este es el get proposal que estamos utilizando
-<<<<<<< HEAD
-          public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory) throws SQLException {
-           con=DriverManager.getConnection(host,uName,uPass);
-           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?)}");
-=======
           public static ResultSet getProposal (int pIdProposal,int pVote, java.util.Date pInicialDate,java.util.Date pFinalDate, int pCategory,int pIdCommunity) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?,?)}");
->>>>>>> Steven
            stmt.registerOutParameter(1,OracleTypes.CURSOR);
            if (pIdProposal == -1) stmt.setNull(2,java.sql.Types.BIGINT);
            else stmt.setInt(2,pIdProposal);
@@ -678,12 +668,9 @@ public class connectDB{
 */
            if (pCategory == -1) stmt.setNull(4,java.sql.Types.BIGINT);
            else stmt.setInt(4,pCategory);
-<<<<<<< HEAD
-=======
            if(pIdCommunity==-1) stmt.setNull(5,java.sql.Types.BIGINT);
            else stmt.setInt(5,pIdCommunity);
            //stmt.setNull(5,java.sql.Types.BIGINT);
->>>>>>> Steven
            stmt.executeQuery();
           ResultSet r=(ResultSet) stmt.getObject(1);
           /*ResultSet r2=(ResultSet) stmt.getObject(1);
@@ -809,9 +796,6 @@ public class connectDB{
            String cedula=stmt2.getString(1);
            return cedula;  
         }
-<<<<<<< HEAD
-       
-=======
        public static int getCommunityByUser(String pCedula) throws SQLException {
            con=DriverManager.getConnection(host,uName,uPass);
            CallableStatement stmt2= con.prepareCall("{? = call PKG_ADMIN_PERSON.GET_ID_COMMUNITY(?)}");
@@ -821,7 +805,6 @@ public class connectDB{
            int community=Integer.parseInt(stmt2.getString(1));
            return community;  
         }       
->>>>>>> Steven
        
        public static void registerCommunity(String pCedula, int idComunnity){
            
