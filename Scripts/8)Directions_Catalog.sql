@@ -682,7 +682,9 @@ insert into community (id_community,community_name,id_canton) values (s_communit
 insert into community (id_community,community_name,id_canton) values (s_community.nextVal,'Río Jiménez',82);
 insert into community (id_community,community_name,id_canton) values (s_community.nextVal,'Duacarí',82);
 
---select country_name,province_name,canton_name,community_name from country inner join province on province.id_country=country.id_country inner join canton 
---on canton.id_province=province.id_province inner join community on canton.id_canton=community.id_canton ;
+select country_name,province_name,canton_name,community_name from country inner join province on province.id_country=country.id_country inner join canton 
+on canton.id_province=province.id_province inner join community on canton.id_canton=community.id_canton ;
+
+select * from nationality;
 commit;
 

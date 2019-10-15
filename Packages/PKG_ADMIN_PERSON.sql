@@ -15,6 +15,8 @@ CREATE OR REPLACE PACKAGE PKG_ADMIN_PERSON  IS
        PROCEDURE SET_SECOND_LAST_NAME(PNIDENTIFICATION VARCHAR2, PNNEW_VALUE VARCHAR2);
        PROCEDURE GET_ALL_PERSON(pRecordSet OUT SYS_REFCURSOR, PNIDENTIFICATION IN VARCHAR2 default NULL);
        PROCEDURE DELETE_ALL_PERSON (pnIdentification IN varchar2 DEFAULT NULL);
+       PROCEDURE SET_EMAIL(PNIDENTIFICATION VARCHAR2, PNNEW_VALUE VARCHAR2);
+       PROCEDURE SET_TELEPHONE(PNIDENTIFICATION VARCHAR2, PNNEW_VALUE VARCHAR2);
 END PKG_ADMIN_PERSON;
 
 CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PERSON IS
@@ -248,16 +250,45 @@ CREATE OR REPLACE PACKAGE BODY PKG_ADMIN_PERSON IS
                  DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
          END SET_SECOND_LAST_NAME;
 
+    PROCEDURE SET_TELEPHONE(PNIDENTIFICATION VARCHAR2, PNNEW_VALUE VARCHAR2) IS
+      VMENERROR                                     EXCEPTION;
+         BEGIN
+             UPDATE TELEPHONE SET TELEPHONE= PNNEW_VALUE WHERE IDENTIFICATION=PNIDENTIFICATION;
+             IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+         END SET_TELEPHONE;
          
-         
+    PROCEDURE SET_EMAIL(PNIDENTIFICATION VARCHAR2, PNNEW_VALUE VARCHAR2) IS
+      VMENERROR                                     EXCEPTION;
+         BEGIN
+             UPDATE EMAIL SET EMAIL= PNNEW_VALUE WHERE IDENTIFICATION=PNIDENTIFICATION;
+             IF SQL%NOTFOUND THEN
+                    RAISE VMENERROR;
+            END IF;
+            EXCEPTION 
+               WHEN VMENERROR THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT DOES NOT EXIST IN THE DATABASE.');
+               WHEN DUP_VAL_ON_INDEX THEN
+                 DBMS_OUTPUT.PUT_LINE('THE ELEMENT IS ALREADY IN THE DATABASE.');
+         END SET_EMAIL;         
          
          PROCEDURE GET_ALL_PERSON (pRecordSet OUT SYS_REFCURSOR, PNIDENTIFICATION IN VARCHAR2 default NULL) AS
         VMENERROR  EXCEPTION;
 
           BEGIN
           OPEN pRecordSet FOR
-          SELECT identification,name,first_last_name, second_last_name,id_Community
-          FROM person WHERE identification=NVL(PNIDENTIFICATION, identification)
+          SELECT PERSON.identification,name,first_last_name, second_last_name,id_Community, telephone.telephone,
+          email.email
+          FROM person 
+          inner join telephone on PERSON.identification=telephone.identification 
+          inner join email on PERSON.identification=email.identification
+          WHERE PERSON.identification=NVL(PNIDENTIFICATION, PERSON.identification)
           ORDER BY first_last_name; 
            IF SQL%NOTFOUND THEN
                     RAISE VMENERROR;

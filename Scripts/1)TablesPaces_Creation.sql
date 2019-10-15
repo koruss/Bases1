@@ -32,4 +32,5 @@ GRANT UNLIMITED TABLESPACE TO admin;
 GRANT CREATE SEQUENCE TO admin;
 GRANT CREATE TRIGGER TO admin;
 GRANT ALL PRIVILEGES TO admin;
+grant read,write on directory utl_dir to admin;
 
