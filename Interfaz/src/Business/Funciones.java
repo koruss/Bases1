@@ -14,6 +14,7 @@ import java.sql.SQLException;
  * @author Kenneth
  */
 public class Funciones {//recibe los datos, la contrasena ya esta encriptada
+    private static String key="IloveBD1";
     
  //metodos de la clase   
     
@@ -96,10 +97,15 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
  //esta es la funcion para encriptar la contrasena   
     public String  EncryptPassw(String passw){
         String encryptedPassw=new String();
-        //aqui viene el codigo para encriptar el passw
-        
-        
+        encryptedPassw=AESencrypter.encrypt(passw,key);
         return encryptedPassw;
+    }
+    
+    public String DecryptPassw(String encryptedPassw){
+                String DecryptedPassw=new String();
+        DecryptedPassw=AESencrypter.decrypt(encryptedPassw, key);
+        return encryptedPassw;
+        
     }
   
     

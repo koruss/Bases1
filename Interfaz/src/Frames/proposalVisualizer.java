@@ -41,13 +41,13 @@ public class proposalVisualizer extends javax.swing.JFrame {
         this.lblVotos.setText(arreglo[4]);
         this.lblCategoria.setText(arreglo[6]);
         Funciones utils = new Funciones();
-         ResultSet r=utils.obtenerComentarios(arreglo[0]);
+        /* ResultSet r=utils.obtenerComentarios(arreglo[0]);
          int posY=30;
          while(r.next()){
              String[] arregloComentario={r.getString("ID_COMMENT"),r.getString("COMMENT_DESCRIPTION"),r.getString("COMMENT_DATE"),r.getString("NAME")};
              crearComentarios(posY,arregloComentario);
              posY+=170;
-         }
+         }*/
     }
     
     public static int typeUser;

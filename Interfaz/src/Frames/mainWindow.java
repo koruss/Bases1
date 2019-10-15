@@ -48,17 +48,7 @@ public class mainWindow extends javax.swing.JFrame {
             crearPaneles(posY,arreglo);
             posY+=170;
         }
-            
-            
-            
-       
-      /*  
-        for(int i=30;i<1000;i+=170){
-            crearPaneles(i);
-        }
-        */
-        
-        
+   
     }
    public static int typeUser;
     private static int userType;
@@ -396,7 +386,7 @@ public class mainWindow extends javax.swing.JFrame {
             proposalVisualizer ventana=new proposalVisualizer(typeUser,cedula,arreglo);
             ventana.setVisible(true);
             this.dispose();
-     
+
  }
 
    
