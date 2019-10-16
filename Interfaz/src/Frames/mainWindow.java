@@ -169,6 +169,7 @@ public class mainWindow extends javax.swing.JFrame {
         kGradientPanel2.add(cbxCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 190, -1));
 
         kButton1.setText("Consultar");
+        kButton1.setRolloverEnabled(true);
         kGradientPanel2.add(kButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 70, 30));
 
         panelFiltros.setBackground(new Color(0,0,0,80));

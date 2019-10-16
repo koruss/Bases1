@@ -7,6 +7,7 @@ package Business;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.jfree.data.general.DefaultPieDataset;
 
 
 /**
@@ -14,13 +15,15 @@ import java.sql.SQLException;
  * @author Kenneth
  */
 public class Funciones {//recibe los datos, la contrasena ya esta encriptada
+    private static String key="IloveBD1";
     
  //metodos de la clase   
     
     public void SignUp(String pIdentification,String pName, String pFirstLastName, String pSecondLastName,int pIdNationality, int pIdCommunity,String pEmail, String pTelephone, java.util.Date  pDate, String pUsername,String pPassword,int pUserType)throws SQLException{
         //aqui se llama a la base de datos 
         System.out.println("ingresando en la base");
-       connect.connectDB.insertPerson(pIdentification,pName,  pFirstLastName,pSecondLastName,pIdNationality, pIdCommunity, pEmail, pTelephone, pDate, pUsername, pPassword,pUserType);        
+        String encryptedPassw=EncryptPassw(pPassword);
+       connect.connectDB.insertPerson(pIdentification,pName,  pFirstLastName,pSecondLastName,pIdNationality, pIdCommunity, pEmail, pTelephone, pDate, pUsername, encryptedPassw,pUserType);        
     }
     
     public void RegisterProposal(String pIdentification,String pTitle,String pDescription, int pCategory, int pBudget)throws SQLException{
@@ -129,14 +132,7 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
    public int getCommunityByPerson(String pCedula) throws SQLException{
        return connect.connectDB.getCommunityByUser(pCedula);
    }
- //esta es la funcion para encriptar la contrasena   
-    public String  EncryptPassw(String passw){
-        String encryptedPassw=new String();
-        //aqui viene el codigo para encriptar el passw
-        
-        
-        return encryptedPassw;
-    }
+ 
   
     
 //est funcion booleana se utiliza para revisar si una cadena es de numeros solamente
@@ -206,7 +202,138 @@ public class Funciones {//recibe los datos, la contrasena ya esta encriptada
     
     public void  insertCommentary(String pCedula, String pIdpProposal,String comment){
         //aqui van los connect para insertar los comentarios a la base
+    }
+    
+    //este metodo se utiliza para cargar la informacion al grafico
+    public DefaultPieDataset graficoClasificacion() throws SQLException{
+        DefaultPieDataset result =new DefaultPieDataset();
+        ResultSet r = connect.connectDB.graficoClasificacion();
+        while(r.next()){
+            String nombre=r.getString("CATEGORY_NAME");
+            int cantidad=r.getInt("");
+            result.setValue(nombre,cantidad);
+        }
+        return result;
+    }
+        public DefaultPieDataset graficoEdad(String rango) throws SQLException{
+        DefaultPieDataset result =new DefaultPieDataset();
+        ResultSet r = connect.connectDB.graficoEdad(rango);
+        while(r.next()){
+            String nombre=r.getString("CATEGORY_NAME");
+            int cantidad=r.getInt("");
+            result.setValue(nombre,cantidad);
+        }
+        return result;
+    }
+    
         
+        
+  public DefaultPieDataset graficoPropuestasXzona(String pIdPais,String pIdProvincia,String pIdCanton,String pIdComunidad) throws SQLException{
+        int IdPais;
+        int IdProvincia;
+        int IdCanton;
+        int IdComunidad;
+        ResultSet r;
+        if(pIdPais=="Seleccione"){
+            IdPais=-1;
+            r = connect.connectDB.graficoPropuestaXzona(IdPais, -1, -1,-1);//todo nulo
+        }
+        else{
+            IdPais=1;
+           // IdPais=connect.connectDB.getCountryId(pIdPais);
+            if(pIdProvincia=="Seleccione"){
+                IdProvincia=-1;
+                r = connect.connectDB.graficoPropuestaXzona(IdPais, IdProvincia, -1,-1);//grafico con el pais
+            }
+            else{
+                IdProvincia=connect.connectDB.getProvinceId(pIdProvincia);
+                if(pIdCanton=="Seleccione"){
+                    IdCanton=-1;
+                    r = connect.connectDB.graficoPropuestaXzona(IdPais, IdProvincia, IdCanton, -1);//el grafico con las provincias
+                }
+                else{
+                    IdCanton=connect.connectDB.getCantonId(pIdCanton);
+                    if(pIdComunidad=="Seleccione"){
+                        IdComunidad=-1;
+                        r=connect.connectDB.graficoPropuestaXzona(IdPais, IdProvincia, IdCanton, IdComunidad);//    
+                    }
+                    else{
+                        IdComunidad=connect.connectDB.getCommunityId(pIdComunidad, IdCanton);
+                        r=connect.connectDB.graficoPropuestaXzona(IdPais, IdProvincia, IdCanton, IdComunidad);
+                    }
+                    
+                }     
+            }
+        }
+        DefaultPieDataset result =new DefaultPieDataset();
+        while(r.next()){
+            String nombre=r.getString("CATEGORY_NAME");
+            int cantidad=r.getInt("");
+            result.setValue(nombre,cantidad);
+        }
+        return result;
+    }
+  
+  
+   //esta es la funcion para encriptar la contrasena   
+    public String  EncryptPassw(String passw){
+        String encryptedPassw=new String();
+        encryptedPassw=AESencrypter.encrypt(passw,key);
+        return encryptedPassw;
+    }
+    
+    public String DecryptPassw(String encryptedPassw){
+                String DecryptedPassw=new String();
+        DecryptedPassw=AESencrypter.decrypt(encryptedPassw, key);
+        return encryptedPassw;
+        
+    }
+    
+    
+      public DefaultPieDataset graficoPersonasXzona(String pIdPais,String pIdProvincia,String pIdCanton,String pIdComunidad) throws SQLException{
+        int IdPais;
+        int IdProvincia;
+        int IdCanton;
+        int IdComunidad;
+        ResultSet r;
+        if(pIdPais=="Seleccione"){
+            IdPais=-1;
+            r = connect.connectDB.graficoPersonaXzona(IdPais, -1, -1,-1);//todo nulo
+        }
+        else{
+            IdPais=1;
+           // IdPais=connect.connectDB.getCountryId(pIdPais);
+            if(pIdProvincia=="Seleccione"){
+                IdProvincia=-1;
+                r = connect.connectDB.graficoPersonaXzona(IdPais, IdProvincia, -1,-1);//grafico con el pais
+            }
+            else{
+                IdProvincia=connect.connectDB.getProvinceId(pIdProvincia);
+                if(pIdCanton=="Seleccione"){
+                    IdCanton=-1;
+                    r = connect.connectDB.graficoPersonaXzona(IdPais, IdProvincia, IdCanton, -1);//el grafico con las provincias
+                }
+                else{
+                    IdCanton=connect.connectDB.getCantonId(pIdCanton);
+                    if(pIdComunidad=="Seleccione"){
+                        IdComunidad=-1;
+                        r=connect.connectDB.graficoPersonaXzona(IdPais, IdProvincia, IdCanton, IdComunidad);//    
+                    }
+                    else{
+                        IdComunidad=connect.connectDB.getCommunityId(pIdComunidad, IdCanton);
+                        r=connect.connectDB.graficoPersonaXzona(IdPais, IdProvincia, IdCanton, IdComunidad);
+                    }
+                    
+                }     
+            }
+        }
+        DefaultPieDataset result =new DefaultPieDataset();
+        while(r.next()){
+            String nombre=r.getString("CATEGORY_NAME");
+            int cantidad=r.getInt("");
+            result.setValue(nombre,cantidad);
+        }
+        return result;
     }
     
     

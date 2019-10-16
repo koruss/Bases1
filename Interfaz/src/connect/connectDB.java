@@ -24,6 +24,58 @@ public class connectDB{
     public static Connection con=null;
     
     
+    public static ResultSet graficoClasificacion() throws SQLException{
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.INSERT_PERSON(?,?,?,?,?,?,?,?,?,?,?,?)}");
+        ResultSet r=(ResultSet) stmt.getObject(1);
+        stmt.executeQuery();
+        return r;
+    }
+    public static ResultSet graficoPropuestaXzona(int pidPais, int pidProvincia,int pidCanton, int pidCommunity) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?)}");
+           stmt.registerOutParameter(1,OracleTypes.CURSOR);
+           if (pidPais == -1) stmt.setNull(2,java.sql.Types.BIGINT);
+           else stmt.setInt(2,pidPais);
+           if (pidProvincia == -2) stmt.setNull(3,java.sql.Types.BIGINT);
+           else stmt.setInt(3,pidProvincia);
+           if(pidCanton==-1)stmt.setNull(4,java.sql.Types.BIGINT);
+           else stmt.setInt(4,pidCanton);
+           if(pidCommunity==-1)stmt.setNull(5,java.sql.Types.BIGINT);
+           else stmt.setInt(5,pidCommunity);
+           ResultSet r=(ResultSet) stmt.getObject(1);
+           stmt.executeQuery();
+           return r;
+}
+    public static ResultSet graficoEdad(String rango) throws SQLException{
+        con=DriverManager.getConnection(host,uName,uPass);
+        CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?)}");
+        stmt.registerOutParameter(1,OracleTypes.CURSOR);
+        if (rango =="Seleccione") stmt.setNull(2,java.sql.Types.BIGINT);
+           else stmt.setString(2,rango);
+        ResultSet r=(ResultSet) stmt.getObject(1);
+        stmt.executeQuery();
+        return r;
+    }
+    
+    public static ResultSet graficoPersonaXzona(int pidPais, int pidProvincia,int pidCanton, int pidCommunity) throws SQLException{
+           con=DriverManager.getConnection(host,uName,uPass);
+           CallableStatement stmt= con.prepareCall("{call PKG_USER_CONSULTS.GET_ALL_PROPOSAL(?,?,?,?)}");//hay que cambiar este metodo
+           stmt.registerOutParameter(1,OracleTypes.CURSOR);
+           if (pidPais == -1) stmt.setNull(2,java.sql.Types.BIGINT);
+           else stmt.setInt(2,pidPais);
+           if (pidProvincia == -2) stmt.setNull(3,java.sql.Types.BIGINT);
+           else stmt.setInt(3,pidProvincia);
+           if(pidCanton==-1)stmt.setNull(4,java.sql.Types.BIGINT);
+           else stmt.setInt(4,pidCanton);
+           if(pidCommunity==-1)stmt.setNull(5,java.sql.Types.BIGINT);
+           else stmt.setInt(5,pidCommunity);
+           ResultSet r=(ResultSet) stmt.getObject(1);
+           stmt.executeQuery();
+           return r;
+}
+    
+    
     public static void insertPerson(String pIdentification,String pName, String pFirstLastName, String pSecondLastName,int pIdNationality, int pIdCommunity, String pEmail, String pTelephone, java.util.Date  pDate, String pUsername,String pPassword,int pUserType) throws SQLException {
         con=DriverManager.getConnection(host,uName,uPass);
         CallableStatement stmt= con.prepareCall("{ call PKG_ADMIN_PERSON.INSERT_PERSON(?,?,?,?,?,?,?,?,?,?,?,?)}");
@@ -813,15 +865,14 @@ public class connectDB{
        
 
          
-        public static ResultSet getProposalComments(int pIdProposal) throws SQLException{
+      public static ResultSet getProposalComments(int pIdProposal) throws SQLException{
             con=DriverManager.getConnection(host,uName,uPass);
              CallableStatement stmt= con.prepareCall("{call PKG_ADMIN_KIND_PERSON.VALIDATE_USER(?)}");
              stmt.registerOutParameter(1,OracleTypes.CURSOR);
              stmt.setInt(2,pIdProposal);
              stmt.executeQuery();
              ResultSet r=(ResultSet) stmt.getObject(1);
-            return r;
-            
+            return r;   
         }
     
     

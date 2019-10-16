@@ -145,6 +145,7 @@
         <Component class="keeptoo.KButton" name="kButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultar"/>
+            <Property name="rolloverEnabled" type="boolean" value="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
